@@ -1,0 +1,264 @@
+a {
+  color: #a63f0d;
+}
+a:hover,
+a:focus {
+  color: #a63f0d;
+}
+.caption a:hover { color: #a63f0d !important;}
+.bg-default {
+    background-color: #a63f0d;
+}
+.btn-default {
+    background-color: #a63f0d;
+	/*box shadow should be dark*/
+    box-shadow: 0 3px 0 #7b5a39;
+    -moz-box-shadow:0 3px 0 #7b5a39;
+    -webkit-box-shadow:0 3px 0 #7b5a39;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle.btn-default {
+  background-color: #7b5a39;
+}
+h1.bordered,
+h2.bordered,
+h3.bordered,
+h4.bordered,
+h5.bordered,
+h6.bordered,
+.h1.bordered,
+.h2.bordered,
+.h3.bordered,
+.h4.bordered,
+.h5.bordered,
+.h6.bordered {
+	color: #a63f0d;
+}
+h1.light,
+h2.light,
+h3.light,
+h4.light,
+h5.light,
+h6.light,
+.h1.light,
+.h2.light,
+.h3.light,
+.h4.light,
+.h5.light,
+.h6.light {
+	color:#a63f0d;
+}
+
+.top-sec-detail .social2 li a:hover{ border:2px solid #a63f0d;}
+.top-sec-detail .social2 li a:hover i{ color:#a63f0d}
+
+@media (min-width: 768px) {
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  background-color:#a63f0d;
+}
+.navbar-nav > li:hover a{
+	background:#a63f0d; color:#fff !important;
+}
+}
+.dropdown-menu {
+	border-top: 6px solid #a63f0d;
+}
+.navbar-nav > li:hover ul li a:hover{ 
+	color:#a63f0d !important;
+}
+.navbar-nav li.mega-menu-item .mega-menu{ border-top: 6px solid #a63f0d;}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  background-color: #a63f0d;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  background-color: #a63f0d;
+}
+
+@media (max-width: 767px) {		
+	.navbar-default .navbar-nav > li a:hover{		
+		color:#a63f0d;		
+	}
+}
+.home-box a:hover{color:#a63f0d;}
+.appointment-sec h1{ 
+	color:#a63f0d
+}
+.ui-widget-header {
+	background: #a63f0d;
+	/*border colour should be dark*/
+	border: 1px solid #7b5a39;
+}
+
+.blog-date {background: #a63f0d; }
+.blog-thumbnail img{border-bottom:4px solid #a63f0d;}
+.blog-item .blog-title a:hover{ color:#a63f0d;}
+.carousel-indicators .active {
+  background-color: #a63f0d;
+}
+.panel-title.active span{ background:#a63f0d}
+.panel-title.active a{ color:#a63f0d !important}
+.testimonials h1{ color:#a63f0d}
+.footer-nav li a:hover {color:#a63f0d !important;}
+footer h4{ color:#a63f0d;}
+.footer-widget h4{ color:#a63f0d}
+footer h4 span{ border-bottom:1px solid #a63f0d;}
+footer.light .tweet i{color:#a63f0d;}
+footer.light .contact-widget p a:hover{ color:#a63f0d;}
+footer.dark .contact-widget p a:hover{ color:#a63f0d;}
+
+/*home 2*/
+.service-box:hover{ background:#a63f0d;}
+.service-box:hover .icon{ background:#a63f0d;box-shadow:0px 0px 0px 1px #a63f0d;}
+.jcarousel-skin-tango .jcarousel-prev-disabled-vertical,
+.jcarousel-skin-tango .jcarousel-prev-disabled-vertical:hover,
+.jcarousel-skin-tango .jcarousel-prev-disabled-vertical:focus,
+.jcarousel-skin-tango .jcarousel-prev-disabled-vertical:active {
+    background:#a63f0d !important;
+}
+.jcarousel-skin-tango .jcarousel-prev-vertical:hover,
+.jcarousel-skin-tango .jcarousel-prev-vertical:focus {
+    background:#a63f0d;
+}
+.jcarousel-skin-tango .jcarousel-prev-disabled-horizontal,
+.jcarousel-skin-tango .jcarousel-prev-disabled-horizontal:hover,
+.jcarousel-skin-tango .jcarousel-prev-disabled-horizontal:focus,
+.jcarousel-skin-tango .jcarousel-prev-disabled-horizontal:active {
+    background:#a63f0d !important;
+}
+.jcarousel-skin-tango .jcarousel-prev-horizontal:hover, 
+.jcarousel-skin-tango .jcarousel-prev-horizontal:focus {
+   background:#a63f0d;
+}
+
+.jcarousel-skin-tango .jcarousel-prev-horizontal:active {
+   background:#a63f0d;
+}
+.jcarousel-skin-tango .jcarousel-next-horizontal:hover,
+.jcarousel-skin-tango .jcarousel-next-horizontal:focus {
+    background:#a63f0d;
+}
+
+.jcarousel-skin-tango .jcarousel-next-horizontal:active {
+    background:#a63f0d;
+}
+
+.jcarousel-skin-tango .jcarousel-next-disabled-horizontal,
+.jcarousel-skin-tango .jcarousel-next-disabled-horizontal:hover,
+.jcarousel-skin-tango .jcarousel-next-disabled-horizontal:focus,
+.jcarousel-skin-tango .jcarousel-next-disabled-horizontal:active {
+    background:#a63f0d !important;
+}
+.jcarousel-skin-tango .jcarousel-next-vertical:hover, .jcarousel-skin-tango .jcarousel-next-vertical:focus{background:#a63f0d;}
+.jcarousel-skin-tango .jcarousel-next-disabled-vertical, .jcarousel-skin-tango .jcarousel-next-disabled-vertical:hover, .jcarousel-skin-tango .jcarousel-next-disabled-vertical:focus, .jcarousel-skin-tango .jcarousel-next-disabled-vertical:active{background:#a63f0d;}
+.blog2-content h4 a:hover{ color:#a63f0d;}
+.slider-mini a:hover{ color:#a63f0d; border-color:#a63f0d;}
+.testimonials2-patient-detail span{ color:#a63f0d}
+.creative-sec h1{ color:#a63f0d}
+.creative-sec-thumb .overlay{background:url(../images/brown-overlay.png) repeat;}
+.accordian-style2 .panel-heading i{ color:#a63f0d;}
+
+
+
+/*home4*/
+caption a.btn-bordered:hover{ color:#a63f0d}
+.slider-revolution-overlay{ background:url(../images/brown-overlay.png) repeat;}
+/*revolution slider nav*/
+.tp-bullets.simplebullets .bullet{background:#80b5d0;}
+
+
+/*sub page*/
+.sub-page-banner .overlay{background:url(../images/brown-overlay.png) repeat;}
+.team-des-btn.active{ background:#a63f0d}
+.team-member-description .team-member-desc-inner{ background:url(../images/brown-overlay.png) repeat; border:1px solid #1b7fb1; 
+/*box shadow should be light*/
+box-shadow: inset 1px 1px 1px 0px #88c4e2;-moz-box-shadow: inset 1px 1px 1px 0px #88c4e2;-webkit-box-shadow: inset 1px 1px 1px 0px #88c4e2;}
+.team-member-description .team-member-desc-inner span.pointing-arrow{ background:url(../images/team-member-desc-arrow.png) no-repeat;}
+i.feature-icon{  background:#a63f0d;}
+i.feature-icon{text-shadow:0px 5px 0px #87592c;}
+.carousel.default .carousel-indicators .active{ background:#a63f0d;}
+.year {color: #a63f0d;}
+.carousel-indicators.dark-indicators .active{ background:#a63f0d !important}
+.medicom-feature-list li i{border:1px solid #704e2c; 
+/*border should be dark*/
+background:#7b5a39;}
+.procedures h3{ margin:0; background:#a63f0d; }
+.testimonials3-patient-detail span{color:#a63f0d;}
+
+
+/*quote icons should be light*/
+.testimonials3 .fa-quote-left, .testimonials3 .fa-quote-right{ color:#d9e6ef;}
+.doctors-detail h4{color:#a63f0d}
+.investigations h1{ color:#a63f0d}
+.pricing-table2.highlight .table-heading, .pricing-table2.highlight .table-heading .price{ background:#a63f0d;}
+.pricing-table .table-heading{ background:#a63f0d;}
+.gallery-item:hover p a:hover{ color:#a63f0d}
+.tags li a:hover{ color:#a63f0d; border:1px solid #a63f0d;}
+.popular-post h4:hover, .popular-post h4 a:hover{ color:#a63f0d}
+.archives li a:hover, .archives li a:hover i{ color:#a63f0d}
+.get-in-touch-widget li a:hover, .we-are-social li a:hover{ color:#a63f0d;}
+
+
+.sidebar-nav .panel-body a:hover, .sidebar-nav .panel-body a.active{color:#a63f0d}
+
+
+
+
+
+/*tri sec*/
+.tri-sec:hover{ background:#a63f0d;}
+.tri-sec:hover i{ color:#a63f0d;}
+
+
+
+
+
+
+
+
+
+
+.price-rating .price{ 
+	color:#a63f0d
+}
+.product .ad-to-cart:hover{
+	color:#a63f0d;
+}
+.popular-post p strong, .best-seller p strong{
+	color:#a63f0d
+}
+.popular-post h4 a:hover, .best-seller h4 a:hover{
+	color:#a63f0d
+}
+
+.shop-banner .slider-text h1 span{ color:#a63f0d}
+.product-single-content h4{
+	color:#a63f0d
+}
+.cart-total-amount .price{ 
+	color:#a63f0d;
+}
+.after-booking-sec h1{ color:#a63f0d}
+.owl-controls .owl-buttons .owl-prev:hover, .owl-controls .owl-buttons .owl-next:hover{ background:#a63f0d;}
+.team-thumb .links a i{ background:#a63f0d;}
+.team-thumb .links a:hover i{ background:#a98867;}
+.solid-row{ background:#a63f0d;}
+
+
+.shop-banner .owl-controls .owl-page:hover, .shop-banner .owl-controls .owl-page.active{ background:#a63f0d}
+.back-to-top{ background:#a63f0d}
+.testimonials-carousel .owl-pagination .owl-page.active, 
+.testimonials-carousel .owl-pagination .owl-page:hover,
+.meet-doctors-carousel .owl-pagination .owl-page.active, 
+.meet-doctors-carousel .owl-pagination .owl-page:hover{ 
+	background-color:#a63f0d
+}
+.gallery-item:hover .gallery-item-info{ border-bottom:6px solid #a63f0d}
