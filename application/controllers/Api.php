@@ -377,7 +377,7 @@ class Api extends REST_Controller
             $this->upload->do_upload('img');
             $data = array(
                 'ticket_id' => $ticket_id,
-                'img' => 'http://nama_domain_anda.com/apartemen/assets/img/' . $rand . '.' . $ext,
+                'img' => 'http://wismartlink.asepbudiyanam.com/assets/img/' . $rand . '.' . $ext,
                 'created_date' => date('Y-m-d H:i:s')
             );
             $this->db->insert('ticket_file', $data);
@@ -1769,7 +1769,7 @@ class Api extends REST_Controller
                 $data = array(
                     'id_user'               => $param['id_user'],
                     'nama_resto'               => $param['nama_resto'],
-                    'img' => 'http://nama_domain_anda.com/apartemen/assets/img/resto/icon/' . $rand . '.' . $ext,
+                    'img' => 'http://wismartlink.asepbudiyanam.com/assets/img/resto/icon/' . $rand . '.' . $ext,
                     'created_date'          => date('Y-m-d H:i:s')
                 );
                 $simpan = $this->apartemen_model->insert_id('restaurant', $data);
@@ -1838,7 +1838,7 @@ class Api extends REST_Controller
             $this->upload->do_upload('img');
             $data = array(
                 'nama_resto' => $param['nama_resto'],
-                'img' => 'http://nama_domain_anda.com/apartemen/assets/img/resto/icon/' . $rand . '.' . $ext,
+                'img' => 'http://wismartlink.asepbudiyanam.com/assets/img/resto/icon/' . $rand . '.' . $ext,
                 'updated_date' => date('Y-m-d H:i:s')
             );
             if ($this->apartemen_model->update('id', $param['id'], $data, 'restaurant')) {
@@ -1898,7 +1898,7 @@ class Api extends REST_Controller
                 $data = array(
                     'id_user'               => $param['id_user'],
                     'nama_toko'               => $param['nama_toko'],
-                    'img' => 'http://nama_domain_anda.com/apartemen/assets/img/toko/icon/' . $rand . '.' . $ext,
+                    'img' => 'http://wismartlink.asepbudiyanam.com/assets/img/toko/icon/' . $rand . '.' . $ext,
                     'created_date'          => date('Y-m-d H:i:s')
                 );
 
@@ -1968,7 +1968,7 @@ class Api extends REST_Controller
             $this->upload->do_upload('img');
             $data = array(
                 'nama_toko' => $param['nama_toko'],
-                'img' => 'http://nama_domain_anda.com/apartemen/assets/img/toko/icon/' . $rand . '.' . $ext,
+                'img' => 'http://wismartlink.asepbudiyanam.com/assets/img/toko/icon/' . $rand . '.' . $ext,
                 'updated_date' => date('Y-m-d H:i:s')
             );
             if ($this->apartemen_model->update('id', $param['id'], $data, 'toko')) {
@@ -2091,7 +2091,7 @@ class Api extends REST_Controller
                 'id_resto' => $id_resto,
                 'nama_makanan' => $param['nama_makanan'],
                 'harga' => $param['harga'],
-                'img' => 'http://nama_domain_anda.com/apartemen/assets/img/resto/' . $rand . '.' . $ext,
+                'img' => 'http://wismartlink.asepbudiyanam.com/assets/img/resto/' . $rand . '.' . $ext,
                 'created_date' => date('Y-m-d H:i:s')
             );
             $this->db->insert('makanan_restaurant', $data);
@@ -2148,7 +2148,7 @@ class Api extends REST_Controller
             $data = array(
                 'nama_makanan' => $param['nama_makanan'],
                 'harga' => $param['harga'],
-                'img' => 'http://nama_domain_anda.com/apartemen/assets/img/resto/' . $rand . '.' . $ext,
+                'img' => 'http://wismartlink.asepbudiyanam.com/assets/img/resto/' . $rand . '.' . $ext,
                 'updated_date' => date('Y-m-d H:i:s')
             );
             if ($this->apartemen_model->update('id', $param['id'], $data, 'makanan_restaurant')) {
@@ -2201,7 +2201,7 @@ class Api extends REST_Controller
                 'nama_barang' => $param['nama_barang'],
                 'keterangan' => $param['keterangan'],
                 'harga' => $param['harga'],
-                'img' => 'http://nama_domain_anda.com/apartemen/assets/img/toko/' . $rand . '.' . $ext,
+                'img' => 'http://wismartlink.asepbudiyanam.com/assets/img/toko/' . $rand . '.' . $ext,
                 'created_date' => date('Y-m-d H:i:s')
             );
             $this->db->insert('barang_toko', $data);
@@ -2259,7 +2259,7 @@ class Api extends REST_Controller
                 'nama_barang' => $param['nama_barang'],
                 'keterangan' => $param['keterangan'],
                 'harga' => $param['harga'],
-                'img' => 'http://nama_domain_anda.com/apartemen/assets/img/toko/' . $rand . '.' . $ext,
+                'img' => 'http://wismartlink.asepbudiyanam.com/assets/img/toko/' . $rand . '.' . $ext,
                 'updated_date' => date('Y-m-d H:i:s')
             );
             if ($this->apartemen_model->update('id', $param['id'], $data, 'barang_toko')) {
