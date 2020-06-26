@@ -246,6 +246,57 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="nav-item start ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-globe"></i>
+                    <span class="title">Tambahan</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item start <?php if ($this->uri->segment(1) == "Helpdesk") {
+                                                    echo 'active';
+                                                } ?>">
+                        <a href="<?php echo base_url() ?>index.php/Helpdesk" class="nav-link ">
+                            <i class="icon-bar-chart"></i>
+                            <span class="title">Helpdesk</span>
+                        </a>
+                    </li>
+                    <li class="nav-item start <?php if ($this->uri->segment(1) == "Upload") {
+                                                    echo 'active';
+                                                } ?>">
+                        <a href="<?php echo base_url() ?>index.php/Upload" class="nav-link ">
+                            <i class="icon-cloud-upload"></i>
+                            <span class="title">Upload</span>
+                        </a>
+                    </li>
+                    <li class="nav-item start <?php if ($this->uri->segment(1) == "Scan") {
+                                                    echo 'active';
+                                                } ?>">
+                        <a href="<?php echo base_url() ?>index.php/Scan" class="nav-link ">
+                            <i class="icon-bulb"></i>
+                            <span class="title">Scan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item start <?php if ($this->uri->segment(1) == "Chat") {
+                                                    echo 'active';
+                                                } ?>">
+                        <a href="<?php echo base_url() ?>index.php/Chat" class="nav-link ">
+                            <i class="icon-bulb"></i>
+                            <span class="title">Chat</span>
+                        </a>
+                    </li>
+                    <li class="nav-item start <?php if ($this->uri->segment(1) == "Payment") {
+                                                    echo 'active';
+                                                } ?>">
+                        <a href="<?php echo base_url() ?>index.php/Payment" class="nav-link ">
+                            <i class="icon-bulb"></i>
+                            <span class="title">Payment</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="tooltips <?php if ($this->uri->segment(1) == "Emergency") {
                                     echo 'active';
                                 } ?>">

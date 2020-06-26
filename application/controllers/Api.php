@@ -1080,12 +1080,12 @@ class Api extends REST_Controller
         $tgl = date("YmdHis");
         $kode_transaksi = $id_user . '-' . $tgl . 'TK';
 
-        $data = array(
+        $dataDB = array(
             'kode_transaksi'               => $kode_transaksi,
             'grand_total'               => $param['grand_total'],
             'created_date'          => date('Y-m-d H:i:s')
         );
-        if ($this->apartemen_model->save_to_db('transaksi_belanja_toko', $data)) {
+        if ($this->apartemen_model->save_to_db('transaksi_belanja_toko', $dataDB)) {
             $data_update = array(
                 'kode_transaksi'           => $kode_transaksi,
                 'status'           => '1',
@@ -1096,6 +1096,7 @@ class Api extends REST_Controller
             $data = array(
                 'success' => true,
                 'message' => 'save data success',
+                'data'  => $dataDB
             );
             $this->response($data, 200);
         } else {
@@ -1117,12 +1118,12 @@ class Api extends REST_Controller
         $tgl = date("YmdHis");
         $kode_transaksi = $id_user . '-' . $tgl . 'TK';
 
-        $data = array(
+        $dataDB = array(
             'kode_transaksi'               => $kode_transaksi,
             'grand_total'               => $param['grand_total'],
             'created_date'          => date('Y-m-d H:i:s')
         );
-        if ($this->apartemen_model->save_to_db('transaksi_order_makan', $data)) {
+        if ($this->apartemen_model->save_to_db('transaksi_order_makan', $dataDB)) {
             $data_update = array(
                 'kode_transaksi'           => $kode_transaksi,
                 'status'           => '1',
@@ -1133,6 +1134,7 @@ class Api extends REST_Controller
             $data = array(
                 'success' => true,
                 'message' => 'save data success',
+                'data'  => $dataDB
             );
             $this->response($data, 200);
         } else {
