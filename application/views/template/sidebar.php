@@ -262,14 +262,6 @@
                             <span class="title">Helpdesk</span>
                         </a>
                     </li>
-                    <li class="nav-item start <?php if ($this->uri->segment(1) == "Upload") {
-                                                    echo 'active';
-                                                } ?>">
-                        <a href="<?php echo base_url() ?>index.php/Upload" class="nav-link ">
-                            <i class="icon-cloud-upload"></i>
-                            <span class="title">Upload</span>
-                        </a>
-                    </li>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Scan") {
                                                     echo 'active';
                                                 } ?>">
@@ -295,6 +287,24 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+
+            <li class="tooltips <?php if ($this->uri->segment(1) == "Upload") {
+                                    echo 'active';
+                                } ?>">
+                <a href="<?php echo base_url() ?>index.php/Upload" class="nav-link ">
+                    <i class="icon-cloud-upload"></i>
+                    <span class="title">Upload</span>
+                </a>
+            </li>
+
+            <li class="tooltips <?php if ($this->uri->segment(1) == "Security") {
+                                    echo 'active';
+                                } ?>">
+                <a href="<?php echo base_url() ?>index.php/Security" class="nav-link ">
+                    <i class="icon-shield"></i>
+                    <span class="title">Security</span>
+                </a>
             </li>
 
             <li class="tooltips <?php if ($this->uri->segment(1) == "Emergency") {

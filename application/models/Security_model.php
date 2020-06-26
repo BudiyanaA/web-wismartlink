@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Chat_model extends CI_Model
+class Security_model extends CI_Model
 {
 	var $infra = null;
 	var $table = 'ticket'; //nama tabel dari database
@@ -28,12 +28,12 @@ class Chat_model extends CI_Model
 		// $this->db->join('gedung g', 'un.id_gedung = g.id_gedung', 'left');
 		// $this->db->join('apartemen a', 'g.id_apt = a.id_apt', 'left');
 
-		$this->db->select('rm.*, u1.nama AS sender_nama, u1.level AS sender_level, u2.nama as receiver_nama, u2.level AS receiver_level');
+        $this->db->select('rm.*, u1.nama AS sender_nama, u1.level AS sender_level, u2.nama as receiver_nama, u2.level AS receiver_level');
         $this->db->from('chat rm');
         $this->db->join('user u1', 'rm.sender = u1.user_id', 'left');
         $this->db->join('user u2', 'rm.sender = u2.user_id', 'left');
-        $this->db->where('u1.level', 1);
-        $this->db->or_where('u2.level', 1);
+        $this->db->where('u1.level', 2);
+        $this->db->or_where('u2.level', 2);
 
 		// $this->db->from($this->table);
 

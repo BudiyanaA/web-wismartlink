@@ -8,8 +8,29 @@ class Chat extends REST_Controller
     // get list user
     public function user_get() {
         $me = $_GET['user_id'];
-        $friend = $this->db->query('select user_id, nama from user where user_id !="'.$me.'"')->result_array();
-        
+        $friend = $this->db->query('select user_id, nama from user where level = 1 and user_id !="'.$me.'"')->result_array();
+
+        if (!$friend) {
+            $wrapper = array(
+                'status' => 404,
+                'message' => 'other_user_not_found',
+            );
+        } else {
+            $wrapper = array(
+                'status' => 200,
+                'message' => 'get_list_friend_success',
+                'data' => $friend
+            );
+        }
+
+        $this->response($wrapper, $wrapper['status']);
+    }
+
+    // get list Security
+    public function security_get() {
+        $me = $_GET['user_id'];
+        $friend = $this->db->query('select user_id, nama from user where level = 2 and user_id !="'.$me.'"')->result_array();
+
         if (!$friend) {
             $wrapper = array(
                 'status' => 404,
