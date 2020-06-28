@@ -307,6 +307,15 @@
                 </a>
             </li>
 
+            <li class="tooltips <?php if ($this->uri->segment(1) == "Voucher") {
+                                    echo 'active';
+                                } ?>">
+                <a href="<?php echo base_url() ?>index.php/Voucher" class="nav-link ">
+                    <i class="icon-present"></i>
+                    <span class="title">Voucher</span>
+                </a>
+            </li>
+
             <li class="tooltips <?php if ($this->uri->segment(1) == "Emergency") {
                                     echo 'active';
                                 } ?>">
