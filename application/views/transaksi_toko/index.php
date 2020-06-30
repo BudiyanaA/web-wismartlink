@@ -37,30 +37,29 @@
                         </div>
                     </div>
                     <div class="portlet-body">
-                        <div class="table-toolbar">
+                        <!-- <div class="table-toolbar">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        <!-- <a href="<?php echo base_url() ?>index.php/Banner/create">
+                                        <a href="<?php echo base_url() ?>index.php/Voucher/create">
                                             <button id="sample_editable_1_new" class="btn sbold green"> Add New
                                                 <i class="fa fa-plus"></i>
                                             </button>
-                                        </a> -->
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="measurement">
                             <thead>
                                 <tr>
                                     <th> # </th>
-                                    <th> Nama Bank </th>
                                     <th> Kode Transaksi </th>
-                                    <th> Jenis </th>
+                                    <th> Grand Total </th>
                                     <th> Status </th>
-                                    <th> Waktu </th>
+                                    <th> Tanggal </th>
                                     <th> Actions </th>
                                 </tr>
                             </thead>
@@ -118,7 +117,7 @@
             "order": [],
 
             "ajax": {
-                "url": "<?php echo site_url('Payment/get_data') ?>",
+                "url": "<?php echo site_url('Transaksi_toko/get_data') ?>",
                 "type": "POST"
             },
 
@@ -132,10 +131,10 @@
 
     });
 
-    function approve(no) {
-        var choice = confirm('Approve Restaurant ini ?');
+    function confirmBayar(no){
+        var choice = confirm('Apakah Anda yakin ?');
         if (choice === true) {
-            window.location.href = '<?= base_url(); ?>index.php/Restaurant/approve/' + no;
+            window.location.href = '<?= base_url(); ?>index.php/Transaksi_toko/confirm/' + no;
         }
     }
 </script>

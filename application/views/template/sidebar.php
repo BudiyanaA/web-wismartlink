@@ -278,12 +278,46 @@
                             <span class="title">Chat</span>
                         </a>
                     </li>
-                    <li class="nav-item start <?php if ($this->uri->segment(1) == "Payment") {
+                </ul>
+            </li>
+
+            <li class="nav-item start ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-tag"></i>
+                    <span class="title">Payment</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item start <?php if ($this->uri->segment(1) == "Transaksi_toko") {
                                                     echo 'active';
                                                 } ?>">
-                        <a href="<?php echo base_url() ?>index.php/Payment" class="nav-link ">
+                        <a href="<?php echo base_url() ?>index.php/Transaksi_toko" class="nav-link ">
                             <i class="icon-bulb"></i>
-                            <span class="title">Payment</span>
+                            <span class="title">Transaksi Toko</span>
+                        </a>
+                    </li>
+                    <li class="nav-item start <?php if ($this->uri->segment(1) == "Transaksi_resto") {
+                                                    echo 'active';
+                                                } ?>">
+                        <a href="<?php echo base_url() ?>index.php/Transaksi_resto" class="nav-link ">
+                            <i class="icon-bulb"></i>
+                            <span class="title">Transaksi Restoran</span>
+                        </a>
+                    </li>
+                    <li class="nav-item start <?php if ($this->uri->segment(1) == "Request_fasilitas") {
+                                                    echo 'active';
+                                                } ?>">
+                        <a href="<?php echo base_url() ?>index.php/Sewa_fasilitas" class="nav-link ">
+                            <i class="icon-bulb"></i>
+                            <span class="title">Request Fasilitas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item start <?php if ($this->uri->segment(1) == "Request_service") {
+                                                    echo 'active';
+                                                } ?>">
+                        <a href="<?php echo base_url() ?>index.php/Room_service" class="nav-link ">
+                            <i class="icon-bulb"></i>
+                            <span class="title">Request Room Service</span>
                         </a>
                     </li>
                 </ul>

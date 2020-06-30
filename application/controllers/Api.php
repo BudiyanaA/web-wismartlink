@@ -153,18 +153,28 @@ class Api extends REST_Controller
         $param = $this->post();
         $this->load->model('Apartemen_model', 'apartemen_model');
 
-        $data = array(
-            'fasilitas_id'               => $param['fasilitas_id'],
-            'request_start'               => $param['request_start'],
-            'request_end'               => $param['request_end'],
+        $dataDB = array(
+            'fasilitas_id'          => $param['fasilitas_id'],
+            'request_start'         => $param['request_start'],
+            'request_end'           => $param['request_end'],
             'id_user'               => $param['id_user'],
             'created_date'          => date('Y-m-d H:i:s')
         );
 
-        if ($this->apartemen_model->save_to_db('request_fasilitas', $data)) {
+        //foto nama biaya nomor unik grand_total
+
+        // perhitungan jam untuk biaya
+        $start = new DateTime($dataDB['request_start']);
+        $end = new DateTime($dataDB['request_end']);
+        $interval = $end->diff($start)->h;
+
+        $dataDB['biaya'] = $interval * 5000;
+
+        if ($this->apartemen_model->save_to_db('request_fasilitas', $dataDB)) {
             $data = array(
                 'success' => true,
                 'message' => 'save data success',
+                'data' => $dataDB
             );
             $this->response($data, 200);
         } else {
@@ -172,7 +182,6 @@ class Api extends REST_Controller
                 'success' => false,
                 'message' => 'save data failed',
             );
-
             $this->response($data, 200);
         }
     }
@@ -210,17 +219,19 @@ class Api extends REST_Controller
         $param = $this->post();
         $this->load->model('Apartemen_model', 'apartemen_model');
 
-        $data = array(
+        $dataDB = array(
             'id_user'               => $param['id_user'],
             'request'               => $param['request'],
             'request_date'          => $param['request_date'],
+            'charge'                => 5000,
             'created_date'          => date('Y-m-d H:i:s')
         );
 
-        if ($this->apartemen_model->save_to_db('request_room_service', $data)) {
+        if ($this->apartemen_model->save_to_db('request_room_service', $dataDB)) {
             $data = array(
                 'success' => true,
                 'message' => 'Terima Kasih, Tim kami sedang menuju ke lokasi Anda',
+                'data'    => $dataDB
             );
             $this->response($data, 200);
         } else {
@@ -705,8 +716,19 @@ class Api extends REST_Controller
     {
         $param = $this->post();
         $this->load->model('Apartemen_model', 'apartemen_model');
+        $this->load->library('cekmutasi/cekmutasi');
+        
         $id_user = $param['id_user'];
         $fasilitas = $this->db->query("select * from request_fasilitas where id_user = '$id_user' order by id desc")->result();
+        
+        $user = $this->db->query("SELECT * FROM user u WHERE u.user_id = '$id_user'")->result();
+        foreach ($user as $row) {
+            $u = array(
+                'service_code' => strtolower($row->nama_bank),
+                'account_number' => $row->nomor_rekening,
+            );
+        }
+        
         if ($fasilitas != NULL) {
             foreach ($fasilitas as $row) {
                 $fasilitas_gedung = $this->db->query("select * from fasilitas_gedung where id = '$row->fasilitas_id'")->row();
@@ -726,11 +748,37 @@ class Api extends REST_Controller
                     $biaya = '';
                 }
 
+                $mutasi = array_merge($u, array(
+                    'amount' => $biaya,
+                    'date' => array(
+                        // batas waktu 24 jam
+                        'from' => $row->request_start,
+                        'to' => date('Y-m-d H:i:s', strtotime($row->request_start.' +1 day')),
+                    )
+                ));
+                $cek = $this->cekmutasi->bank()->mutation($mutasi);
+                if (!empty($cek->response)) {
+                    // sudah dibayar
+                    $row->is_paid = 1;
+                    $data_update = array(
+                        'is_paid'           => 1,
+                    );
+                    $this->db->where(array(
+                        'fasilitas_id' => $row->fasilitas_id,
+                        'request_start' => $row->request_start,
+                        'request_end' => $row->request_end,
+                        'id_user' => $id_user,
+                        'is_paid' => 0,
+                    ));
+                    $this->db->update('request_fasilitas', $data_update);
+                }
+
                 $d[] = array(
                     'request_start' => $row->request_start,
                     'request_end' => $row->request_end,
                     'status' => $row->status,
                     'biaya' => $biaya,
+                    'mutasi' => $mutasi,
                     'fasilitas' => $nama_fasilitas_gedung,
                     'is_paid' => $row->is_paid,
                     'tanggal_bayar' => $tanggal_bayar,
@@ -809,8 +857,19 @@ class Api extends REST_Controller
     {
         $param = $this->post();
         $this->load->model('Apartemen_model', 'apartemen_model');
+        $this->load->library('cekmutasi/cekmutasi');
+        
         $id_user = $param['id_user'];
         $fasilitas = $this->db->query("select * from request_room_service where id_user = '$id_user' order by id desc")->result();
+        
+        $user = $this->db->query("SELECT * FROM user u WHERE u.user_id = '$id_user'")->result();
+        foreach ($user as $row) {
+            $u = array(
+                'service_code' => strtolower($row->nama_bank),
+                'account_number' => $row->nomor_rekening,
+            );
+        }
+        
         if ($fasilitas != NULL) {
             foreach ($fasilitas as $row) {
                 if ($row->tanggal_bayar != NULL) {
@@ -829,10 +888,35 @@ class Api extends REST_Controller
                 } else {
                     $charge = '';
                 }
+
+                $mutasi = array_merge($u, array(
+                    'amount' => $charge,
+                    'date' => array(
+                        // batas waktu 24 jam
+                        'from' => $row->request_date,
+                        'to' => date('Y-m-d H:i:s', strtotime($row->request_date.' +1 day')),
+                    )
+                ));
+                $cek = $this->cekmutasi->bank()->mutation($mutasi);
+                if (!empty($cek->response)) {
+                    // sudah dibayar
+                    $row->is_paid = 1;
+                    $data_update = array(
+                        'is_paid'           => 1,
+                    );
+                    $this->db->where(array(
+                        'request_date' => $row->request_date,
+                        'id_user' => $id_user,
+                        'is_paid' => 0,
+                    ));
+                    $this->db->update('request_room_service', $data_update);
+                }
+
                 $d[] = array(
                     'request' => $row->request,
                     'status' => $status,
                     'charge' => $charge,
+                    'mutasi' => $mutasi,
                     'is_paid' => $row->is_paid,
                     'tanggal_bayar' => $tanggal_bayar,
                     'request_date' => $row->request_date
@@ -1399,12 +1483,24 @@ class Api extends REST_Controller
     public function list_nomor_transaksi_toko_post()
     {
         $this->load->model('Apartemen_model', 'apartemen_model');
+        $this->load->library('cekmutasi/cekmutasi');
+
         $param = $this->post();
         $id_user = $param['id_user'];
-        $list_transaksi = $this->db->query("SELECT b.id, b.kode_transaksi, a.status as status_order, b.`status`, b.grand_total FROM belanja_toko a 
+        $list_transaksi = $this->db->query("SELECT b.id, b.kode_transaksi, a.status as status_order, b.`status`, b.grand_total, b.created_date FROM belanja_toko a 
         LEFT JOIN transaksi_belanja_toko b ON a.kode_transaksi = b.kode_transaksi
-        WHERE a.id_user = '$id_user' AND b.`status` = 'UNPAID'
+        WHERE a.id_user = '$id_user' 
+        -- AND b.`status` = 'UNPAID'
         GROUP BY b.id")->result();
+
+        $user = $this->db->query("SELECT * FROM user u WHERE u.user_id = '$id_user'")->result();
+        foreach ($user as $row) {
+            $u = array(
+                'service_code' => strtolower($row->nama_bank),
+                'account_number' => $row->nomor_rekening,
+            );
+        }
+        
         if ($list_transaksi != NULL) {
             $r = array();
             foreach ($list_transaksi as $key => $p) {
@@ -1421,8 +1517,31 @@ class Api extends REST_Controller
 
                     );
                 }
+
+                $mutasi = array_merge($u, array(
+                    'amount' => $p->grand_total,
+                    'date' => array(
+                        // batas waktu 24 jam
+                        'from' => $p->created_date,
+                        'to' => date('Y-m-d H:i:s', strtotime($p->created_date.' +1 day')),
+                    )
+                ));
+                $cek = $this->cekmutasi->bank()->mutation($mutasi);
+                if (!empty($cek->response)) {
+                    // sudah dibayar
+                    $p->status = 'PAID';
+                    $data_update = array(
+                        'kode_transaksi'   => $p->kode_transaksi,
+                        'status'           => 'PAID',
+                    );
+                    $this->db->where('status', 'UNPAID');
+                    $this->db->where('kode_transaksi', $p->kode_transaksi);
+                    $this->db->update('transaksi_belanja_toko', $data_update);
+                }
+
                 $r[] = array(
                     'id' => $p->id,
+                    'mutasi' => $mutasi,
                     'kode_transaksi' => $p->kode_transaksi,
                     'status' => $p->status,
                     'status_order' => $p->status_order,
@@ -1448,6 +1567,7 @@ class Api extends REST_Controller
         }
 
         $this->response($data, 200);
+        // print_r(empty($cek->response));
     }
 
     public function jumlah_transaksi_toko_belum_lunas_post()
@@ -1556,12 +1676,24 @@ class Api extends REST_Controller
     public function list_nomor_transaksi_resto_post()
     {
         $this->load->model('Apartemen_model', 'apartemen_model');
+        $this->load->library('cekmutasi/cekmutasi');
+
         $param = $this->post();
         $id_user = $param['id_user'];
-        $list_transaksi = $this->db->query("SELECT b.id, b.kode_transaksi,a.status as status_order, b.`status`, b.grand_total FROM order_makanan a 
+        $list_transaksi = $this->db->query("SELECT b.id, b.kode_transaksi,a.status as status_order, b.`status`, b.grand_total, b.created_date FROM order_makanan a 
         LEFT JOIN transaksi_order_makan b ON a.kode_transaksi = b.kode_transaksi
-        WHERE a.id_user = '$id_user' AND b.`status` = 'UNPAID'
+        WHERE a.id_user = '$id_user' 
+        -- AND b.`status` = 'UNPAID'
         GROUP BY b.id")->result();
+
+        $user = $this->db->query("SELECT * FROM user u WHERE u.user_id = '$id_user'")->result();
+        foreach ($user as $row) {
+            $u = array(
+                'service_code' => strtolower($row->nama_bank),
+                'account_number' => $row->nomor_rekening,
+            );
+        }
+
         if ($list_transaksi != NULL) {
             $r = array();
             foreach ($list_transaksi as $key => $p) {
@@ -1579,8 +1711,30 @@ class Api extends REST_Controller
                     );
                 }
 
+                $mutasi = array_merge($u, array(
+                    'amount' => $p->grand_total,
+                    'date' => array(
+                        // batas waktu 24 jam
+                        'from' => $p->created_date,
+                        'to' => date('Y-m-d H:i:s', strtotime($p->created_date.' +1 day')),
+                    )
+                ));
+                $cek = $this->cekmutasi->bank()->mutation($mutasi);
+                if (!empty($cek->response)) {
+                    // sudah dibayar
+                    $p->status = 'PAID';
+                    $data_update = array(
+                        'kode_transaksi'   => $p->kode_transaksi,
+                        'status'           => 'PAID',
+                    );
+                    $this->db->where('status', 'UNPAID');
+                    $this->db->where('kode_transaksi', $p->kode_transaksi);
+                    $this->db->update('transaksi_order_makan', $data_update);
+                }
+
                 $r[] = array(
                     'id' => $p->id,
+                    'mutasi' => $mutasi,
                     'kode_transaksi' => $p->kode_transaksi,
                     'status' => $p->status,
                     'status_order' => $p->status_order,
@@ -2979,7 +3133,7 @@ class Api extends REST_Controller
         );
         $this->response($data, 200);
 
-        // print_r($banklist);
+        // print_r($banklist->data);
     }
 
     public function callback_post()

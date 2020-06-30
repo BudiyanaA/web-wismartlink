@@ -1,10 +1,10 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Payment_model extends CI_Model
+class Transaksi_toko_model extends CI_Model
 {
 	var $infra = null;
-	var $table = 'ticket'; //nama tabel dari database
-	var $table2 = 'ticket'; //nama tabel dari database
+	var $table = 'transaksi_belanja_toko'; //nama tabel dari database
+	var $table2 = 'transaksi_belanja_toko'; //nama tabel dari database
 	var $column_order = array(null, 'rm.id',  'rm.id_user', 'rm.pic_id', 'rm.level', 'un.nomor', 'rm.is_paid', 'rm.kode_tiket', 'rm.keterangan', 'rm.status', 'rm.created_date', 'u.nama', 'u.email', 'un.nama_unit', 'un.nomor', 'un.lantai', 'g.nama_gedung', 'a.nama_apt'); //field yang ada di table user
 	var $column_search = array('rm.id',  'rm.id_user', 'rm.pic_id', 'rm.level', 'rm.kode_tiket', 'rm.keterangan', 'rm.status', 'un.nomor',  'rm.created_date', 'u.nama', 'u.email', 'un.nama_unit', 'un.nomor', 'un.lantai', 'g.nama_gedung', 'a.nama_apt'); //field yang diizin untuk pencarian 
 	var $order = array('rm.id' => 'desc'); // default order 
@@ -14,24 +14,14 @@ class Payment_model extends CI_Model
 		parent::__construct();
 	}
 
-
 	// public $table = 'measurement_method';
 	public $id = 'id';
 	// public $order = 'DESC';
 
 	private function _get_datatables_query()
 	{
-		// $this->db->select('rm.id, rm.level, rm.id_user, rm.pic_id, rm.keterangan, rm.kode_tiket, rm.status, un.nomor, rm.created_date, u.nama, u.email, un.nama_unit, un.nomor, un.lantai, g.nama_gedung, a.nama_apt');
-		// $this->db->from('ticket rm');
-		// $this->db->join('user u', 'rm.id_user = u.user_id', 'left');
-		// $this->db->join('unit un', 'u.idunit = un.id_unit', 'left');
-		// $this->db->join('gedung g', 'un.id_gedung = g.id_gedung', 'left');
-		// $this->db->join('apartemen a', 'g.id_apt = a.id_apt', 'left');
-
         $this->db->select('*');
-        $this->db->from('payment rm');
-
-		// $this->db->from($this->table);
+        $this->db->from('transaksi_belanja_toko rm');
 
 		$i = 0;
 
@@ -121,9 +111,9 @@ class Payment_model extends CI_Model
 	}
 
 	// delete data
-	function delete($id, $data)
+	function delete($id)
 	{
-		$this->db->where($this->id, $id);
-		$this->db->update($this->table2, $data);
+        $this->db->where($this->id, $id);
+        $this->db->delete($this->table2);
 	}
 }

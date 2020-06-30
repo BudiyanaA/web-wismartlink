@@ -48,33 +48,23 @@
                         <form role="form" method="post" action="<?php echo base_url() . $form_action ?>" enctype="multipart/form-data" onsubmit="$('#loading').show();$('.banners').hide()">
                             <input type="hidden" class="form-control" name="id" id="id" placeholder="id" value="<?php echo $id; ?>" <?php echo $disabled ?> />
                             <div class="form-group">
-                                <label> Nama Bank</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-envelope"></i>
-                                    </span>
-                                    <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama" value="<?php echo $nama_bank ?>" <?php echo $disabled ?>> </div>
-                                <?php echo form_error('nama') ?>
-                            </div>
-
-                            <div class="form-group">
                                 <label> Kode Transaksi</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="fa fa-envelope"></i>
                                     </span>
-                                    <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama" value="<?php echo $kode_transaksi?>" <?php echo $disabled ?>> </div>
-                                <?php echo form_error('nama') ?>
+                                    <input type="text" name="title" id="title" class="form-control" placeholder="Judul" value="<?php echo $kode_transaksi ?>" <?php echo $disabled ?>> </div>
+                                <?php echo form_error('title') ?>
                             </div>
 
                             <div class="form-group">
-                                <label> Jenis</label>
+                                <label> Grand Total</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="fa fa-envelope"></i>
                                     </span>
-                                    <input type="text" name="email" id="email" class="form-control" placeholder="Email" value="<?php echo $jenis ?>" <?php echo $disabled ?>> </div>
-                                <?php echo form_error('email') ?>
+                                    <input type="text" name="description" id="description" class="form-control" placeholder="Deskripsi" value="<?php echo $grand_total ?>" <?php echo $disabled ?>> </div>
+                                <?php echo form_error('description') ?>
                             </div>
 
                             <div class="form-group">
@@ -83,40 +73,20 @@
                                     <span class="input-group-addon">
                                         <i class="fa fa-envelope"></i>
                                     </span>
-                                    <input type="text" name="nama_apt" id="nama_apt" class="form-control" placeholder="Nama Apartemen" value="<?php echo $status?>" <?php echo $disabled ?>> </div>
-                                <?php echo form_error('nama_apt') ?>
+                                    <input type="text" name="title" id="title" class="form-control" placeholder="Judul" value="<?php echo $status ?>" <?php echo $disabled ?>> </div>
+                                <?php echo form_error('title') ?>
                             </div>
 
                             <div class="form-group">
-                                <label> Waktu</label>
+                                <label> Tanggal</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="fa fa-envelope"></i>
                                     </span>
-                                    <input type="text" name="nama_gedung" id="nama_gedung" class="form-control" placeholder="Nama Gedung" value="<?php echo $waktu ?>" <?php echo $disabled ?>> </div>
-                                <?php echo form_error('nama_gedung') ?>
+                                    <input type="text" name="description" id="description" class="form-control" placeholder="Deskripsi" value="<?php echo $created_date ?>" <?php echo $disabled ?>> </div>
+                                <?php echo form_error('description') ?>
                             </div>
-                            <!-- <?php
-                            if ($button != "Read") {
-                            ?>
-                                <div class="form-group">
-                                    <label for="exampleInputFile1">Image</label>
-                                    <input type="file" name="img" id="img">
-                                    <p class="help-block"> some help text here. </p>
-                                </div>
-                            <?php
-                            } else {
-                            ?>
-                                <div class="form-group">
-                                    <label for="exampleInputFile1">Image</label>
-                                </div>
-                                <div class="form-group">
-                                    <img width="30%" src="<?php echo $img ?>">
-                                </div>
-                            <?php
 
-                            }
-                            ?> -->
 
                             <div class="form-actions banners">
                                 <?php
@@ -142,6 +112,6 @@
 </div>
 <script>
     function back() {
-        window.location.href = "<?php echo base_url() ?>index.php/Payment";
+        window.location.href = "<?php echo base_url() ?>index.php/Transaksi_resto";
     }
 </script>
