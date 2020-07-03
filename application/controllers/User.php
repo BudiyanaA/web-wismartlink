@@ -53,6 +53,7 @@ class User extends CI_Controller
                 'nama' => $this->input->post('nama', TRUE),
                 'username' => $this->input->post('username', TRUE),
                 'email' => $this->input->post('email', TRUE),
+                'password' => encryptFH($this->input->post('password', TRUE)),
                 'phone_number' => $this->input->post('phone_number', TRUE),
                 'level' => $this->input->post('level', TRUE),
             );
