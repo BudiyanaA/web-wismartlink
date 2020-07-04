@@ -41,8 +41,8 @@ class Maintenance extends CI_Controller
         $alamat = 'Apartemen ' . $get_nama_apt->nama_apt . ', Gedung ' . $get_nama_gedung->nama_gedung . ', ' . $get_unit->nama_unit . ', Lantai ' . $get_unit->lantai . ', Nomor ' . $get_unit->nomor;
         $data = array(
             'id' => set_value('id', $row->id),
-            'img' => set_value('img', $get_nama_teknisi->img),
-            'nama_teknisi' => set_value('nama_teknisi', $get_nama_teknisi->nama_teknisi),
+            // 'img' => set_value('img', $get_nama_teknisi->img),
+            'nama_teknisi' => set_value('nama_teknisi', ($row->id_teknisi)?$get_nama_teknisi->nama_teknisi:''),
             'request' => set_value('request', $row->request),
             'nama' => set_value('nama', $get_nama_penghuni->nama),
             'alamat' => set_value('alamat', $alamat),

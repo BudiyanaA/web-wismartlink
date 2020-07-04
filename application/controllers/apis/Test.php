@@ -32,7 +32,7 @@ class Test extends REST_Controller
             }
         } else {
             $wrapper = array(
-                'status' => 404,
+                'status' => 200,
                 'message' => 'access_denied',
                 'data' => $verif,
             );

@@ -44,7 +44,7 @@
                     </div>
                     <div class="portlet-body form">
                         <form role="form" method="post" action="<?php echo base_url() . $form_action ?>" enctype="multipart/form-data">
-                            <input type="hidden" class="form-control" name="id" id="id" placeholder="id" value="<?php echo $id; ?>" <?php echo $disabled ?> />
+                            <input type="hidden" class="form-control" name="id" id="id" placeholder="id" value="<?php echo $user_id; ?>" <?php echo $disabled ?> />
                             <div class="form-body">
 
                                 <div class="form-group">

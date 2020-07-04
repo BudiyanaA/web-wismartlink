@@ -2246,6 +2246,7 @@ class Api extends REST_Controller
             $data = array(
                 'id_resto' => $id_resto,
                 'nama_makanan' => $param['nama_makanan'],
+                'keterangan' => $param['keterangan'],
                 'harga' => $param['harga'],
                 'img' => 'http://wismartlink.asepbudiyanam.com/assets/img/resto/' . $rand . '.' . $ext,
                 'created_date' => date('Y-m-d H:i:s')
