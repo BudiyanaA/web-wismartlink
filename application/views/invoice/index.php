@@ -92,13 +92,12 @@
                             </div>
 
                         </div>
-                        <!-- <div class="table-toolbar">
-                            <div class="row">
+                        <div class="table-toolbar">
+                            <!-- <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        Pilih Tahun
                                         <a href="<?php echo base_url() ?>index.php/Banner/create">
-                                            <button id="sample_editable_1_new" class="btn sbold green"> Add New
+                                            <button id="sample_editable_1_new" class="btn sbold green"> Generate Tagihan
                                                 <i class="fa fa-plus"></i>
                                             </button>
                                         </a>
@@ -106,8 +105,8 @@
                                 </div>
                                 <div class="col-md-6">
                                 </div>
-                            </div>
-                            <div class="row">
+                            </div> -->
+                            <!-- <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
                                         Pilih Bulan
@@ -120,8 +119,8 @@
                                 </div>
                                 <div class="col-md-6">
                                 </div>
-                            </div>
-                        </div> -->
+                            </div> -->
+                        </div>
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="measurement">
                             <thead>
                                 <tr>

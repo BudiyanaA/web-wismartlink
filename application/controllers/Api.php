@@ -5,6 +5,11 @@ require_once APPPATH . '/libraries/REST_Controller.php';
 
 class Api extends REST_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->helper('tgl_indo');
+    }
 
     public function login_post()
     {
@@ -38,6 +43,7 @@ class Api extends REST_Controller
                 'user_id' => $is_valid->user_id,
                 'id_resto' => $id_resto,
                 'id_toko' => $id_toko,
+                'role' => $is_valid->level,
                 'phone_number' => $is_valid->phone_number
             );
 
@@ -186,6 +192,12 @@ class Api extends REST_Controller
         }
     }
 
+    /** Get History Request Maintenance
+      *  + parameter:
+      *  - 1) id_user
+      *  - 2) request
+      *  - 3) request_date
+      */
     public function request_maintenance_post()
     {
         $param = $this->post();
@@ -195,6 +207,7 @@ class Api extends REST_Controller
             'id_user'               => $param['id_user'],
             'request'               => $param['request'],
             'request_date'          => $param['request_date'],
+            'charge'                => 50000, //cms settings
             'created_date'          => date('Y-m-d H:i:s')
         );
 
@@ -802,12 +815,28 @@ class Api extends REST_Controller
         }
     }
 
+    /** Get History Request Maintenance
+      *  + parameter:
+      *  - 1) id_user
+      */
     public function history_request_maintenance_post()
     {
         $param = $this->post();
         $this->load->model('Apartemen_model', 'apartemen_model');
         $id_user = $param['id_user'];
-        $fasilitas = $this->db->query("select * from request_maintenance where id_user = '$id_user' order by id desc")->result();
+
+        // $fasilitas = $this->db->query("select * from request_maintenance where id_user = '$id_user' order by id desc")->result();
+        $this->db->select('t.nama_teknisi, rm.id, rm.request, rm.request_date, rm.status, rm.charge, un.nomor, rm.is_paid, rm.invoice_no, rm.tanggal_bayar, rm.created_date, u.nama, u.email, un.nama_unit, un.nomor, un.lantai, g.nama_gedung, a.nama_apt');
+		$this->db->from('request_maintenance rm');
+		$this->db->join('user u', 'rm.id_user = u.user_id', 'left');
+		$this->db->join('unit un', 'u.idunit = un.id_unit', 'left');
+		$this->db->join('gedung g', 'un.id_gedung = g.id_gedung', 'left');
+		$this->db->join('apartemen a', 'g.id_apt = a.id_apt', 'left');
+        $this->db->join('teknisi t', 'rm.id_teknisi = t.id', 'left');
+        $this->db->where('id_user', $id_user);
+        $this->db->order_by('id', 'DESC');
+        $fasilitas = $this->db->get()->result();
+
         if ($fasilitas != NULL) {
             foreach ($fasilitas as $row) {
                 if ($row->tanggal_bayar != NULL) {
@@ -829,10 +858,11 @@ class Api extends REST_Controller
                 $d[] = array(
                     'request' => $row->request,
                     'status' => $status,
-                    'charge' => $charge,
-                    'is_paid' => $row->is_paid,
+                    'charge' => $charge, 
+                    'is_paid' => $row->is_paid?"Lunas":"Belum Lunas",
                     'tanggal_bayar' => $tanggal_bayar,
-                    'request_date' => $row->request_date
+                    'request_date' => longdate_indo(substr($row->request_date, 0, 10))." pukul ".substr($row->request_date, 11, 8),
+                    'nama_teknisi' => $row->nama_teknisi
                 );
             }
             $data = array(
@@ -940,20 +970,98 @@ class Api extends REST_Controller
         }
     }
 
-
+    /** Get History Invoice
+     *  + parameter:
+     *  - 1) id_user
+     *  - 2) is_paid
+     */
     public function history_invoice_post()
     {
         $param = $this->post();
         $this->load->model('Apartemen_model', 'apartemen_model');
         $id_user = $param['id_user'];
-        $invoice = $this->db->query("select * from invoice where id_user = '$id_user' order by id desc")->result();
+        isset($param['is_paid'])?$is_paid = $param['is_paid']:$is_paid  = '';
+        
+        // $invoice = $this->db->query("select * from invoice where id_user = '$id_user' order by id desc")->result();
+        $this->db->select('rm.id, rm.invoice_date, rm.total, un.nomor, u.user_id, rm.is_paid, rm.no_invoice, rm.created_date, u.nama, u.email, un.nama_unit, un.id_unit, un.nomor, un.lantai, g.nama_gedung, a.nama_apt');
+        $this->db->from('invoice rm');
+		$this->db->join('user u', 'rm.id_user = u.user_id', 'left');
+		$this->db->join('unit un', 'u.idunit = un.id_unit', 'left');
+		$this->db->join('gedung g', 'un.id_gedung = g.id_gedung', 'left');
+        $this->db->join('apartemen a', 'g.id_apt = a.id_apt', 'left');
+        $this->db->where('id_user', $id_user);
+        if($is_paid!=''){
+            $this->db->where('is_paid', $is_paid);
+        }
+        $this->db->order_by('invoice_date', 'DESC');
+        $invoice = $this->db->get()->result();
+
         if ($invoice != NULL) {
             foreach ($invoice as $row) {
+                $tanggal_sewa = $row->invoice_date;
+                $datetime = new DateTime($tanggal_sewa);
+                $month = $datetime->format('n');
+
+                $get_tagihan_sewa_fasilitas = $this->db->query("select * from request_fasilitas where id_user = '$id_user' AND MONTH(request_start) = '$month'");
+                if ($get_tagihan_sewa_fasilitas->row() != NULL) {
+                    if ($get_tagihan_sewa_fasilitas->num_rows() > 1) {
+                        $sum = 0;
+                        foreach ($get_tagihan_sewa_fasilitas->result() as $key => $value) {
+                            $sum += $value->biaya;
+                        }
+                        $biaya_sewa_fasilitas = $sum;
+                    } else {
+                        $biaya_sewa_fasilitas = $get_tagihan_sewa_fasilitas->row()->biaya;
+                    }
+                } else {
+                    $biaya_sewa_fasilitas = 0;
+                }
+    
+                $get_tagihan_apartemen = $this->db->query("select * from unit where id_unit = '$row->id_unit'")->row();
+                if ($get_tagihan_apartemen != NULL) {
+                    $biaya_apartemen = $get_tagihan_apartemen->biaya_sewa;
+                } else {
+                    $biaya_apartemen = 0;
+                }
+    
+                $get_tagihan_maintenance = $this->db->query("select * from request_maintenance where id_user = '$id_user' AND MONTH(request_date) = '$month'");
+                if ($get_tagihan_maintenance->row() != NULL) {
+                    if ($get_tagihan_maintenance->num_rows() > 1) {
+                        $sum = 0;
+                        foreach ($get_tagihan_maintenance->result() as $key => $value) {
+                            $sum += $value->charge;
+                        }
+                        $biaya_maintenance = $sum;
+                    } else {
+                        $biaya_maintenance = $get_tagihan_maintenance->row()->charge;
+                    }
+                } else {
+                    $biaya_maintenance = 0;
+                }
+    
+                $get_tagihan_room_service = $this->db->query("select * from request_room_service where id_user = '$id_user' AND MONTH(request_date) = '$month'");
+                if ($get_tagihan_room_service->row() != NULL) {
+                    if ($get_tagihan_room_service->num_rows() > 1) {
+                        $sum = 0;
+                        foreach ($get_tagihan_room_service->result() as $key => $value) {
+                            $sum += $value->charge;
+                        }
+                        $biaya_room_service = $sum;
+                    } else {
+                        $biaya_room_service = $get_tagihan_room_service->row()->charge;
+                    }
+                } else {
+                    $biaya_room_service = 0;
+                }
+    
+                $total = $biaya_apartemen + $biaya_sewa_fasilitas + $biaya_maintenance + $biaya_room_service;
+
                 $d[] = array(
-                    'no_invoice' => $row->no_invoice,
-                    'invoice_date' => $row->invoice_date,
-                    'total' => $row->total,
-                    'is_paid' => $row->is_paid
+                    // 'no_invoice' => $row->no_invoice,
+                    'no_invoice' => $row->user_id . $row->id_unit . $datetime->format('n') . $datetime->format('Y'),
+                    'invoice_date' => date_indo(substr($row->invoice_date, 0, 10)),
+                    'total' => 'Rp. ' . number_format($total, 2),
+                    'is_paid' => $row->is_paid?"Lunas":"Belum Lunas"
                 );
             }
             $data = array(
@@ -2283,6 +2391,7 @@ class Api extends REST_Controller
         if (empty($_FILES['img']['name'])) {
             $data = array(
                 'nama_makanan' => $param['nama_makanan'],
+                'keterangan' => $param['keterangan'],
                 'harga' => $param['harga'],
                 'updated_date' => date('Y-m-d H:i:s')
             );
@@ -2662,7 +2771,7 @@ class Api extends REST_Controller
         $id_resto = $param['id_resto'];
         $keyword = $param['keyword'];
 
-        $brg = $this->db->query("select a.id, a.id_resto, a.nama_makanan, a.harga, a.img from makanan_restaurant a left join restaurant b on a.id_resto = b.id where a.id_resto = '$id_resto' AND a.is_deleted = '0' AND b.nama_resto like '%$keyword%' AND a.nama_makanan like '%$keyword%' order by a.id desc")->result();
+        $brg = $this->db->query("select a.id, a.id_resto, a.nama_makanan, a.harga, a.img, a.keterangan from makanan_restaurant a left join restaurant b on a.id_resto = b.id where a.id_resto = '$id_resto' AND a.is_deleted = '0' AND b.nama_resto like '%$keyword%' AND a.nama_makanan like '%$keyword%' order by a.id desc")->result();
         if ($brg != NULL) {
             foreach ($brg as $row) {
                 $d[] = array(
@@ -2671,6 +2780,7 @@ class Api extends REST_Controller
                     'id_resto' => $row->id_resto,
                     'harga' => $row->harga,
                     'img' => $row->img,
+                    'keterangan' => $row->keterangan
                 );
             }
 

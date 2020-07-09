@@ -254,6 +254,11 @@ class Invoice extends CI_Controller
         echo json_encode($output);
     }
 
+    public function generate_invoice()
+    {
+        echo "coming soon";
+    }
+
     public function _rules()
     {
         $this->form_validation->set_rules('page_id', 'Pge', 'trim|required');

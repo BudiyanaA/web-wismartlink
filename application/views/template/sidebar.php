@@ -148,7 +148,7 @@
                                                     echo 'active';
                                                 } ?>">
                         <a href="<?php echo base_url() ?>index.php/Maintenance" class="nav-link ">
-                            <i class="icon-bar-chart"></i>
+                            <i class="icon-equalizer"></i>
                             <span class="title">Maintenance</span>
                         </a>
                     </li>
@@ -172,7 +172,7 @@
                                                     echo 'active';
                                                 } ?>">
                         <a href="<?php echo base_url() ?>index.php/Invoice" class="nav-link ">
-                            <i class="icon-bulb"></i>
+                            <i class="icon-note"></i>
                             <span class="title">Invoice</span>
                         </a>
                     </li>
@@ -254,14 +254,6 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
-                    <li class="nav-item start <?php if ($this->uri->segment(1) == "Helpdesk") {
-                                                    echo 'active';
-                                                } ?>">
-                        <a href="<?php echo base_url() ?>index.php/Helpdesk" class="nav-link ">
-                            <i class="icon-bar-chart"></i>
-                            <span class="title">Helpdesk</span>
-                        </a>
-                    </li>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Scan") {
                                                     echo 'active';
                                                 } ?>">
