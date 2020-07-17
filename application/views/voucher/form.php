@@ -57,6 +57,16 @@
                                 <?php echo form_error('title') ?>
                             </div>
 
+                            <div class="form-group">
+                                <label> Deskripsi</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-envelope"></i>
+                                    </span>
+                                    <input type="text" name="description" id="description" class="form-control" placeholder="Deskripsi" value="<?php echo $description ?>" <?php echo $disabled ?>> </div>
+                                <?php echo form_error('description') ?>
+                            </div>
+
                             <?php
                             if ($button != "Read") {
                             ?>
@@ -78,16 +88,6 @@
 
                             }
                             ?>
-
-                            <div class="form-group">
-                                <label> Deskripsi</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-envelope"></i>
-                                    </span>
-                                    <input type="text" name="description" id="description" class="form-control" placeholder="Deskripsi" value="<?php echo $description ?>" <?php echo $disabled ?>> </div>
-                                <?php echo form_error('description') ?>
-                            </div>
 
                             <div class="form-actions banners">
                                 <?php

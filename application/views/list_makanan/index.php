@@ -59,8 +59,8 @@
                                     <th> Nama Resto </th>
                                     <th> Nama Makanan </th>
                                     <th> Harga </th>
-                                    <th> Foto Barang </th>
-                                    <th> Status Barang </th>
+                                    <th> Foto Makanan </th>
+                                    <th> Status Makanan </th>
                                     <th> Actions </th>
                                 </tr>
                             </thead>
@@ -84,33 +84,33 @@
         //datatables
         $('#measurement').DataTable({
 
-            "dom": 'Bfrtip',
-            "pageLength": 10,
-            "scrollX": true,
-            "lengthMenu": [
-                [5, 10, 25, 50, -1],
-                ['5 rows', '10 rows', '25 rows', '50 rows', 'Show all']
-            ],
-            "buttons": [
-                'pageLength',
-                'copy',
-                {
-                    "extend": 'excel',
-                    "messageTop": 'List Makanan',
-                    "exportOptions": {
-                        "columns": [0, 1, 2, 3, 4]
-                    }
-                },
-                {
-                    "extend": 'pdf',
-                    "messageTop": 'List Makanan',
-                    "messageBottom": null
-                },
-                {
-                    "extend": 'print',
-                    "messageTop": 'List Makanan',
-                }
-            ],
+            // "dom": 'Bfrtip',
+            // "pageLength": 10,
+            // "scrollX": true,
+            // "lengthMenu": [
+            //     [5, 10, 25, 50, -1],
+            //     ['5 rows', '10 rows', '25 rows', '50 rows', 'Show all']
+            // ],
+            // "buttons": [
+            //     'pageLength',
+            //     'copy',
+            //     {
+            //         "extend": 'excel',
+            //         "messageTop": 'List Makanan',
+            //         "exportOptions": {
+            //             "columns": [0, 1, 2, 3, 4]
+            //         }
+            //     },
+            //     {
+            //         "extend": 'pdf',
+            //         "messageTop": 'List Makanan',
+            //         "messageBottom": null
+            //     },
+            //     {
+            //         "extend": 'print',
+            //         "messageTop": 'List Makanan',
+            //     }
+            // ],
 
 
             "processing": true,

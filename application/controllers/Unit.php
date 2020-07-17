@@ -74,7 +74,7 @@ class Unit extends CI_Controller
                     'nomor' => $this->input->post('nomor', TRUE),
                     'id_gedung' => $this->input->post('id_gedung', TRUE),
                     'spek' => $this->input->post('spek', TRUE),
-                    'foto' => 'http://nama_domain_anda.com/apartemen/assets/img/unit/' . $rand . '.' . $ext,
+                    'foto' => '/assets/img/unit/' . $rand . '.' . $ext,
                     'ket' => $this->input->post('ket', TRUE),
                     'lantai' => $this->input->post('lantai', TRUE),
                     'biaya_sewa' => $this->input->post('biaya_sewa', TRUE),
@@ -115,7 +115,7 @@ class Unit extends CI_Controller
             'nama_unit' => set_value('nama_unit', $row->nama_unit),
             'nomor' => set_value('nomor', $row->nomor),
             'spek' => set_value('spek', $row->spek),
-            'foto' => set_value('foto', $row->foto),
+            'foto' => set_value('foto', base_url() . $row->foto),
             'id_unit' => set_value('id_unit', $row->id_unit),
             'ket' => set_value('ket', $row->ket),
             'lantai' => set_value('lantai', $row->lantai),
@@ -154,7 +154,7 @@ class Unit extends CI_Controller
                 'nomor' => $this->input->post('nomor', TRUE),
                 'id_gedung' => $this->input->post('id_gedung', TRUE),
                 'spek' => $this->input->post('spek', TRUE),
-                'foto' => 'http://nama_domain_anda.com/apartemen/assets/img/unit/' . $rand . '.' . $ext,
+                'foto' => '/apartemen/assets/img/unit/' . $rand . '.' . $ext,
                 'ket' => $this->input->post('ket', TRUE),
                 'lantai' => $this->input->post('lantai', TRUE),
                 'biaya_sewa' => $this->input->post('biaya_sewa', TRUE),
@@ -189,7 +189,7 @@ class Unit extends CI_Controller
             'nama_unit' => set_value('nama_unit', $row->nama_unit),
             'nomor' => set_value('nomor', $row->nomor),
             'spek' => set_value('spek', $row->spek),
-            'foto' => set_value('foto', $row->foto),
+            'foto' => set_value('foto', base_url() . $row->foto),
             'id_unit' => set_value('id_unit', $row->id_unit),
             'ket' => set_value('ket', $row->ket),
             'lantai' => set_value('lantai', $row->lantai),
@@ -229,7 +229,7 @@ class Unit extends CI_Controller
             $get_apt = $this->db->query("select * from gedung where id_gedung = '$field->id_gedung'")->row();
             // var_dump($field->user_id);die();
             $no++;
-            $img = '<img src=' . $field->foto . ' width="45%">';
+            $img = '<img src=' . base_url() . $field->foto . ' width="100%">';
             $row = array();
             $row[] = $no;
             $row[] = $get_apt->nama_gedung;

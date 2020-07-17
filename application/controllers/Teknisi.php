@@ -62,7 +62,7 @@ class Teknisi extends CI_Controller
                 $this->upload->do_upload('img');
                 $data = array(
                     'nama_teknisi' => $this->input->post('nama_teknisi', TRUE),
-                    'img' => 'http://nama_domain_anda.com/apartemen/assets/img/teknisi/' . $rand . '.' . $ext,
+                    'img' => '/assets/img/teknisi/' . $rand . '.' . $ext,
                 );
                 // }
                 $simpan = $this->Teknisi_model->insert($data);
@@ -118,7 +118,7 @@ class Teknisi extends CI_Controller
             $this->upload->do_upload('img');
             $data = array(
                 'nama_teknisi' => $this->input->post('nama_teknisi', TRUE),
-                'img' => 'http://nama_domain_anda.com/apartemen/assets/img/teknisi/' . $rand . '.' . $ext,
+                'img' => '/apartemen/assets/img/teknisi/' . $rand . '.' . $ext,
             );
         } else {
             $data = array(
@@ -137,7 +137,7 @@ class Teknisi extends CI_Controller
         $data = array(
             'id' => set_value('id', $row->id),
             'nama_teknisi' => set_value('nama_teknisi', $row->nama_teknisi),
-            'img' => set_value('img', $row->img),
+            'img' => set_value('img', base_url() . $row->img),
             'disabled' => 'disabled',
             'button' => 'Read',
             'form_action' => 'index.php/Teknisi/update_action/"' . $id . '"',
@@ -170,7 +170,7 @@ class Teknisi extends CI_Controller
         foreach ($list as $field) {
             $no++;
             $row = array();
-            $img = '<img src=' . $field->img . ' width="45%">';
+            $img = '<img src=' . base_url() . $field->img . ' width="45%">';
             $row[] = $no;
             $row[] = $field->nama_teknisi;
             $row[] = $img;
@@ -184,14 +184,17 @@ class Teknisi extends CI_Controller
                                     <a href="' . base_url() . 'index.php/Teknisi/read/' . $field->id . '">
                                         <i class="icon-eye"></i> View </a>
                                 </li>
+
                                 <li>
                                     <a href="' . base_url() . 'index.php/Teknisi/update/' . $field->id . '">
                                         <i class="icon-pencil"></i> Edit </a>
                                 </li>
+
                                 <li>
                                     <a onclick="confirmDelete(' . $field->id . '); return false;">
                                         <i class="icon-trash"></i> Hapus </a>
                                 </li>
+                                
                             </ul>
                         </div>
                     </td>';

@@ -23,6 +23,109 @@ class Room_service extends CI_Controller
         $this->load->view('template/index', $data);
     }
 
+    public function create()
+    {
+        $get_users = $this->db->query("select * from user")->result();
+        $get_teknisi = $this->db->query("select * from teknisi")->result();
+        $data = array(
+            'get_users' => $get_users,
+            'get_teknisi' => $get_teknisi,
+            'id' => set_value('id'),
+            'request' => set_value('request'),
+            'id_user' => set_value('id_user'),
+            'alamat' => set_value('alamat'),
+            'request_date' => set_value('request_date'),
+            'is_paid' => set_value('is_paid'),
+            'status' => set_value('status'),
+            'charge' => set_value('charge', 0),
+            'invoice_no' => set_value('invoice_no'),
+            'tanggal_bayar' => set_value('tanggal_bayar'),
+            'button' => 'Save',
+            'disabled' => '',
+            'form_action' => 'index.php/Room_service/create_action',
+            'page' => 'Room Service Add',
+            'folder' => 'room_service',
+            'page_name' => 'form',
+        );
+        $this->load->view('template/index', $data);
+    }
+
+    public function create_action()
+    {
+        $data = array(
+            'id_user' => $this->input->post('user', TRUE),
+            'request' => $this->input->post('request', TRUE),
+            'request_date' => $this->input->post('request_date', TRUE),
+            'is_paid' => $this->input->post('is_paid', TRUE),
+            'status' => $this->input->post('status', TRUE),
+            'charge' => $this->input->post('charge', TRUE),
+            'invoice_no' => $this->input->post('invoice_no', TRUE),
+            'tanggal_bayar' => $this->input->post('tanggal_bayar', TRUE),
+        );
+        $simpan = $this->Room_service_model->insert($data);
+        
+        if ($simpan) {
+            $this->session->set_flashdata('success', 'Create Record Success');
+            redirect(base_url('index.php/Room_service'));
+        } else {
+            $this->session->set_flashdata('error', 'Failed to Saved Data');
+            $this->create();
+        }
+    }
+
+    public function update($id)
+    {
+        $get_users = $this->db->query("select * from user")->result();
+        $get_teknisi = $this->db->query("select * from teknisi")->result();
+        $row = $this->Room_service_model->get_by_id($id);
+        if ($row->is_paid == '1') {
+            $lunas = 'Lunas';
+        } else {
+            $lunas = 'Belum Lunas';
+        }
+        $request_date = $row->request_date;
+        $row->tanggal_bayar?$tanggal_bayar=$row->tanggal_bayar:$tanggal_bayar='0000-00-00 00:00:00';
+        $data = array(
+            'get_users' => $get_users,
+            'get_teknisi' => $get_teknisi,
+            'id' => set_value('id', $row->id),
+            'request' => set_value('request', $row->request),
+            'id_user' => set_value('id_user', $row->id_user),
+            'request_date' => set_value('request_date', date('Y-m-d\TH:i:s', strtotime($request_date))),
+            'is_paid' => set_value('is_paid', $lunas),
+            'status' => set_value('status', $row->status),
+            'charge' => set_value('charge', $row->charge),
+            'invoice_no' => set_value('invoice_no', $row->invoice_no),
+            'tanggal_bayar' => set_value('tanggal_bayar', date('Y-m-d\TH:i:s', strtotime($row->tanggal_bayar))),
+            'disabled' => '',
+            'button' => 'Update',
+            'form_action' => 'index.php/Room_service/update_action/"' . $id . '"',
+            'page' => 'Room Service Update',
+            'folder' => 'room_service',
+            'page_name' => 'form',
+        );
+        $this->load->view('template/index', $data);
+    }
+
+    public function update_action()
+    {
+        $data = array(
+            'id_user' => $this->input->post('user', TRUE),
+            'request' => $this->input->post('request', TRUE),
+            'request_date' => $this->input->post('request_date', TRUE),
+            'is_paid' => $this->input->post('is_paid', TRUE),
+            'status' => $this->input->post('status', TRUE),
+            'charge' => $this->input->post('charge', TRUE),
+            'invoice_no' => $this->input->post('invoice_no', TRUE),
+            'tanggal_bayar' => $this->input->post('tanggal_bayar', TRUE),
+        );
+
+        $this->Apartemen_model->update('id', $this->input->post('id', TRUE), $data, 'request_room_service');
+        $this->session->set_flashdata('success', 'Update Success');
+        redirect(base_url('index.php/Room_service'));
+        
+    }
+
     public function selesai($id)
     {
         $row = $this->Room_service_model->get_by_id($id);
@@ -43,6 +146,8 @@ class Room_service extends CI_Controller
 
     public function read($id)
     {
+        $get_users = $this->db->query("select * from user")->result();
+        $get_teknisi = $this->db->query("select * from teknisi")->result();
         $row = $this->Room_service_model->get_by_id($id);
         if ($row->is_paid == '1') {
             $lunas = 'Lunas';
@@ -50,22 +155,25 @@ class Room_service extends CI_Controller
             $lunas = 'Belum Lunas';
         }
         $request_date = $row->request_date;
+        $row->tanggal_bayar?$tanggal_bayar=$row->tanggal_bayar:$tanggal_bayar='0000-00-00 00:00:00';
         $get_nama_penghuni = $this->db->query("select * from user where user_id = '" . $row->id_user . "'")->row();
         $get_nama_apt = $this->db->query("select * from apartemen where id_apt = '" . $get_nama_penghuni->user_id . "'")->row();
         $get_unit = $this->db->query("select * from unit where id_unit = '" . $get_nama_penghuni->idunit . "'")->row();
         $get_nama_gedung = $this->db->query("select * from gedung where id_gedung = '" . $get_unit->id_gedung . "'")->row();
         $alamat = 'Apartemen ' . $get_nama_apt->nama_apt . ', Gedung ' . $get_nama_gedung->nama_gedung . ', ' . $get_unit->nama_unit . ', Lantai ' . $get_unit->lantai . ', Nomor ' . $get_unit->nomor;
         $data = array(
+            'get_users' => $get_users,
+            'get_teknisi' => $get_teknisi,
             'id' => set_value('id', $row->id),
             'request' => set_value('request', $row->request),
-            'nama' => set_value('nama', $get_nama_penghuni->nama),
+            'id_user' => set_value('id_user', $row->id_user),
             'alamat' => set_value('alamat', $alamat),
-            'request_date' => set_value('request_date', $request_date),
+            'request_date' => set_value('request_date', date('Y-m-d\TH:i:s', strtotime($request_date))),
             'is_paid' => set_value('is_paid', $lunas),
             'status' => set_value('status', $row->status),
             'charge' => set_value('charge', $row->charge),
             'invoice_no' => set_value('invoice_no', $row->invoice_no),
-            'tanggal_bayar' => set_value('tanggal_bayar', $row->tanggal_bayar),
+            'tanggal_bayar' => set_value('tanggal_bayar', date('Y-m-d\TH:i:s', strtotime($tanggal_bayar))),
             'disabled' => 'disabled',
             'button' => 'Read',
             'form_action' => 'index.php/Room_service/update_action/"' . $id . '"',
@@ -76,7 +184,19 @@ class Room_service extends CI_Controller
         $this->load->view('template/index', $data);
     }
 
+    public function delete($id)
+    {
+        $row = $this->Room_service_model->get_by_id($id);
 
+        if ($row) {
+            $this->Room_service_model->delete($id, $data);
+            $this->session->set_flashdata('success', 'Delete Success');
+            redirect(base_url('index.php/Room_service'));
+        } else {
+            $this->session->set_flashdata('error', 'Delete Failed');
+            redirect(base_url('index.php/Room_service'));
+        }
+    }
 
     function get_data()
     {
@@ -115,6 +235,14 @@ class Room_service extends CI_Controller
                         <li>
                             <a onclick="selesai(' . $field->id . '); return false;">
                                 <i class="icon-check"></i> Selesai </a>
+                        </li>
+                        <li>
+                            <a href="' . base_url() . 'index.php/Room_service/update/' . $field->id . '">
+                                <i class="icon-pencil"></i> Edit </a>
+                        </li>
+                        <li>
+                            <a onclick="confirmDelete(' . $field->id . '); return false;">
+                                <i class="icon-trash"></i> Hapus </a>
                         </li>
                     </ul>
                 </div>

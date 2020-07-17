@@ -41,11 +41,18 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
+
+                                        <!-- UNIT -->
+                                        <?php $data = $this->db->query('select menu.add from menu where id = 4')->row('add'); 
+                                            if (in_array($this->session->userdata('level'), explode(',', $data))):
+                                        ?>
                                         <a href="<?php echo base_url() ?>index.php/Unit/create">
                                             <button id="sample_editable_1_new" class="btn sbold green"> Add New
                                                 <i class="fa fa-plus"></i>
                                             </button>
                                         </a>
+                                        <?php endif; ?>
+
                                     </div>
                                 </div>
                                 <div class="col-md-6">

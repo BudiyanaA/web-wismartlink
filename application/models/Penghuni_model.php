@@ -23,6 +23,7 @@ class Penghuni_model extends CI_Model
 	{
 
 		$this->db->from($this->table);
+		$this->db->where('level', 8);
 
 		$i = 0;
 

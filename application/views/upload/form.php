@@ -58,16 +58,6 @@
                             </div>
 
                             <div class="form-group">
-                                <label> Image</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-envelope"></i>
-                                    </span>
-                                    <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama" value="<?php echo $image ?>" <?php echo $disabled ?>> </div>
-                                <?php echo form_error('nama') ?>
-                            </div>
-
-                            <div class="form-group">
                                 <label> Description</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
@@ -77,12 +67,12 @@
                                 <?php echo form_error('nama_apt') ?>
                             </div>
 
-                            <!-- <?php
+                            <?php
                             if ($button != "Read") {
                             ?>
                                 <div class="form-group">
                                     <label for="exampleInputFile1">Image</label>
-                                    <input type="file" name="img" id="img">
+                                    <input type="file" name="image" id="image">
                                     <p class="help-block"> some help text here. </p>
                                 </div>
                             <?php
@@ -92,12 +82,12 @@
                                     <label for="exampleInputFile1">Image</label>
                                 </div>
                                 <div class="form-group">
-                                    <img width="30%" src="<?php echo $img ?>">
+                                    <img width="30%" src="<?php echo $image ?>">
                                 </div>
                             <?php
 
                             }
-                            ?> -->
+                            ?>
 
                             <div class="form-actions banners">
                                 <?php

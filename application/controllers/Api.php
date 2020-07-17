@@ -2699,16 +2699,32 @@ class Api extends REST_Controller
 
     public function notifikasi_post()
     {
-        $brg = $this->db->query("select * from notifikasi where is_deleted = '0' AND sent = '1' order by id desc")->result();
-        if ($brg != NULL) {
+        $param = $this->post();
+
+        $user = $param['id_user'];
+        $brg = $this->db->query("select * from notifikasi where id_user ='" . $user . "'AND is_deleted = '0' AND sent = '1' order by created_date desc")->result();
+
+        $prg = $this->db->query("select * from pengumuman order by created_date desc")->result();
+
+        if ($brg != NULL || $prg != NULL) {
             foreach ($brg as $row) {
                 $d[] = array(
                     'id' => $row->id,
-                    'id_user' => $row->id_user,
+                    // 'id_user' => $row->id_user,
                     'title' => $row->title,
                     'desc' => $row->desc,
                 );
             }
+
+            foreach ($prg as $row) {
+                $d[] = array(
+                    'id' => $row->id,
+                    // 'id_user' => $row->id_user,
+                    'title' => $row->title,
+                    'desc' => $row->desc,
+                );
+            }
+
 
             $data = array(
                 'success' => true,

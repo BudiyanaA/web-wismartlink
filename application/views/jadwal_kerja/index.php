@@ -73,7 +73,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="btn-group">
-                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/create/15">
+                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/create/security">
                                                             <button id="sample_editable_1_new" class="btn sbold green"> Add New
                                                                 <i class="fa fa-plus"></i>
                                                             </button>
@@ -108,11 +108,11 @@
                                                                 </button>
                                                                 <ul class="dropdown-menu" role="menu">
                                                                     <li>
-                                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/read/<?php echo $js->id ?>/15">
+                                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/read/<?php echo $js->id ?>/security">
                                                                             <i class="icon-eye"></i> View </a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/update/<?php echo $js->id ?>/15">
+                                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/update/<?php echo $js->id ?>/security">
                                                                             <i class="icon-pencil"></i> Edit </a>
                                                                     </li>
                                                                     <li>
@@ -143,7 +143,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="btn-group">
-                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/create/8">
+                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/create/mtc">
                                                             <button id="sample_editable_1_new" class="btn sbold green"> Add New
                                                                 <i class="fa fa-plus"></i>
                                                             </button>
@@ -179,11 +179,11 @@
                                                                 </button>
                                                                 <ul class="dropdown-menu" role="menu">
                                                                     <li>
-                                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/read/<?php echo $js->id ?>/8">
+                                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/read/<?php echo $js->id ?>/mtc">
                                                                             <i class="icon-eye"></i> View </a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/update/<?php echo $js->id ?>/8">
+                                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/update/<?php echo $js->id ?>/mtc">
                                                                             <i class="icon-pencil"></i> Edit </a>
                                                                     </li>
                                                                     <li>
@@ -214,7 +214,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="btn-group">
-                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/create/10">
+                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/create/hk">
                                                             <button id="sample_editable_1_new" class="btn sbold green"> Add New
                                                                 <i class="fa fa-plus"></i>
                                                             </button>
@@ -250,11 +250,11 @@
                                                                 </button>
                                                                 <ul class="dropdown-menu" role="menu">
                                                                     <li>
-                                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/read/<?php echo $js->id ?>/10">
+                                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/read/<?php echo $js->id ?>/hk">
                                                                             <i class="icon-eye"></i> View </a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/update/<?php echo $js->id ?>/10">
+                                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/update/<?php echo $js->id ?>/hk">
                                                                             <i class="icon-pencil"></i> Edit </a>
                                                                     </li>
                                                                     <li>
@@ -285,7 +285,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="btn-group">
-                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/create/14">
+                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/create/it">
                                                             <button id="sample_editable_1_new" class="btn sbold green"> Add New
                                                                 <i class="fa fa-plus"></i>
                                                             </button>
@@ -321,11 +321,11 @@
                                                                 </button>
                                                                 <ul class="dropdown-menu" role="menu">
                                                                     <li>
-                                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/read/<?php echo $js->id ?>/14">
+                                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/read/<?php echo $js->id ?>/it">
                                                                             <i class="icon-eye"></i> View </a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/update/<?php echo $js->id ?>/14">
+                                                                        <a href="<?php echo base_url() ?>index.php/Jadwal_kerja/update/<?php echo $js->id ?>/it">
                                                                             <i class="icon-pencil"></i> Edit </a>
                                                                     </li>
                                                                     <li>

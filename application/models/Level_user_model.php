@@ -3,8 +3,8 @@
 class Level_user_model extends CI_Model
 {
 	var $infra = null;
-	var $table = 'level_user'; //nama tabel dari database
-	var $table2 = 'level_user'; //nama tabel dari database
+	var $table = 'role'; //nama tabel dari database
+	var $table2 = 'role'; //nama tabel dari database
 	var $column_order = array(null, 'id', 'level_name'); //field yang ada di table user
 	var $column_search = array('id', 'level_name'); //field yang diizin untuk pencarian 
 	var $order = array('id' => 'asc'); // default order 

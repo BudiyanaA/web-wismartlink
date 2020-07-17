@@ -115,7 +115,7 @@
                                             <span class="input-group-addon">
                                                 <i class="fa fa-envelope"></i>
                                             </span>
-                                            <select class="form-control" id="device_type_id" name="status" style="width: 300px">
+                                            <select class="form-control" id="device_type_id" name="status" style="width: 300px" <?php echo $disabled ?>>
                                                 <option value="0" <?php
                                                                     if ($status == '0') {
                                                                         echo 'selected';
@@ -147,23 +147,23 @@
                                                     foreach ($get_level_user->result() as $row) {
                                                         // var_dump($get_site);
                                                 ?>
-                                                        <option value="<?php echo $row->id ?>"><?php echo $row->level_name ?></option>
+                                                        <option value="<?php echo $row->id ?>"><?php echo $row->role_name ?></option>
                                                     <?php
                                                     }
                                                 } else {
                                                     ?>
-                                                    <option value="<?php echo $leveluser_id ?>"><?php echo $level_name ?></option>
+                                                    <option value="<?php echo $leveluser_id ?>"><?php echo $role_name ?></option>
                                                     <?php
                                                     foreach ($get_level_user->result() as $row) {
                                                     ?>
-                                                        <option value="<?php echo $row->id ?>"><?php echo $row->level_name ?></option>
+                                                        <option value="<?php echo $row->id ?>"><?php echo $row->role_name ?></option>
                                                 <?php
                                                     }
                                                 }
                                                 ?>
                                             </select>
                                         <?php } else { ?>
-                                            <input class="form-control" value="<?php echo $level_name ?>" disabled>
+                                            <input class="form-control" value="<?php echo $role_name ?>" disabled>
                                         <?php } ?>
                                     </div>
                                     <?php echo form_error('leveluser_id') ?>

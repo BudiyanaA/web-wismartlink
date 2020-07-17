@@ -44,7 +44,7 @@
                     </div>
                     <div class="portlet-body form">
                         <form role="form" method="post" action="<?php echo base_url() . $form_action ?>" enctype="multipart/form-data">
-                            <input type="hidden" class="form-control" name="id" id="id" placeholder="id" value="<?php echo $user_id; ?>" <?php echo $disabled ?> />
+                            <input type="hidden" class="form-control" name="id" id="id" placeholder="id" value="<?php echo $id; ?>" <?php echo $disabled ?> />
                             <div class="form-body">
 
                                 <div class="form-group">
@@ -62,8 +62,8 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-envelope"></i>
                                         </span>
-                                        <select name="user_id" id="user_id" class="form-control">
-                                            <option value=""> -- Pilih Penghuni -- </option>
+                                        <select name="user_id" id="user_id" class="form-control" <?php echo $disabled ?>>
+                                            <option value="" disabled selected> -- Pilih Penghuni -- </option>
                                             <?php
                                             foreach ($get_all_user as $un) {
                                             ?>
@@ -74,13 +74,15 @@
 
                                         </select> <?php echo form_error('user_id') ?>
                                     </div>
+                                </div>
+
                                     <div class="form-group">
                                         <label> Tanggal Lahir</label>
                                         <div class="input-group">
                                             <span class="input-group-addon">
                                                 <i class="fa fa-envelope"></i>
                                             </span>
-                                            <input type="text" name="tgl_lahir" id="tgl_lahir" class="form-control" placeholder="tgl_lahir" value="<?php echo $tgl_lahir ?>" <?php echo $disabled ?>> </div>
+                                            <input type="date" name="tgl_lahir" id="tgl_lahir" class="form-control" placeholder="tgl_lahir" value="<?php echo $tgl_lahir ?>" <?php echo $disabled ?>> </div>
                                         <?php echo form_error('tgl_lahir') ?>
                                     </div>
 
@@ -90,8 +92,8 @@
                                             <span class="input-group-addon">
                                                 <i class="fa fa-envelope"></i>
                                             </span>
-                                            <select name="jk" id="jk" class="form-control">
-                                                <option value=""> -Silahkan Pilih- </option>
+                                            <select name="jk" id="jk" class="form-control" <?php echo $disabled ?>>
+                                                <option value="" disabled selected> -- Pilih Jenis Kelamin -- </option>
                                                 <option value="Laki-laki" <?php
                                                                             if ($jk == 'Laki-laki') echo 'selected'
                                                                             ?>> Laki-laki </option>
@@ -108,11 +110,20 @@
                                             <span class="input-group-addon">
                                                 <i class="fa fa-envelope"></i>
                                             </span>
-                                            <input type="text" name="hubungan" id="hubungan" class="form-control" placeholder="hubungan" value="<?php echo $hubungan ?>" <?php echo $disabled ?>> </div>
+                                            <select name="hubungan" id="hubungan" class="form-control" <?php echo $disabled ?>>
+                                                <option value="" disabled selected> -- Pilih Hubungan -- </option>
+                                                <?php
+                                                foreach ($get_all_hubungan as $hb) {
+                                                ?>
+                                                    <option value="<?php echo $hb->id ?>" <?php
+                                                                                                if ($hb->role_name == $hubungan) echo 'selected'
+                                                                                                ?>> <?php echo $hb->role_name ?> </option>
+                                                <?php } ?>
+
+                                            </select> 
+                                        </div>
                                         <?php echo form_error('hubungan') ?>
                                     </div>
-
-
 
                                     <?php
                                     if ($button != "Read") {

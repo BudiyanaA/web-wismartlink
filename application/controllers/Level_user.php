@@ -62,7 +62,7 @@ class Level_user extends CI_Controller
         $row = $this->Level_user_model->get_by_id($id);
         $data = array(
             'id' => set_value('id', $row->id),
-            'level_name' => set_value('level_name', $row->level_name),
+            'level_name' => set_value('level_name', $row->role_name),
             'disabled' => '',
             'button' => 'Update',
             'form_action' => 'index.php/Level_user/update_action/"' . $id . '"',
@@ -76,7 +76,7 @@ class Level_user extends CI_Controller
     public function update_action()
     {
         $data = array(
-            'level_name' => $this->input->post('level_name', TRUE),
+            'role_name' => $this->input->post('level_name', TRUE),
         );
 
         $this->Level_user_model->update($this->input->post('id', TRUE), $data);
@@ -90,7 +90,7 @@ class Level_user extends CI_Controller
 
         $data = array(
             'id' => set_value('id', $row->id),
-            'level_name' => set_value('level_name', $row->level_name),
+            'level_name' => set_value('level_name', $row->role_name),
             'disabled' => 'disabled',
             'button' => 'Read',
             'form_action' => 'index.php/level_user/update_action/"' . $id . '"',
@@ -130,7 +130,7 @@ class Level_user extends CI_Controller
             $no++;
             $row = array();
             $row[] = $no;
-            $row[] = $field->level_name;
+            $row[] = $field->role_name;
             $row[] = '<td>
                         <div class="btn-group">
                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
@@ -144,10 +144,6 @@ class Level_user extends CI_Controller
                                 <li>
                                     <a href="' . base_url() . 'index.php/Level_user/update/' . $field->id . '">
                                         <i class="icon-pencil"></i> Edit </a>
-                                </li>
-                                <li>
-                                    <a onclick="confirmDelete(' . $field->id . '); return false;">
-                                        <i class="icon-trash"></i> Hapus </a>
                                 </li>
                             </ul>
                         </div>
@@ -164,4 +160,9 @@ class Level_user extends CI_Controller
         //output dalam format JSON
         echo json_encode($output);
     }
+    
+    //<li>
+    //<a onclick="confirmDelete(' . $field->id . '); return false;">
+    //    <i class="icon-trash"></i> Hapus </a>
+    //</li>
 }

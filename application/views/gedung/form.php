@@ -65,7 +65,7 @@
                                         <input type="text" name="nama_gedung" id="nama_gedung" class="form-control" placeholder="Nama Gedung" value="<?php echo $nama_gedung ?>" <?php echo $disabled ?>> </div>
                                     <?php echo form_error('nama_gedung') ?>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label> Nama Apartemen</label>
                                     <div class="input-group">
                                         <span class="input-group-addon">
@@ -82,7 +82,7 @@
                                             <?php } ?>
 
                                         </select> <?php echo form_error('id_apt') ?>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group">
                                         <label> Kota</label>
                                         <div class="input-group">

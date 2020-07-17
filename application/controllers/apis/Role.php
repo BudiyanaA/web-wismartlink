@@ -23,7 +23,8 @@ class Role extends REST_Controller
     public function menu_get() {
         $data = $this->db->query('
             select *
-            from menu
+            from menu 
+            where id > 100
         ')->result_array();
         $wrapper = array(
             'status' => 200,

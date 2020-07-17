@@ -14,13 +14,13 @@ class Apartemen extends CI_Controller
         }
     }
 
-    public function index()
-    {
-        $data['folder'] = 'apartemen';
-        $data['page'] = 'Apartemen';
-        $data['page_name'] = 'index';
-        $this->load->view('template/index', $data);
-    }
+    // public function index()
+    // {
+    //     $data['folder'] = 'apartemen';
+    //     $data['page'] = 'Apartemen';
+    //     $data['page_name'] = 'index';
+    //     $this->load->view('template/index', $data);
+    // }
 
     public function create()
     {
@@ -59,7 +59,7 @@ class Apartemen extends CI_Controller
         }
     }
 
-    public function update($id)
+    public function index($id=1)
     {
         $row = $this->Apartemen_model->get_by_id($id);
         $data = array(

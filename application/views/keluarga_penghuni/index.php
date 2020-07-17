@@ -41,11 +41,18 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
+
+                                        <!-- KELUARGA PENGHUNI -->
+                                        <?php $data = $this->db->query('select menu.add from menu where id = 12')->row('add'); 
+                                            if (in_array($this->session->userdata('level'), explode(',', $data))):
+                                        ?>
                                         <a href="<?php echo base_url() ?>index.php/Keluarga_penghuni/create">
                                             <button id="sample_editable_1_new" class="btn sbold green"> Add New
                                                 <i class="fa fa-plus"></i>
                                             </button>
                                         </a>
+                                        <?php endif; ?>
+
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -58,7 +65,7 @@
                                     <th> # </th>
                                     <!-- <th> Page </th> -->
                                     <th> Nama </th>
-                                    <th> Nama Penghuni </th>
+                                    <th> Nama Pemilik Unit </th>
                                     <th> Hubungan</th>
                                     <th> Img </th>
                                     <th> Actions </th>

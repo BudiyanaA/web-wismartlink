@@ -63,7 +63,7 @@ class Fasilitas extends CI_Controller
                 $data = array(
                     'fasilitas' => $this->input->post('fasilitas', TRUE),
                     'biaya_sewa' => $this->input->post('biaya_sewa', TRUE),
-                    'pic' => 'http://nama_domain_anda.com/apartemen/assets/img/fasilitas/' . $rand . '.' . $ext,
+                    'img' => '/assets/img/fasilitas/' . $rand . '.' . $ext,
                 );
                 // }
                 $simpan = $this->Fasilitas_model->insert($data);
@@ -122,7 +122,7 @@ class Fasilitas extends CI_Controller
             $data = array(
                 'fasilitas' => $this->input->post('fasilitas', TRUE),
                 'biaya_sewa' => $this->input->post('biaya_sewa', TRUE),
-                'pic' => 'http://nama_domain_anda.com/apartemen/assets/img/fasilitas/' . $rand . '.' . $ext,
+                'pic' => '/assets/img/fasilitas/' . $rand . '.' . $ext,
             );
         } else {
             $data = array(
@@ -143,7 +143,7 @@ class Fasilitas extends CI_Controller
             'id' => set_value('id', $row->id),
             'fasilitas' => set_value('fasilitas', $row->fasilitas),
             'biaya_sewa' => set_value('biaya_sewa', $row->biaya_sewa),
-            'img' => set_value('img', $row->img),
+            'img' => set_value('img', base_url() . $row->img),
             'disabled' => 'disabled',
             'button' => 'Read',
             'form_action' => 'index.php/Fasilitas/update_action/"' . $id . '"',
@@ -176,7 +176,7 @@ class Fasilitas extends CI_Controller
         foreach ($list as $field) {
             $no++;
             $row = array();
-            $pic = '<img src=' . $field->img . ' width="45%">';
+            $pic = '<img src=' . base_url() . $field->img . ' width="45%">';
             $row[] = $no;
             $row[] = $field->fasilitas;
             $row[] = 'Rp. ' . number_format($field->biaya_sewa, 2);

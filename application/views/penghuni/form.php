@@ -98,7 +98,7 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-envelope"></i>
                                         </span>
-                                        <input type="text" name="phone_number" id="tgl_lahir" class="form-control" placeholder="tgl_lahir" value="<?php echo $tgl_lahir ?>" <?php echo $disabled ?>> </div>
+                                        <input type="date" name="phone_number" id="tgl_lahir" class="form-control" placeholder="tgl_lahir" value="<?php echo $tgl_lahir ?>" <?php echo $disabled ?>> </div>
                                     <?php echo form_error('tgl_lahir') ?>
                                 </div>
                                 <div class="form-group">

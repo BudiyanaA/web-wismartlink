@@ -120,6 +120,6 @@ class Room_service_model extends CI_Model
 	function delete($id, $data)
 	{
 		$this->db->where($this->id, $id);
-		$this->db->update($this->table2, $data);
+		$this->db->delete($this->table2);
 	}
 }

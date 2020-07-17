@@ -40,6 +40,20 @@
                         <div class="table-toolbar">
                             <div class="row">
                                 <div class="col-md-6">
+                                    <div class="btn-group">
+
+                                        <!-- ROOM SERVICE -->
+                                        <?php $data = $this->db->query('select menu.add from menu where id = 25')->row('add'); 
+                                            if (in_array($this->session->userdata('level'), explode(',', $data))):
+                                        ?>
+                                        <a href="<?php echo base_url() ?>index.php/Room_service/create">
+                                            <button id="sample_editable_1_new" class="btn sbold green"> Add New
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </a>
+                                        <?php endif; ?>
+
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                 </div>
@@ -124,4 +138,12 @@
             window.location.href = '<?= base_url(); ?>index.php/Room_service/selesai/' + no;
         }
     }
+
+    function confirmDelete(no) {
+        var choice = confirm('Apakah Anda ingin menghapus data ini ?');
+        if (choice === true) {
+            window.location.href = '<?= base_url(); ?>index.php/Room_service/delete/' + no;
+        }
+    }
+
 </script>

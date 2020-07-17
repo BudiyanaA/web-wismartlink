@@ -53,7 +53,7 @@
                                     <span class="input-group-addon">
                                         <i class="fa fa-envelope"></i>
                                     </span>
-                                    <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama" value="<?php echo $nama_restoran ?>" <?php echo $disabled ?>> </div>
+                                    <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama" value="<?php echo $nama_resto ?>" <?php echo $disabled ?>> </div>
                                 <?php echo form_error('nama') ?>
                             </div>
 
@@ -160,6 +160,6 @@
 </div>
 <script>
     function back() {
-        window.location.href = "<?php echo base_url() ?>index.php/Invoice";
+        window.location.href = "<?php echo base_url() ?>index.php/Restaurant";
     }
 </script>

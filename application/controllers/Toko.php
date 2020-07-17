@@ -37,7 +37,7 @@ class Toko extends CI_Controller
 
         $data = array(
             'id' => set_value('id', $row->id),
-            'img' => set_value('img', $row->img),
+            'img' => set_value('img', base_url() . $row->img),
             'email' => set_value('email', $row->email),
             'nama' => set_value('nama', $row->nama),
             'nama_toko' => set_value('nama_toko', $row->nama_toko),
@@ -92,7 +92,7 @@ class Toko extends CI_Controller
 
             $alamat = 'Apartemen ' . $field->nama_apt . ', Gedung ' . $field->nama_gedung . ', ' . $field->nama_unit . ', Lantai ' . $field->lantai . ', Nomor ' . $field->nomor;
             $no++;
-            $pic = '<img src=' . $field->img . ' width="45%">';
+            $pic = '<img src=' . base_url() . $field->img . ' width="45%">';
             $row = array();
             $row[] = $no;
             $row[] = $field->nama_toko;

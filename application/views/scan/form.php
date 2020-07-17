@@ -48,13 +48,23 @@
                         <form role="form" method="post" action="<?php echo base_url() . $form_action ?>" enctype="multipart/form-data" onsubmit="$('#loading').show();$('.banners').hide()">
                             <input type="hidden" class="form-control" name="id" id="id" placeholder="id" value="<?php echo $id; ?>" <?php echo $disabled ?> />
                             <div class="form-group">
-                                <label> User</label>
+                                <label> Nama</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="fa fa-envelope"></i>
                                     </span>
-                                    <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama" value="<?php echo $user_id ?>" <?php echo $disabled ?>> </div>
-                                <?php echo form_error('nama') ?>
+                                    <select name="user" id="user" class="form-control" <?php echo $disabled ?>>
+                                        <option value=""> - Pilih User - </option>
+                                        <?php
+                                        foreach ($get_users as $row) {
+                                        ?>
+                                            <option value="<?php echo $row->user_id ?>" <?= ($user_id == $row->user_id)?'selected':''?>> <?php echo $row->nama ?> </option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <?php echo form_error('user') ?>
                             </div>
 
                             <div class="form-group">
@@ -63,8 +73,18 @@
                                     <span class="input-group-addon">
                                         <i class="fa fa-envelope"></i>
                                     </span>
-                                    <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama" value="<?php echo $fasilitas_id?>" <?php echo $disabled ?>> </div>
-                                <?php echo form_error('nama') ?>
+                                    <select name="fasilitas" id="fasilitas" class="form-control" <?php echo $disabled ?>>
+                                        <option value=""> - Pilih Fasilitas - </option>
+                                        <?php
+                                        foreach ($get_fasilitas as $row) {
+                                        ?>
+                                            <option value="<?php echo $row->id ?>" <?= ($fasilitas_id == $row->id)?'selected':''?>> <?php echo $row->fasilitas ?> </option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <?php echo form_error('fasilitas') ?>
                             </div>
 
                             <div class="form-group">

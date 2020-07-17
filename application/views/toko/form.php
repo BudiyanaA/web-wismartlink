@@ -159,6 +159,6 @@
 </div>
 <script>
     function back() {
-        window.location.href = "<?php echo base_url() ?>index.php/Invoice";
+        window.location.href = "<?php echo base_url() ?>index.php/Toko";
     }
 </script>

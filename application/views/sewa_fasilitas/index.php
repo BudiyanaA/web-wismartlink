@@ -49,11 +49,18 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        <!-- <a href="<?php echo base_url() ?>index.php/Sewa_fasilitas/create">
+
+                                        <!-- SEWA FASILITAS -->
+                                        <?php $data = $this->db->query('select menu.add from menu where id = 24')->row('add'); 
+                                            if (in_array($this->session->userdata('level'), explode(',', $data))):
+                                        ?>
+                                        <a href="<?php echo base_url() ?>index.php/Sewa_fasilitas/create">
                                             <button id="sample_editable_1_new" class="btn sbold green"> Add New
                                                 <i class="fa fa-plus"></i>
                                             </button>
-                                        </a> -->
+                                        </a>
+                                        <?php endif; ?>
+
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -172,4 +179,12 @@
             window.location.href = '<?= base_url(); ?>index.php/Sewa_fasilitas/reject/' + no;
         }
     }
+
+    function confirmDelete(no) {
+        var choice = confirm('Apakah Anda ingin menghapus data ini ?');
+        if (choice === true) {
+            window.location.href = '<?= base_url(); ?>index.php/Sewa_fasilitas/delete/' + no;
+        }
+    }
+
 </script>

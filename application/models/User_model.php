@@ -2,17 +2,16 @@
 
 class User_model extends CI_Model
 {
-	var $table = 'admin'; //nama tabel dari database
-	var $table2 = 'admin'; //nama tabel dari database
-	var $column_order = array(null, 'nama', 'email', 'level_name'); //field yang ada di table user
-	var $column_search = array('nama', 'email', 'level_name'); //field yang diizin untuk pencarian 
-	var $order = array('user_id' => 'desc'); // default order 
+	var $table = 'user'; //nama tabel dari database
+	var $table2 = 'user'; //nama tabel dari database
+	var $column_order = array(null, 'nama', 'email', 'role_name'); //field yang ada di table user
+	var $column_search = array('nama', 'email', 'role_name'); //field yang diizin untuk pencarian 
+	var $order = array('user_id' => 'asc'); // default order 
 
 	function __construct()
 	{
 		parent::__construct();
 	}
-
 
 	// public $table = 'measurement_method';
 	public $id = 'user_id';
@@ -20,9 +19,9 @@ class User_model extends CI_Model
 
 	private function _get_datatables_query()
 	{
-		$this->db->select('l.id, l.level_name, a.user_id, a.nama, a.username, a.email, a.password, a.phone_number, a.level, a.status, a.is_deleted');
-		$this->db->from('admin a');
-		$this->db->join('level_user l', 'a.level = l.id', 'left');
+		// $this->db->select('l.id, l.level_name, a.user_id, a.nama, a.username, a.email, a.password, a.phone_number, a.level, a.status, a.is_deleted');
+		$this->db->from('user u');
+		$this->db->join('role r', 'u.level = r.id', 'left');
 
 		// $this->db->from($this->table);
 
@@ -100,13 +99,14 @@ class User_model extends CI_Model
 	function get_by_level_id($id)
 	{
 		$this->db->where('id', $id);
-		return $this->db->get('level_user')->row();
+		return $this->db->get('role')->row();
 	}
 
 	// get data level
 	function get_all_level()
 	{
-		return $this->db->get('level_user');
+		// return $this->db->get('level_user');
+		return $this->db->get('role');
 	}
 
 	// insert data

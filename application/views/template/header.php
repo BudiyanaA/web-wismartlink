@@ -18,7 +18,8 @@
     <div class="page-top">
         <!-- BEGIN HEADER SEARCH BOX -->
         <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
-        <form class="search-form" action="page_general_search_2.html" method="GET">
+
+        <!-- <form class="search-form" action="page_general_search_2.html" method="GET">
             <div class="input-group">
                 <input type="text" class="form-control input-sm" placeholder="Search..." name="query">
                 <span class="input-group-btn">
@@ -27,7 +28,8 @@
                     </a>
                 </span>
             </div>
-        </form>
+        </form> -->
+
         <!-- END HEADER SEARCH BOX -->
         <!-- BEGIN TOP NAVIGATION MENU -->
         <div class="top-menu">
@@ -41,7 +43,8 @@
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                 <!-- BEGIN NOTIFICATION DROPDOWN -->
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                <li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
+
+                <!-- <li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                         <i class="icon-bell"></i>
                         <span class="badge badge-success"> 7 </span>
@@ -138,12 +141,14 @@
                             </ul>
                         </li>
                     </ul>
-                </li>
+                </li> -->
+
                 <!-- END NOTIFICATION DROPDOWN -->
                 <li class="separator hide"> </li>
                 <!-- BEGIN INBOX DROPDOWN -->
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                <li class="dropdown dropdown-extended dropdown-inbox dropdown-dark" id="header_inbox_bar">
+
+                <!-- <li class="dropdown dropdown-extended dropdown-inbox dropdown-dark" id="header_inbox_bar">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                         <i class="icon-envelope-open"></i>
                         <span class="badge badge-danger"> 4 </span>
@@ -214,12 +219,14 @@
                             </ul>
                         </li>
                     </ul>
-                </li>
+                </li> -->
+
                 <!-- END INBOX DROPDOWN -->
                 <li class="separator hide"> </li>
                 <!-- BEGIN TODO DROPDOWN -->
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                <li class="dropdown dropdown-extended dropdown-tasks dropdown-dark" id="header_task_bar">
+
+                <!-- <li class="dropdown dropdown-extended dropdown-tasks dropdown-dark" id="header_task_bar">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                         <i class="icon-calendar"></i>
                         <span class="badge badge-primary"> 3 </span>
@@ -326,17 +333,18 @@
                             </ul>
                         </li>
                     </ul>
-                </li>
+                </li> -->
+
                 <!-- END TODO DROPDOWN -->
                 <!-- BEGIN USER LOGIN DROPDOWN -->
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                 <li class="dropdown dropdown-user dropdown-dark">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                        <span class="username username-hide-on-mobile"> <?php echo $this->session->userdata('user_name'); ?> </span>
+                        <span class="username username-hide-on-mobile"> <?php echo $this->session->userdata('name'); ?> </span>
                         <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
-                        <img alt="" class="img-circle" src="<?php echo base_url() ?>assets/layouts/layout4/img/avatar9.jpg" /> </a>
+                        <img alt="" class="img-circle" src="<?php echo base_url() . $this->session->userdata('img') ?>"/> </a>
                     <ul class="dropdown-menu dropdown-menu-default">
-                        <li>
+                        <!-- <li>
                             <a href="<?php echo base_url() . 'index.php/Profile'; ?>">
                                 <i class="icon-user"></i> My Profile </a>
                         </li>
@@ -360,7 +368,7 @@
                         <li>
                             <a href="page_user_lock_1.html">
                                 <i class="icon-lock"></i> Lock Screen </a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="<?php echo base_url() ?>index.php/Login/logout">
                                 <i class="icon-key"></i> Log Out </a>
@@ -371,7 +379,7 @@
                 <!-- BEGIN QUICK SIDEBAR TOGGLER -->
                 <li class="dropdown dropdown-extended quick-sidebar-toggler">
                     <span class="sr-only">Toggle Quick Sidebar</span>
-                    <i class="icon-logout"></i>
+                    <i class="icon-speech"></i>
                 </li>
                 <!-- END USER LOGIN DROPDOWN -->
                 <!-- BEGIN QUICK SIDEBAR TOGGLER -->

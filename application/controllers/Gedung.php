@@ -25,14 +25,14 @@ class Gedung extends CI_Controller
 
     public function create()
     {
-        $get_all_apartemen = $this->db->query("select * from apartemen")->result();
+        // $get_all_apartemen = $this->db->query("select * from apartemen")->result();
         $data = array(
-            'get_all_apt' => $get_all_apartemen,
+            // 'get_all_apt' => $get_all_apartemen,
             'kode_gedung' => set_value('kode_gedung'),
             'nama_gedung' => set_value('nama_gedung'),
             'alamat' => set_value('alamat'),
             'kota' => set_value('kota'),
-            'id_apt' => set_value('id_apt'),
+            // 'id_apt' => set_value('id_apt'),
             'id_gedung' => set_value('id_gedung'),
             'button' => 'Save',
             'disabled' => '',
@@ -55,7 +55,8 @@ class Gedung extends CI_Controller
                 'nama_gedung' => $this->input->post('nama_gedung', TRUE),
                 'alamat' => $this->input->post('alamat', TRUE),
                 'kota' => $this->input->post('kota', TRUE),
-                'id_apt' => $this->input->post('id_apt', TRUE),
+                // 'id_apt' => $this->input->post('id_apt', TRUE),
+                'id_apt' => 1
             );
             $simpan = $this->Gedung_model->insert($data);
         }
@@ -72,10 +73,10 @@ class Gedung extends CI_Controller
     {
         $row = $this->Gedung_model->get_by_id($id);
         $get_user = $this->db->query("select * from apartemen where id_apt = '$row->id_apt'")->row();
-        $get_all_apartemen = $this->db->query("select * from apartemen")->result();
+        // $get_all_apartemen = $this->db->query("select * from apartemen")->result();
         $data = array(
-            'get_all_apt' => $get_all_apartemen,
-            'id_apt' => set_value('id_apt', $get_user->id_apt),
+            // 'get_all_apt' => $get_all_apartemen,
+            // 'id_apt' => set_value('id_apt', $get_user->id_apt),
             'id_gedung' => set_value('id_gedung', $row->id_gedung),
             'kode_gedung' => set_value('kode_gedung', $row->kode_gedung),
             'nama_gedung' => set_value('nama_gedung', $row->nama_gedung),
@@ -98,7 +99,7 @@ class Gedung extends CI_Controller
             'nama_gedung' => $this->input->post('nama_gedung', TRUE),
             'alamat' => $this->input->post('alamat', TRUE),
             'kota' => $this->input->post('kota', TRUE),
-            'id_apt' => $this->input->post('id_apt', TRUE),
+            // 'id_apt' => $this->input->post('id_apt', TRUE),
         );
 
         $this->Gedung_model->update($this->input->post('id_gedung', TRUE), $data);
@@ -110,10 +111,10 @@ class Gedung extends CI_Controller
     {
         $row = $this->Gedung_model->get_by_id($id);
         $get_user = $this->db->query("select * from apartemen where id_apt = '$row->id_apt'")->row();
-        $get_all_apartemen = $this->db->query("select * from apartemen")->result();
+        // $get_all_apartemen = $this->db->query("select * from apartemen")->result();
         $data = array(
-            'get_all_apt' => $get_all_apartemen,
-            'id_apt' => set_value('id_apt', $get_user->id_apt),
+            // 'get_all_apt' => $get_all_apartemen,
+            // 'id_apt' => set_value('id_apt', $get_user->id_apt),
             'id_gedung' => set_value('id_gedung', $row->id_gedung),
             'kode_gedung' => set_value('kode_gedung', $row->kode_gedung),
             'nama_gedung' => set_value('nama_gedung', $row->nama_gedung),
@@ -149,7 +150,7 @@ class Gedung extends CI_Controller
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $field) {
-            $get_apt = $this->db->query("select * from apartemen where id_apt = '$field->id_apt'")->row();
+            // $get_apt = $this->db->query("select * from apartemen where id_apt = '$field->id_apt'")->row();
             // var_dump($field->user_id);die();
             $no++;
             $row = array();
@@ -158,7 +159,7 @@ class Gedung extends CI_Controller
             $row[] = $field->nama_gedung;
             $row[] = $field->alamat;
             $row[] = $field->kota;
-            $row[] = $get_apt->nama_apt;
+            // $row[] = $get_apt->nama_apt;
             $row[] = '<td> 
                         <div class="btn-group">
                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
@@ -197,7 +198,7 @@ class Gedung extends CI_Controller
     {
         $this->form_validation->set_rules('kode_gedung', 'kode_gedung', 'trim|required');
         $this->form_validation->set_rules('nama_gedung', 'nama_gedung', 'trim|required');
-        $this->form_validation->set_rules('id_apt', 'Apartemen', 'trim|required');
+        // $this->form_validation->set_rules('id_apt', 'Apartemen', 'trim|required');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 }

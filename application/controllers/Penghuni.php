@@ -241,7 +241,7 @@ class Penghuni extends CI_Controller
             // var_dump($get_role);die();
             $no++;
             $row = array();
-            $img = '<img src=' . $field->img . ' width="45%">';
+            $img = '<img src=' . base_url() . $field->img . ' width="45%">';
             $row[] = $no;
             $row[] = $field->nama;
             $row[] = $field->email;

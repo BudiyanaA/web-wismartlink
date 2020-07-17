@@ -43,15 +43,15 @@
                         <!-- STAT -->
                         <div class="row list-separated profile-stat">
                             <div class="col-md-4 col-sm-4 col-xs-6">
-                                <div class="uppercase profile-stat-title"> 37 </div>
+                                <div class="uppercase profile-stat-title"> <?= $new ?> </div>
                                 <div class="uppercase profile-stat-text"> New </div>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-6">
-                                <div class="uppercase profile-stat-title"> 51 </div>
+                                <div class="uppercase profile-stat-title"> <?= $processed ?> </div>
                                 <div class="uppercase profile-stat-text"> Processed </div>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-6">
-                                <div class="uppercase profile-stat-title"> 61 </div>
+                                <div class="uppercase profile-stat-title"> <?= $completed ?> </div>
                                 <div class="uppercase profile-stat-text"> Completed </div>
                             </div>
                         </div>
@@ -118,8 +118,28 @@
                                         <?php
                                     } else {
                                         $get_msg = $this->db->query("select * from ticket_message where ticket_id = '$id'")->result();
+                                        $get_file = $this->db->query("select * from ticket_file where ticket_id = '$id' order by created_date DESC")->result();
+
                                         $color = 'red';
                                         $org = 'red';
+                                        
+                                        foreach ($get_file as $fl) {
+                                            $color = 'blue';
+                                            $org = 'File';
+                                        ?>
+                                            <div class="todo-tasklist-item todo-tasklist-item-border-<?php echo $color ?>">
+                                                <div class="todo-tasklist-item-title"> <?php echo $org ?> </div>
+                                                <div class="todo-tasklist-item-text"> <a href="<?php echo base_url() . $fl->img ?>">Download File</a> </div>
+                                                <div class="todo-tasklist-controls pull-left">
+                                                    <span class="todo-tasklist-date">
+                                                        <i class="fa fa-calendar"></i> <?php echo $fl->created_date ?> </span>
+                                                    <span class="todo-tasklist-badge badge badge-roundless"><?php echo $level ?></span>
+                                                </div>
+                                            </div>
+
+                                        <?php
+                                        }
+
                                         foreach ($get_msg as $ms) {
                                             if ($ms->sent_by == 'admin') {
                                                 $color = 'red';
@@ -133,7 +153,7 @@
                                             }
                                         ?>
                                             <div class="todo-tasklist-item todo-tasklist-item-border-<?php echo $color ?>">
-                                                <img class="todo-userpic pull-left" src="http://nama_domain_anda.com/apartemen/assets/img/user/887779c6d3711981dbc9.jpg" width="27px" height="27px">
+                                                <img class="todo-userpic pull-left" src="<?= $img ?>" width="27px" height="27px">
                                                 <div class="todo-tasklist-item-title"> <?php echo $org ?> </div>
                                                 <div class="todo-tasklist-item-text"> <?php echo $ms->message ?> </div>
                                                 <div class="todo-tasklist-controls pull-left">

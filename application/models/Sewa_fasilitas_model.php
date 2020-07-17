@@ -121,7 +121,7 @@ class Sewa_fasilitas_model extends CI_Model
 	// delete data
 	function delete($id, $data)
 	{
-		$this->db->where($this->id, $id);
-		$this->db->update($this->table2, $data);
+		$this->db->where('id', $id);
+		$this->db->delete('request_fasilitas');
 	}
 }

@@ -25,9 +25,11 @@ class Keluarga_penghuni extends CI_Controller
 
     public function create()
     {
-        $get_all_user = $this->db->query("select * from user")->result();
+        $get_all_user = $this->db->query("select * from user where level = 8")->result();
+        $get_all_hubungan = $this->db->query("select * from role where id IN (9, 10, 11)")->result();
         $data = array(
             'get_all_user' => $get_all_user,
+            'get_all_hubungan' => $get_all_hubungan,
             'id' => set_value('id'),
             'user_id' => set_value('user_id'),
             'nama' => set_value('nama'),
@@ -68,22 +70,22 @@ class Keluarga_penghuni extends CI_Controller
             if (!empty($_FILES['img']['name'])) {
                 $this->upload->do_upload('img');
                 $data = array(
-                    'user_id' => $this->input->post('user_id', TRUE),
+                    'user_refer' => $this->input->post('user_id', TRUE),
                     'nama' => $this->input->post('nama', TRUE),
                     'tgl_lahir' => $this->input->post('tgl_lahir', TRUE),
                     'jk' => $this->input->post('jk', TRUE),
-                    'hubungan' => $this->input->post('hubungan', TRUE),
-                    'img' => 'http://nama_domain_anda.com/apartemen/assets/img/user/' . $rand . '.' . $ext,
+                    'level' => $this->input->post('hubungan', TRUE),
+                    'img' => '/assets/img/user/' . $rand . '.' . $ext,
                 );
                 // }
                 $simpan = $this->Keluarga_penghuni_model->insert($data);
             } else {
                 $data = array(
-                    'user_id' => $this->input->post('user_id', TRUE),
+                    'user_refer' => $this->input->post('user_id', TRUE),
                     'nama' => $this->input->post('nama', TRUE),
                     'tgl_lahir' => $this->input->post('tgl_lahir', TRUE),
                     'jk' => $this->input->post('jk', TRUE),
-                    'hubungan' => $this->input->post('hubungan', TRUE),
+                    'level' => $this->input->post('hubungan', TRUE),
                 );
                 $simpan = $this->Keluarga_penghuni_model->insert($data);
             }
@@ -100,17 +102,21 @@ class Keluarga_penghuni extends CI_Controller
     public function update($id)
     {
         $row = $this->Keluarga_penghuni_model->get_by_id($id);
-        $get_user = $this->db->query("select * from user where user_id = '$row->user_id'")->row();
-        $get_all_user = $this->db->query("select * from user")->result();
+        $get_user = $this->db->query("select * from user where user_id = '$row->user_refer'")->row();
+        $get_role = $this->db->query("select * from role where id = '$row->level'")->row();
+        $get_all_user = $this->db->query("select * from user where level = 8")->result();
+        $get_all_hubungan = $this->db->query("select * from role where id IN (9, 10, 11)")->result();
+            
         $data = array(
             'get_all_user' => $get_all_user,
+            'get_all_hubungan' => $get_all_hubungan,
             'user_id' => set_value('user_id', $get_user->user_id),
-            'id' => set_value('id', $row->id),
+            'id' => set_value('id', $row->user_id),
             'nama' => set_value('nama', $row->nama),
             'tgl_lahir' => set_value('tgl_lahir', $row->tgl_lahir),
             'jk' => set_value('jk', $row->jk),
-            'hubungan' => set_value('hubungan', $row->hubungan),
-            'img' => set_value('img', $row->img),
+            'hubungan' => set_value('hubungan', $get_role->role_name),
+            'img' => set_value('img', base_url() . $row->img),
             'disabled' => '',
             'button' => 'Update',
             'form_action' => 'index.php/Keluarga_penghuni/update_action/"' . $id . '"',
@@ -139,20 +145,20 @@ class Keluarga_penghuni extends CI_Controller
         if (!empty($_FILES['img']['name'])) {
             $this->upload->do_upload('img');
             $data = array(
-                'user_id' => $this->input->post('user_id', TRUE),
+                'user_refer' => $this->input->post('user_id', TRUE),
                 'nama' => $this->input->post('nama', TRUE),
                 'tgl_lahir' => $this->input->post('tgl_lahir', TRUE),
                 'jk' => $this->input->post('jk', TRUE),
-                'hubungan' => $this->input->post('hubungan', TRUE),
-                'img' => 'http://nama_domain_anda.com/apartemen/assets/img/user/' . $rand . '.' . $ext,
+                'level' => $this->input->post('hubungan', TRUE),
+                'img' => '/assets/img/user/' . $rand . '.' . $ext,
             );
         } else {
             $data = array(
-                'user_id' => $this->input->post('user_id', TRUE),
+                'user_refer' => $this->input->post('user_id', TRUE),
                 'nama' => $this->input->post('nama', TRUE),
                 'tgl_lahir' => $this->input->post('tgl_lahir', TRUE),
                 'jk' => $this->input->post('jk', TRUE),
-                'hubungan' => $this->input->post('hubungan', TRUE),
+                'level' => $this->input->post('hubungan', TRUE),
             );
         }
 
@@ -164,16 +170,21 @@ class Keluarga_penghuni extends CI_Controller
     public function read($id)
     {
         $row = $this->Keluarga_penghuni_model->get_by_id($id);
-        $get_user = $this->db->query("select * from user where user_id = '$row->user_id'")->row();
+        $get_user = $this->db->query("select * from user where user_id = '$row->user_refer'")->row();
+        $get_role = $this->db->query("select * from role where id = '$row->level'")->row();
         $get_all_user = $this->db->query("select * from user")->result();
+        $get_all_hubungan = $this->db->query("select * from role where id IN (9, 10, 11)")->result();
+
         $data = array(
             'get_all_user' => $get_all_user,
+            'get_all_hubungan' => $get_all_hubungan,
             'user_id' => set_value('user_id', $get_user->user_id),
+            'id' => set_value('id', $row->user_id),
             'nama' => set_value('nama', $row->nama),
             'tgl_lahir' => set_value('tgl_lahir', $row->tgl_lahir),
             'jk' => set_value('jk', $row->jk),
-            'hubungan' => set_value('hubungan', $row->hubungan),
-            'img' => set_value('img', $row->img),
+            'hubungan' => set_value('hubungan', $get_role->role_name),
+            'img' => set_value('img', base_url() . $row->img),
             'disabled' => 'disabled',
             'button' => 'Read',
             'form_action' => 'index.php/Keluarga_penghuni/update_action/"' . $id . '"',
@@ -204,15 +215,16 @@ class Keluarga_penghuni extends CI_Controller
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $field) {
-            $get_user = $this->db->query("select * from user where user_id = '$field->user_id'")->row();
+            $get_user = $this->db->query("select * from user where user_id = '$field->user_refer'")->row();
+            $get_role = $this->db->query("select * from role where id = '$field->level'")->row();
             // var_dump($field->user_id);die();
             $no++;
             $row = array(); 
-            $img = '<img src=' . $field->img . ' width="45%">';
+            $img = '<img src=' . base_url() . $field->img . ' width="45%">';
             $row[] = $no;
             $row[] = $field->nama;
             $row[] = $get_user->nama;
-            $row[] = $field->hubungan;
+            $row[] = $get_role->role_name;
             $row[] = $img;
             $row[] = '<td> 
                         <div class="btn-group">
@@ -221,15 +233,15 @@ class Keluarga_penghuni extends CI_Controller
                             </button>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a href="' . base_url() . 'index.php/Keluarga_penghuni/read/' . $field->id . '">
+                                    <a href="' . base_url() . 'index.php/Keluarga_penghuni/read/' . $field->user_id . '">
                                         <i class="icon-eye"></i> View </a>
                                 </li>
                                 <li>
-                                    <a href="' . base_url() . 'index.php/Keluarga_penghuni/update/' . $field->id . '">
+                                    <a href="' . base_url() . 'index.php/Keluarga_penghuni/update/' . $field->user_id . '">
                                         <i class="icon-pencil"></i> Edit </a>
                                 </li>
                                 <li>
-                                    <a onclick="confirmDelete(' . $field->id . '); return false;">
+                                    <a onclick="confirmDelete(' . $field->user_id . '); return false;">
                                         <i class="icon-trash"></i> Hapus </a>
                                 </li>
                             </ul>

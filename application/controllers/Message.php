@@ -119,7 +119,7 @@ class Message extends CI_Controller
         foreach ($message as $row) {
             if ($row['sentby'] == $sender) {
                 echo "<div class='post out'>
-                        <img class='avatar' alt='' src='http://nama_domain_anda.com/apartemen/assets/img/user/887779c6d3711981dbc9.jpg' />
+                        <img class='avatar' alt='' src='" . base_url() . "/assets/img/user/887779c6d3711981dbc9.jpg' />
                             <div class='message'>
                                 <span class='arrow'></span>
                                 <a href='javascript:;' class='name'>Admin</a>
@@ -130,7 +130,7 @@ class Message extends CI_Controller
             } else {
                 $user = $this->User_model->get_by_id($user_id);
                 echo "<div class='post in'>
-                        <img class='avatar' alt='' src='" . $user->img . "' />
+                        <img class='avatar' alt='' src='" . base_url() . $user->img . "' />
                             <div class='message'>
                                 <span class='arrow'></span>
                                 <a href='javascript:;' class='name'>" . $user->nama . "</a>

@@ -99,6 +99,12 @@ class Ticket_model extends CI_Model
 		return $this->db->get($this->table2)->row();
 	}
 
+	function count_status($status)
+	{
+		$this->db->where('status', $status);
+		return $this->db->get($this->table2);
+	}
+
 	// insert data
 	function insert($data)
 	{

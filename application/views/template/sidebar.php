@@ -27,38 +27,67 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
+                    
+                    <!-- TEKNISI -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 1')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Teknisi") {
                                                     echo 'active';
                                                 } ?>">
                         <a href="<?php echo base_url() ?>index.php/Teknisi" class="nav-link ">
-                            <i class="icon-bar-chart"></i>
+                            <i class="icon-wrench"></i>
                             <span class="title">Teknisi</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+                    
+                    <!-- FASILITAS -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 23')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Fasilitas") {
                                                     echo 'active';
                                                 } ?>">
                         <a href="<?php echo base_url() ?>index.php/Fasilitas" class="nav-link ">
-                            <i class="icon-bulb"></i>
+                            <i class="icon-grid"></i>
                             <span class="title">Fasilitas</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+
+                    <!-- INFORMASI GENERIC -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 10')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Generic") {
                                                     echo 'active';
                                                 } ?>">
                         <a href="<?php echo base_url() ?>index.php/Generic" class="nav-link ">
-                            <i class="icon-bulb"></i>
+                            <i class="icon-info"></i>
                             <span class="title">Informasi Generic</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+
+                    <!-- SUPPORT STAFF -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 2')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Support_staff") {
                                                     echo 'active';
                                                 } ?>">
                         <a href="<?php echo base_url() ?>index.php/Support_staff" class="nav-link ">
-                            <i class="icon-bulb"></i>
+                            <i class="icon-user-follow"></i>
                             <span class="title">Support Staff</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+
+                    <!-- GEDUNG -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 3')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Gedung") {
                                                     echo 'active';
                                                 } ?>">
@@ -67,33 +96,43 @@
                             <span class="title">Gedung</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+                    
+                    <!-- UNIT -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 4')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Unit") {
                                                     echo 'active';
                                                 } ?>">
                         <a href="<?php echo base_url() ?>index.php/Unit" class="nav-link ">
-                            <i class="icon-bulb"></i>
+                            <i class="icon-home"></i>
                             <span class="title">Unit</span>
                         </a>
                     </li>
-                    <li class="nav-item start <?php if ($this->uri->segment(1) == "Apartemen") {
-                                                    echo 'active';
-                                                } ?>">
-                        <a href="<?php echo base_url() ?>index.php/Apartemen" class="nav-link ">
-                            <i class="icon-bulb"></i>
-                            <span class="title">Apartemen</span>
-                        </a>
-                    </li>
+                    <?php endif; ?>
+
+                    <!-- LEVEL USER -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 5')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Level_user") {
                                                     echo 'active';
                                                 } ?>">
                         <a href="<?php echo base_url() ?>index.php/Level_user" class="nav-link ">
-                            <i class="icon-bulb"></i>
+                            <i class="icon-layers"></i>
                             <span class="title">Level User</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+
+                    <!-- USER -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 6')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item  ">
                         <a href="javascript:;" class="nav-link nav-toggle">
-                            <i class="icon-bulb"></i> <span class="title">User</span>
+                            <i class="icon-user"></i> <span class="title">User</span>
                             <span class="arrow"></span>
                         </a>
                         <ul class="sub-menu">
@@ -109,6 +148,8 @@
                             </li>
                         </ul>
                     </li>
+                    <?php endif; ?>
+
                 </ul>
             </li>
             <li class="nav-item start ">
@@ -118,6 +159,11 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
+
+                    <!-- PENGHUNI -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 11')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Penghuni") {
                                                     echo 'active';
                                                 } ?>">
@@ -126,14 +172,22 @@
                             <span class="title">Penghuni</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+
+                    <!-- KELUARGA PENGHUNI -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 12')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Keluarga_penghuni") {
                                                     echo 'active';
                                                 } ?>">
                         <a href="<?php echo base_url() ?>index.php/Keluarga_penghuni" class="nav-link ">
-                            <i class="icon-bulb"></i>
+                            <i class="icon-user-female"></i>
                             <span class="title">Keluarga Penghuni</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+
                 </ul>
             </li>
 
@@ -144,6 +198,11 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
+
+                    <!-- MAINTENANCE -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 13')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Maintenance") {
                                                     echo 'active';
                                                 } ?>">
@@ -152,22 +211,40 @@
                             <span class="title">Maintenance</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+
+                    <!-- ROOM SERVICE -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 25')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Room_service") {
                                                     echo 'active';
                                                 } ?>">
                         <a href="<?php echo base_url() ?>index.php/Room_service" class="nav-link ">
-                            <i class="icon-bulb"></i>
+                            <i class="icon-basket-loaded"></i>
                             <span class="title">Room Service</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+
+                    <!-- SEWA FASILITAS -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 24')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Sewa_fasilitas") {
                                                     echo 'active';
                                                 } ?>">
                         <a href="<?php echo base_url() ?>index.php/Sewa_fasilitas" class="nav-link ">
-                            <i class="icon-bulb"></i>
+                            <i class="icon-grid"></i>
                             <span class="title">Sewa Fasilitas</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+
+                    <!-- INVOICE -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 14')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Invoice") {
                                                     echo 'active';
                                                 } ?>">
@@ -176,6 +253,8 @@
                             <span class="title">Invoice</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+
                 </ul>
             </li>
 
@@ -186,6 +265,11 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
+
+                    <!-- LIST TOKO -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 15')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Toko") {
                                                     echo 'active';
                                                 } ?>">
@@ -194,6 +278,12 @@
                             <span class="title">List Toko</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+
+                    <!-- LIST BARANG TOKO -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 16')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Barang_toko") {
                                                     echo 'active';
                                                 } ?>">
@@ -202,6 +292,12 @@
                             <span class="title">List Barang Toko</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+
+                    <!-- LIST TRANSAKSI -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 17')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Barang_toko") {
                                                     echo 'active';
                                                 } ?>">
@@ -210,6 +306,8 @@
                             <span class="title">List Transaksi</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+
                 </ul>
             </li>
 
@@ -220,6 +318,11 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
+
+                    <!-- LIST RESTORAN -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 19')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Restaurant") {
                                                     echo 'active';
                                                 } ?>">
@@ -228,6 +331,12 @@
                             <span class="title">List Restoran</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+
+                    <!-- LIST MAKANAN -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 20')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "List_makanan") {
                                                     echo 'active';
                                                 } ?>">
@@ -236,6 +345,12 @@
                             <span class="title">List Makanan</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+
+                    <!-- LIST TRANSAKSI -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 21')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Barang_toko") {
                                                     echo 'active';
                                                 } ?>">
@@ -244,32 +359,8 @@
                             <span class="title">List Transaksi</span>
                         </a>
                     </li>
-                </ul>
-            </li>
+                    <?php endif; ?>
 
-            <li class="nav-item start ">
-                <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="icon-globe"></i>
-                    <span class="title">Tambahan</span>
-                    <span class="arrow"></span>
-                </a>
-                <ul class="sub-menu">
-                    <li class="nav-item start <?php if ($this->uri->segment(1) == "Scan") {
-                                                    echo 'active';
-                                                } ?>">
-                        <a href="<?php echo base_url() ?>index.php/Scan" class="nav-link ">
-                            <i class="icon-bulb"></i>
-                            <span class="title">Scan</span>
-                        </a>
-                    </li>
-                    <li class="nav-item start <?php if ($this->uri->segment(1) == "Chat") {
-                                                    echo 'active';
-                                                } ?>">
-                        <a href="<?php echo base_url() ?>index.php/Chat" class="nav-link ">
-                            <i class="icon-bulb"></i>
-                            <span class="title">Chat</span>
-                        </a>
-                    </li>
                 </ul>
             </li>
 
@@ -280,6 +371,11 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
+
+                    <!-- TRANSAKSI TOKO -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 18')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Transaksi_toko") {
                                                     echo 'active';
                                                 } ?>">
@@ -288,6 +384,12 @@
                             <span class="title">Transaksi Toko</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+
+                    <!-- TRANSAKSI RESTORAN -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 22')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Transaksi_resto") {
                                                     echo 'active';
                                                 } ?>">
@@ -296,6 +398,12 @@
                             <span class="title">Transaksi Restoran</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+
+                    <!-- SEWA FASILITAS -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 24')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Request_fasilitas") {
                                                     echo 'active';
                                                 } ?>">
@@ -304,6 +412,12 @@
                             <span class="title">Request Fasilitas</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+
+                    <!-- ROOM SERVICE -->
+                    <?php $data = $this->db->query('select menu.view from menu where id = 25')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?>
                     <li class="nav-item start <?php if ($this->uri->segment(1) == "Request_service") {
                                                     echo 'active';
                                                 } ?>">
@@ -312,9 +426,29 @@
                             <span class="title">Request Room Service</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+                    
                 </ul>
             </li>
 
+            <!-- SCAN -->
+            <?php $data = $this->db->query('select menu.view from menu where id = 32')->row('view'); 
+                 if (in_array($this->session->userdata('level'), explode(',', $data))):
+            ?>
+            <li class="nav-item start <?php if ($this->uri->segment(1) == "Scan") {
+                                            echo 'active';
+                                        } ?>">
+                <a href="<?php echo base_url() ?>index.php/Scan" class="nav-link ">
+                    <i class="icon-bulb"></i>
+                    <span class="title">Scan</span>
+                </a>
+            </li>
+            <?php endif; ?>
+
+            <!-- UPLOAD -->
+            <?php $data = $this->db->query('select menu.view from menu where id = 26')->row('view'); 
+                if (in_array($this->session->userdata('level'), explode(',', $data))):
+            ?>
             <li class="tooltips <?php if ($this->uri->segment(1) == "Upload") {
                                     echo 'active';
                                 } ?>">
@@ -323,7 +457,12 @@
                     <span class="title">Upload</span>
                 </a>
             </li>
+            <?php endif; ?>
 
+            <!-- SECURITY -->
+            <?php $data = $this->db->query('select menu.view from menu where id = 27')->row('view'); 
+                if (in_array($this->session->userdata('level'), explode(',', $data))):
+            ?>
             <li class="tooltips <?php if ($this->uri->segment(1) == "Security") {
                                     echo 'active';
                                 } ?>">
@@ -332,7 +471,12 @@
                     <span class="title">Security</span>
                 </a>
             </li>
+            <?php endif; ?>
 
+            <!-- VOUCHER -->
+            <?php $data = $this->db->query('select menu.view from menu where id = 28')->row('view'); 
+                if (in_array($this->session->userdata('level'), explode(',', $data))):
+            ?>
             <li class="tooltips <?php if ($this->uri->segment(1) == "Voucher") {
                                     echo 'active';
                                 } ?>">
@@ -341,7 +485,12 @@
                     <span class="title">Voucher</span>
                 </a>
             </li>
+            <?php endif; ?>
 
+            <!-- EMERGENCY -->
+            <?php $data = $this->db->query('select menu.view from menu where id = 29')->row('view'); 
+                if (in_array($this->session->userdata('level'), explode(',', $data))):
+            ?>
             <li class="tooltips <?php if ($this->uri->segment(1) == "Emergency") {
                                     echo 'active';
                                 } ?>">
@@ -350,7 +499,12 @@
                     <span class="title">Emergency</span>
                 </a>
             </li>
+            <?php endif; ?>
 
+            <!-- NOTIFIKASI -->
+            <?php $data = $this->db->query('select menu.view from menu where id = 7')->row('view'); 
+                if (in_array($this->session->userdata('level'), explode(',', $data))):
+            ?>
             <li class="tooltips <?php if ($this->uri->segment(1) == "Notifikasi") {
                                     echo 'active';
                                 } ?>" data-container="body" data-placement="right" data-html="true" data-original-title="Notifikasi">
@@ -360,7 +514,12 @@
                         Notifikasi </span>
                 </a>
             </li>
+            <?php endif; ?>
 
+            <!-- PENGUMUMAN -->
+            <?php $data = $this->db->query('select menu.view from menu where id = 8')->row('view'); 
+                if (in_array($this->session->userdata('level'), explode(',', $data))):
+            ?>
             <li class="tooltips <?php if ($this->uri->segment(1) == "Pengumuman") {
                                     echo 'active';
                                 } ?>" data-container="body" data-placement="right" data-html="true" data-original-title="Pengumuman">
@@ -370,7 +529,12 @@
                         Pengumuman </span>
                 </a>
             </li>
+            <?php endif; ?>
 
+            <!-- TIKET -->
+            <?php $data = $this->db->query('select menu.view from menu where id = 30')->row('view'); 
+                if (in_array($this->session->userdata('level'), explode(',', $data))):
+            ?>
             <li class="tooltips <?php if ($this->uri->segment(1) == "Tiket") {
                                     echo 'active';
                                 } ?>" data-container="body" data-placement="right" data-html="true" data-original-title="Tiket">
@@ -380,7 +544,12 @@
                         Tiket </span>
                 </a>
             </li>
+            <?php endif; ?>
 
+            <!-- GANTI PASSWORD -->
+            <?php $data = $this->db->query('select menu.view from menu where id = 9')->row('view'); 
+                if (in_array($this->session->userdata('level'), explode(',', $data))):
+            ?>
             <li class="tooltips <?php if ($this->uri->segment(1) == "Ganti_password") {
                                     echo 'active';
                                 } ?>" data-container="body" data-placement="right" data-html="true" data-original-title="Ganti Password">
@@ -390,7 +559,16 @@
                         Ganti Password </span>
                 </a>
             </li>
-
+            <?php endif; ?>
+            
+            <li class="nav-item start <?php if ($this->uri->segment(1) == "Apartemen") {
+                                            echo 'active';
+                                        } ?>">
+                <a href="<?php echo base_url() ?>index.php/Apartemen" class="nav-link ">
+                    <i class="fa fa-gear"></i>
+                    <span class="title">Pengaturan Apartemen</span>
+                </a>
+            </li>
 
 
         </ul>

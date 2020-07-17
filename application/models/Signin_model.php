@@ -12,9 +12,9 @@ class Signin_model extends CI_Model
 
 	public function get_admin($username, $password)
 	{
-		$query = $this->db->query("SELECT * FROM admin WHERE email ='$username' AND password='$password' ");
+		$query = $this->db->query("SELECT * FROM user WHERE email ='$username' AND password='$password' ");
 		if ($query->num_rows() == 0) {
-			$query = $this->db->query("SELECT * FROM admin WHERE username ='$username' AND password='$password' ");
+			$query = $this->db->query("SELECT * FROM user WHERE username ='$username' AND password='$password' ");
 		}
 		// var_dump($query->num_rows());die();
 		return $query;

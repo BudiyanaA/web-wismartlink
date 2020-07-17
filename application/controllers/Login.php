@@ -99,11 +99,14 @@ class Login extends CI_Controller
                     $row_data = array(
                         'adminid' => $row['user_id'],
                         'email' => $row['email'],
-                        'name' => $row['fullname']
+                        'name' => $row['nama'],
+                        'level' => $row['level'],
+                        'img'   => $row['img']
                     );
                     // var_dump($cek_admin->num_rows());die();
                     $this->session->set_userdata($row_data);
                     redirect('Home');
+                    // var_dump($row_data);
                 } else {
                     //$data['error']='Wrong password!';
 

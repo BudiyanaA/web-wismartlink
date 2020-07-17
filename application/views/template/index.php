@@ -109,12 +109,12 @@
 						<div class="page-quick-sidebar-chat-users" data-rail-color="#ddd" data-wrapper-class="page-quick-sidebar-list">
 							<ul class="media-list list-items">
 								<?php
-								$get_user = $this->db->query("select * from user order by user_id desc")->result();
+								$get_user = $this->db->query("select * from user where user_id !='" . $this->session->userdata('adminid') . "'order by user_id desc")->result();
 								foreach ($get_user as $row) {
 									if ($row->img != '' || $row->img != NULL) {
-										$img = $row->img;
+										$img = base_url() . $row->img;
 									} else {
-										$img = 'http://nama_domain_anda.com/apartemen/assets/img/user/887779c6d3711981dbc9.jpg';
+										$img = base_url() . '/assets/img/user/887779c6d3711981dbc9.jpg';
 									}
 								?>
 									<li class="media" onclick="chat('<?php echo $row->user_id ?>')">
@@ -140,6 +140,8 @@
 								?>
 							</ul>
 						</div>
+
+						<!-- CHAT DASHBOARD -->
 						<div class="page-quick-sidebar-item">
 							<div class="page-quick-sidebar-chat-user">
 								<div class="page-quick-sidebar-nav">

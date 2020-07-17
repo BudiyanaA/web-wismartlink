@@ -35,7 +35,7 @@ class List_transaksi_toko extends CI_Controller
 
         $data = array(
             'id' => set_value('id', $row->id),
-            'img' => set_value('img', $row->img),
+            'img' => set_value('img', base_url() . $row->img),
             'nama_toko' => set_value('nama_toko', $row->nama_toko),
             'nama_barang' => set_value('nama_barang', $row->nama_barang),
             'harga' => set_value('harga', $row->harga),
@@ -61,7 +61,7 @@ class List_transaksi_toko extends CI_Controller
         $no = $_POST['start'];
         foreach ($list as $field) {
             $no++;
-            $pic = '<img src=' . $field->img . ' width="45%">';
+            $pic = '<img src=' . base_url() . $field->img . ' width="45%">';
             if ($field->status == '1') {
                 $status = 'Lunas';
             } else {

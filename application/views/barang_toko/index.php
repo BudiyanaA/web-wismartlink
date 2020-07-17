@@ -84,33 +84,33 @@
         //datatables
         $('#measurement').DataTable({
 
-            "dom": 'Bfrtip',
-            "pageLength": 10,
-            "scrollX": true,
-            "lengthMenu": [
-                [5, 10, 25, 50, -1],
-                ['5 rows', '10 rows', '25 rows', '50 rows', 'Show all']
-            ],
-            "buttons": [
-                'pageLength',
-                'copy',
-                {
-                    "extend": 'excel',
-                    "messageTop": 'Barang Toko',
-                    "exportOptions": {
-                        "columns": [0, 1, 2, 3, 4]
-                    }
-                },
-                {
-                    "extend": 'pdf',
-                    "messageTop": 'Barang Toko',
-                    "messageBottom": null
-                },
-                {
-                    "extend": 'print',
-                    "messageTop": 'Barang Toko',
-                }
-            ],
+            // "dom": 'Bfrtip',
+            // "pageLength": 10,
+            // "scrollX": true,
+            // "lengthMenu": [
+            //     [5, 10, 25, 50, -1],
+            //     ['5 rows', '10 rows', '25 rows', '50 rows', 'Show all']
+            // ],
+            // "buttons": [
+            //     'pageLength',
+            //     'copy',
+            //     {
+            //         "extend": 'excel',
+            //         "messageTop": 'Barang Toko',
+            //         "exportOptions": {
+            //             "columns": [0, 1, 2, 3, 4]
+            //         }
+            //     },
+            //     {
+            //         "extend": 'pdf',
+            //         "messageTop": 'Barang Toko',
+            //         "messageBottom": null
+            //     },
+            //     {
+            //         "extend": 'print',
+            //         "messageTop": 'Barang Toko',
+            //     }
+            // ],
 
 
             "processing": true,

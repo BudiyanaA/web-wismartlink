@@ -42,15 +42,15 @@
                         <!-- STAT -->
                         <div class="row list-separated profile-stat">
                             <div class="col-md-4 col-sm-4 col-xs-6">
-                                <div class="uppercase profile-stat-title"> 37 </div>
+                                <div class="uppercase profile-stat-title"> <?= $new ?> </div>
                                 <div class="uppercase profile-stat-text"> New </div>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-6">
-                                <div class="uppercase profile-stat-title"> 51 </div>
+                                <div class="uppercase profile-stat-title"> <?= $processed ?> </div>
                                 <div class="uppercase profile-stat-text"> Processed </div>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-6">
-                                <div class="uppercase profile-stat-title"> 61 </div>
+                                <div class="uppercase profile-stat-title"> <?= $completed ?> </div>
                                 <div class="uppercase profile-stat-text"> Completed </div>
                             </div>
                         </div>

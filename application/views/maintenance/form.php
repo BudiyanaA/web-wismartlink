@@ -65,6 +65,7 @@
                     </div>
                     <div class="portlet-body form">
                         <form role="form" method="post" action="<?php echo base_url() . $form_action ?>" enctype="multipart/form-data">
+                        <input type="hidden" name="id" id="id" class="form-control" placeholder="Title English" value="<?php echo $id ?>" <?php echo $disabled ?>>
                             <div class="form-body">
                                 <div class="form-group">
                                     <label> Nama</label>
@@ -72,8 +73,18 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-envelope"></i>
                                         </span>
-                                        <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama" value="<?php echo $nama ?>" <?php echo $disabled ?>> </div>
-                                    <?php echo form_error('nama') ?>
+                                        <select name="user" id="user" class="form-control" <?php echo $disabled ?>>
+                                            <option value=""> - Pilih User - </option>
+                                            <?php
+                                            foreach ($get_users as $row) {
+                                            ?>
+                                                <option value="<?php echo $row->user_id ?>" <?= ($id_user == $row->user_id)?'selected':''?>> <?php echo $row->nama ?> </option>
+
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    <?php echo form_error('user') ?>
                                 </div>
                                 <div class="form-group">
                                     <label> Maintenance</label>
@@ -90,26 +101,34 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-envelope"></i>
                                         </span>
-                                        <input type="text" name="request_date" id="request_date" class="form-control" placeholder="Tanggal Permintaan Request" value="<?php echo $request_date ?>" <?php echo $disabled ?>> </div>
+                                        <input type="datetime-local" name="request_date" id="request_date" class="form-control" placeholder="Tanggal Permintaan Request" value="<?php echo $request_date ?>" <?php echo $disabled ?>> </div>
                                     <?php echo form_error('request_date') ?>
                                 </div>
-                                <div class="form-group">
-                                    <label> Alamat</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-envelope"></i>
-                                        </span>
-                                        <textarea class="form-control" name="alamat" id="alamat"><?php echo $alamat ?></textarea>
+
+                                <?php if ($button == 'Read'): ?>
+                                    <div class="form-group">
+                                        <label> Alamat</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-envelope"></i>
+                                            </span>
+                                            <textarea class="form-control" name="alamat" id="alamat" <?php echo $disabled ?>><?php echo $alamat ?></textarea>
+                                        </div>
+                                        <?php echo form_error('alamat') ?>
                                     </div>
-                                    <?php echo form_error('alamat') ?>
-                                </div>
+                                <?php endif; ?>
+
                                 <div class="form-group">
                                     <label> Lunas ?</label>
                                     <div class="input-group">
                                         <span class="input-group-addon">
                                             <i class="fa fa-envelope"></i>
                                         </span>
-                                        <input type="text" name="is_paid" id="is_paid" class="form-control" placeholder="Is Paid" value="<?php echo $is_paid ?>" <?php echo $disabled ?>> </div>
+                                        <select name="is_paid" id="is_paid" class="form-control" <?php echo $disabled ?>>
+                                            <option value="" selected disabled> - Is Paid - </option>
+                                            <option value="Lunas" <?= ($is_paid == 'Lunas')?'selected':''?>> Lunas </option>
+                                            <option value="Belum Lunas" <?= ($is_paid == 'Belum Lunas')?'selected':''?>> Belum Lunas </option>
+                                        </select>
                                     <?php echo form_error('is_paid') ?>
                                 </div>
                                 <div class="form-group">
@@ -118,7 +137,12 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-envelope"></i>
                                         </span>
-                                        <input type="text" name="status" id="status" class="form-control" placeholder="Status" value="<?php echo $status ?>" <?php echo $disabled ?>> </div>
+                                        <select name="status" id="status" class="form-control" <?php echo $disabled ?>>
+                                            <option value="" selected disabled> - Status - </option>
+                                            <option value="Submitted" <?= ($status == 'Submitted')?'selected':''?>> Submitted</option>
+                                            <option value="Accepted" <?= ($status == 'Accepted')?'selected':''?>> Accepted </option>
+                                            <option value="Finished" <?= ($status == 'Finished')?'selected':''?>> Finished </option>
+                                        </select>
                                     <?php echo form_error('status') ?>
                                 </div>
                                 <div class="form-group">
@@ -145,7 +169,7 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-envelope"></i>
                                         </span>
-                                        <input type="text" name="tanggal_bayar" id="tanggal_bayar" class="form-control" placeholder="Tanggal Bayar" value="<?php echo $tanggal_bayar ?>" <?php echo $disabled ?>> </div>
+                                        <input type="datetime-local" name="tanggal_bayar" id="tanggal_bayar" class="form-control" placeholder="Tanggal Bayar" value="<?php echo $tanggal_bayar ?>" <?php echo $disabled ?>> </div>
                                     <?php echo form_error('tanggal_bayar') ?>
                                 </div>
                                 <div class="form-group">
@@ -154,8 +178,18 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-envelope"></i>
                                         </span>
-                                        <input type="text" name="nama_teknisi" id="nama_teknisi" class="form-control" placeholder="Nama Teknisi" value="<?php echo $nama_teknisi ?>" <?php echo $disabled ?>> </div>
-                                    <?php echo form_error('nama_teknisi') ?>
+                                        <select name="id_teknisi" id="id_teknisi" class="form-control" <?php echo $disabled ?>>
+                                            <option value=""> - Nama Teknisi - </option>
+                                            <?php
+                                            foreach ($get_teknisi as $row) {
+                                            ?>
+                                                <option value="<?php echo $row->id ?>" <?= ($id_teknisi == $row->id)?'selected':''?>> <?php echo $row->nama_teknisi ?> </option>
+
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    <?php echo form_error('teknisi') ?>
                                 </div>
 
                                 <div class="form-actions">

@@ -71,7 +71,7 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-envelope"></i>
                                         </span>
-                                        <select name="id_gedung" id="id_gedung" class="form-control">
+                                        <select name="id_gedung" id="id_gedung" class="form-control"  <?php echo $disabled ?>>
                                             <option value=""> -- Pilih Gedung -- </option>
                                             <?php
                                             foreach ($get_all_gedung as $un) {
@@ -130,7 +130,7 @@
                                             <span class="input-group-addon">
                                                 <i class="fa fa-envelope"></i>
                                             </span>
-                                            <textarea class="form-control" name="ket" id="ket"><?php echo $ket ?></textarea>
+                                            <textarea class="form-control" name="ket" id="ket" <?php echo $disabled ?>><?php echo $ket ?></textarea>
                                         </div>
                                         <?php echo form_error('ket') ?>
                                     </div>
@@ -153,7 +153,7 @@
                                                 <label for="exampleInputFile1">Image</label>
                                             </div>
                                             <div class="form-group">
-                                                <img width="10%" src="<?php echo $foto ?>">
+                                                <img width="50%" src="<?php echo $foto ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputFile1">Image</label>
@@ -167,7 +167,7 @@
                                             <label for="exampleInputFile1">Image</label>
                                         </div>
                                         <div class="form-group">
-                                            <img width="10%" src="<?php echo $img ?>">
+                                            <img width="50%" src="<?php echo $foto ?>">
                                         </div>
                                     <?php
 
@@ -199,7 +199,7 @@
 </div>
 <script>
     function back() {
-        window.location.href = "<?php echo base_url() ?>index.php/Keluarga_penghuni";
+        window.location.href = "<?php echo base_url() ?>index.php/Unit";
     }
 
     $(document).ready(function() {

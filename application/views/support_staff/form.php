@@ -71,9 +71,9 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-envelope"></i>
                                         </span>
-                                        <select name="role" id="role" class="form-control">
+                                        <select name="role" id="role" class="form-control" <?php echo $disabled ?>>
                                             <?php
-                                            if ($button == 'Update') {
+                                            if ($button == 'Update' || $button == 'Read') {
                                                 foreach ($get_roles as $row) {
                                             ?>
                                                     <option value="<?php echo $row->id ?>" <?php if ($role == $row->id) {
@@ -161,7 +161,7 @@
 </div>
 <script>
     function back() {
-        window.location.href = "<?php echo base_url() ?>index.php/Teknisi";
+        window.location.href = "<?php echo base_url() ?>index.php/Support_staff";
     }
 
     $(document).ready(function() {

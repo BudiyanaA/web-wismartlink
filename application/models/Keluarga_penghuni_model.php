@@ -3,11 +3,11 @@
 class Keluarga_penghuni_model extends CI_Model
 {
 	var $infra = null;
-	var $table = 'keluarga_user'; //nama tabel dari database
-	var $table2 = 'keluarga_user'; //nama tabel dari database
+	var $table = 'user'; //nama tabel dari database
+	var $table2 = 'user'; //nama tabel dari database
 	var $column_order = array(null, 'nama', 'user_id', 'hubungan', 'img'); //field yang ada di table user
 	var $column_search = array('nama', 'user_id', 'hubungan', 'img'); //field yang diizin untuk pencarian 
-	var $order = array('id' => 'desc'); // default order 
+	var $order = array('user_id' => 'asc'); // default order 
 
 	function __construct()
 	{
@@ -16,13 +16,15 @@ class Keluarga_penghuni_model extends CI_Model
 
 
 	// public $table = 'measurement_method';
-	public $id = 'id';
+	public $id = 'user_id';
 	// public $order = 'DESC';
 
 	private function _get_datatables_query()
 	{
-
-		$this->db->from($this->table);
+		$this->db->select('*');
+		$this->db->from('user u');
+		$this->db->where_in('level', array(9, 10, 11));
+		// $this->db->from($this->table);
 
 		$i = 0;
 

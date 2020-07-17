@@ -74,7 +74,7 @@ class User extends CI_Controller
         $get_level_by_id = $this->User_model->get_by_level_id($row->level);
         $data = array(
             'get_level_user' => $this->User_model->get_all_level(),
-            'level_name' => $get_level_by_id->level_name,
+            'role_name' => $get_level_by_id->role_name,
             'user_id' => set_value('user_id', $row->user_id),
             'nama' => set_value('nama', $row->nama),
             'username' => set_value('username', $row->username),
@@ -124,7 +124,7 @@ class User extends CI_Controller
         $get_level_by_id = $this->User_model->get_by_level_id($row->level);
         $data = array(
             'get_level_user' => $this->User_model->get_all_level(),
-            'level_name' => $get_level_by_id->level_name,
+            'role_name' => $get_level_by_id->role_name,
             'user_id' => set_value('user_id', $row->user_id),
             'nama' => set_value('nama', $row->nama),
             'username' => set_value('username', $row->username),
@@ -167,7 +167,7 @@ class User extends CI_Controller
             $row[] = $no;
             $row[] = $field->nama;
             $row[] = $field->email;
-            $row[] = $field->level_name;
+            $row[] = $field->role_name;
             $row[] = '<td>
                         <div class="btn-group">
                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions

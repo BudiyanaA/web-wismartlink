@@ -21,6 +21,10 @@ class Ticket extends CI_Controller
         $data['folder'] = 'ticket';
         $data['page'] = 'Ticket';
         $data['page_name'] = 'index';
+
+        $data['new'] = $this->db->query("select COUNT(*) as newCount from ticket where status = 'New'")->row('newCount');
+        $data['processed'] = $this->db->query("select COUNT(*) as newCount from ticket where status = 'Processed'")->row('newCount');
+        $data['completed'] = $this->db->query("select COUNT(*) as newCount from ticket where status = 'Selesai'")->row('newCount');
         $this->load->view('template/index', $data);
     }
 
@@ -58,6 +62,7 @@ class Ticket extends CI_Controller
             'keterangan' => set_value('keterangan', $row->keterangan),
             'nama' => set_value('nama', $get_nama_penghuni->nama),
             'email' => set_value('nama', $get_nama_penghuni->email),
+            'img' => set_value('nama', base_url() . $get_nama_penghuni->img),
             'alamat' => set_value('alamat', $alamat),
             'status' => set_value('status', $row->status),
             'level' => set_value('level', $row->level),
@@ -69,6 +74,10 @@ class Ticket extends CI_Controller
             'folder' => 'ticket',
             'page_name' => 'detail',
         );
+
+        $data['new'] = $this->db->query("select COUNT(*) as newCount from ticket where status = 'New'")->row('newCount');
+        $data['processed'] = $this->db->query("select COUNT(*) as newCount from ticket where status = 'Processed'")->row('newCount');
+        $data['completed'] = $this->db->query("select COUNT(*) as newCount from ticket where status = 'Selesai'")->row('newCount');
         $this->load->view('template/index', $data);
     }
 
@@ -145,6 +154,7 @@ class Ticket extends CI_Controller
             $row[] = $field->created_date;
             $row[] = $nama_staff;
             $row[] = $get_user->email;
+            
             if ($field->status == 'New') {
                 $row[] = '<span class="label label-sm label-warning"> ' . $field->status . ' </span>';
             } else if ($field->status == 'Processed') {

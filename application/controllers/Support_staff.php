@@ -68,7 +68,7 @@ class Support_staff extends CI_Controller
                     'nama_staff' => $this->input->post('nama_staff', TRUE),
                     'email' => $this->input->post('email', TRUE),
                     'role' => $this->input->post('role', TRUE),
-                    'img' => 'http://nama_domain_anda.com/apartemen/assets/img/support_staff/' . $rand . '.' . $ext,
+                    'img' => '/assets/img/support_staff/' . $rand . '.' . $ext,
                 );
                 // }
                 $simpan = $this->Support_staff_model->insert($data);
@@ -102,7 +102,7 @@ class Support_staff extends CI_Controller
             'email' => set_value('email', $row->email),
             'role' => set_value('role', $row->role),
             'role_name' => set_value('role', $get_role->role_name),
-            'img' => set_value('img', $row->img),
+            'img' => set_value('img', base_url() . $row->img),
             'disabled' => '',
             'button' => 'Update',
             'form_action' => 'index.php/Support_staff/update_action/"' . $id . '"',
@@ -134,7 +134,7 @@ class Support_staff extends CI_Controller
                 'nama_staff' => $this->input->post('nama_staff', TRUE),
                 'email' => $this->input->post('email', TRUE),
                 'role' => $this->input->post('role', TRUE),
-                'img' => 'http://nama_domain_anda.com/apartemen/assets/img/support_staff/' . $rand . '.' . $ext,
+                'img' => '/assets/img/support_staff/' . $rand . '.' . $ext,
             );
         } else {
             $data = array(
@@ -149,15 +149,42 @@ class Support_staff extends CI_Controller
         redirect(base_url('index.php/Support_staff'));
     }
 
+    // public function read($id)
+    // {
+    //     $row = $this->Support_staff_model->get_by_id($id);
+    //     $get_role = $this->db->query("select * from role where id = '$row->role'")->row();
+    //     $get_roles = $this->db->query("select * from role")->result();
+    //     $data = array(
+    //         'get_roles' => $get_roles,
+    //         'id' => set_value('id', $row->id),
+    //         'nama_staff' => set_value('nama_staff', $row->nama_staff),
+    //         'email' => set_value('email', $row->email),
+    //         'role' => set_value('role', $row->role),
+    //         'role_name' => set_value('role', $get_role->role_name),
+    //         'img' => set_value('img', base_url() . $row->img),
+    //         'disabled' => 'disabled',
+    //         'button' => 'Read',
+    //         'form_action' => 'index.php/Support_staff/update_action/"' . $id . '"',
+    //         'page' => 'Support Staff View',
+    //         'folder' => 'support_staff',
+    //         'page_name' => 'form',
+    //     );
+    //     $this->load->view('template/index', $data);
+    // }
+
     public function read($id)
     {
         $row = $this->Support_staff_model->get_by_id($id);
+        $get_role = $this->db->query("select * from role where id = '$row->role'")->row();
+        $get_roles = $this->db->query("select * from role")->result();
         $data = array(
+            'get_roles' => $get_roles,
             'id' => set_value('id', $row->id),
             'nama_staff' => set_value('nama_staff', $row->nama_staff),
             'email' => set_value('email', $row->email),
             'role' => set_value('role', $row->role),
-            'img' => set_value('img', $row->img),
+            'role_name' => set_value('role', $get_role->role_name),
+            'img' => set_value('img', base_url() . $row->img),
             'disabled' => 'disabled',
             'button' => 'Read',
             'form_action' => 'index.php/Support_staff/update_action/"' . $id . '"',
@@ -192,7 +219,7 @@ class Support_staff extends CI_Controller
             // var_dump($get_role);die();
             $no++;
             $row = array();
-            $img = '<img src=' . $field->img . ' width="45%">';
+            $img = '<img src=' . base_url() . $field->img . ' width="45%">';
             $row[] = $no;
             $row[] = $field->nama_staff;
             $row[] = $field->email;

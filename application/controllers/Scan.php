@@ -27,29 +27,19 @@ class Scan extends CI_Controller
 
     public function read($id)
     {
-        // $row = $this->db->query("select e.id, e.img, u.nama, e.nama_resto, u.email, un.nama_unit, un.nomor, un.lantai, g.nama_gedung, a.nama_apt
-        // from restaurant e 
-        // left join user u on e.id_user = u.user_id
-        // left join unit un on u.idunit = un.id_unit
-        // left join gedung g on un.id_gedung = g.id_gedung
-        // left join apartemen a on g.id_apt = a.id_apt
-        // where e.id = '$id'
-        // ")->row();
-
+        $get_users = $this->db->query("select * from user")->result();
+        $get_fasilitas = $this->db->query("select * from fasilitas_gedung")->result();
         $row = $this->db->query("select *
         from absensi
         ")->row();
 
         $data = array(
+            'get_users' => $get_users,
+            'get_fasilitas' => $get_fasilitas,
             'id' => set_value('id', $row->id),
             'user_id' => set_value('user_id', $row->user_id),
             'fasilitas_id' => set_value('fasilitas_id', $row->fasilitas_id),
             'time' => set_value('time', $row->time),
-            // 'nama_resto' => set_value('nama_resto', $row->nama_resto),
-            // 'nomor' => set_value('nomor', $row->nomor),
-            // 'lantai' => set_value('lantai', $row->lantai),
-            // 'nama_gedung' => set_value('nama_gedung', $row->nama_gedung),
-            // 'nama_apt' => set_value('nama_apt', $row->nama_apt),
             'disabled' => 'disabled',
             'button' => 'Read',
             'form_action' => 'index.php/Restaurant/update_action/"' . $id . '"',

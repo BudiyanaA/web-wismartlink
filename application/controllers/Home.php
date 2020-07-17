@@ -18,6 +18,11 @@ class Home extends CI_Controller
     {
         $data['folder'] = 'home';
         $data['page_name'] = 'index';
+
+        $data['user'] = $this->db->query("select COUNT(*) as countUser from user")->row('countUser');
+        $data['unit'] = $this->db->query("select COUNT(*) as countUnit from unit")->row('countUnit');
+        $data['toko'] = $this->db->query("select COUNT(*) as countToko from toko")->row('countToko');
+        $data['resto'] = $this->db->query("select COUNT(*) as countRestaurant from restaurant")->row('countRestaurant');
         $this->load->view('template/index', $data);
     }
 

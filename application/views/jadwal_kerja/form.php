@@ -151,6 +151,6 @@
 </div>
 <script>
     function back() {
-        window.location.href = "<?php echo base_url() ?>index.php/User";
+        window.location.href = "<?php echo base_url() ?>index.php/Jadwal_kerja";
     }
 </script>
