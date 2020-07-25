@@ -1087,7 +1087,8 @@ class Api extends REST_Controller
         $param = $this->post();
         $keyword = $param['keyword'];
 
-        $user = $this->db->query("select * from user where nama like '%$keyword%'")->result();
+        // $user = $this->db->query("select * from user where nama like '%$keyword%'")->result();
+        $user = $this->db->query("select * from user where level IN (8, 9, 10, 11)")->result();
         if ($user != NULL) {
             foreach ($user as $row) {
                 $d[] = array(

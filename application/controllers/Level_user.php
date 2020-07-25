@@ -44,7 +44,7 @@ class Level_user extends CI_Controller
             $this->create();
         } else {
             $data = array(
-                'level_name' => $this->input->post('level_name', TRUE),
+                'role_name' => $this->input->post('level_name', TRUE),
             );
             $simpan = $this->Level_user_model->insert($data);
             if ($simpan) {

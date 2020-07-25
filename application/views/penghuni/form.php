@@ -75,6 +75,15 @@
                                     <?php echo form_error('username') ?>
                                 </div>
                                 <div class="form-group">
+                                    <label> Password</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-envelope"></i>
+                                        </span>
+                                        <input type="password" name="password" id="password" class="form-control" placeholder="password" value="<?php echo $password ?>" <?php echo $disabled ?>> </div>
+                                    <?php echo form_error('password') ?>
+                                </div>
+                                <div class="form-group">
                                     <label> Phone Number</label>
                                     <div class="input-group">
                                         <span class="input-group-addon">
@@ -98,7 +107,7 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-envelope"></i>
                                         </span>
-                                        <input type="date" name="phone_number" id="tgl_lahir" class="form-control" placeholder="tgl_lahir" value="<?php echo $tgl_lahir ?>" <?php echo $disabled ?>> </div>
+                                        <input type="date" name="tgl_lahir" id="tgl_lahir" class="form-control" placeholder="tgl_lahir" value="<?php echo $tgl_lahir ?>" <?php echo $disabled ?>> </div>
                                     <?php echo form_error('tgl_lahir') ?>
                                 </div>
                                 <div class="form-group">
@@ -107,7 +116,7 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-envelope"></i>
                                         </span>
-                                        <select name="jk" id="jk" class="form-control">
+                                        <select name="jk" id="jk" class="form-control" <?php echo $disabled ?>>
                                             <option value=""> -Silahkan Pilih- </option>
                                             <option value="Laki-laki" <?php
                                                                         if ($jk == 'Laki-laki') echo 'selected'
@@ -125,7 +134,7 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-envelope"></i>
                                         </span>
-                                        <select name="status" id="status" class="form-control">
+                                        <select name="status" id="status" class="form-control" <?php echo $disabled ?>>
                                             <option value=""> -Silahkan Pilih- </option>
                                             <option value="1" <?php
                                                                 if ($status == '1') echo 'selected'
@@ -143,7 +152,7 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-envelope"></i>
                                         </span>
-                                        <select name="status" id="status" class="form-control">
+                                        <select name="idunit" id="idunit" class="form-control" <?php echo $disabled ?>>
                                             <option value=""> -- Pilih Unit -- </option>
                                             <?php
                                             foreach ($get_unit as $un) {

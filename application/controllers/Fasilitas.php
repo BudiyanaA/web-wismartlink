@@ -91,7 +91,7 @@ class Fasilitas extends CI_Controller
             'id' => set_value('id', $row->id),
             'fasilitas' => set_value('fasilitas', $row->fasilitas),
             'biaya_sewa' => set_value('biaya_sewa', $row->biaya_sewa),
-            'img' => set_value('img', $row->img),
+            'img' => set_value('img', base_url() . $row->img),
             'disabled' => '',
             'button' => 'Update',
             'form_action' => 'index.php/Fasilitas/update_action/"' . $id . '"',
@@ -122,7 +122,7 @@ class Fasilitas extends CI_Controller
             $data = array(
                 'fasilitas' => $this->input->post('fasilitas', TRUE),
                 'biaya_sewa' => $this->input->post('biaya_sewa', TRUE),
-                'pic' => '/assets/img/fasilitas/' . $rand . '.' . $ext,
+                'img' => '/assets/img/fasilitas/' . $rand . '.' . $ext,
             );
         } else {
             $data = array(

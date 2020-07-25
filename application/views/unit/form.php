@@ -142,9 +142,10 @@
                                     ?>
                                             <div class="form-group">
                                                 <label for="exampleInputFile1">Image</label>
-                                                <input type="file" name="img" id="img">
+                                                <input type="file" name="img" id="img" onchange="encodeImageFileAsURL(this)">
                                                 <p class="help-block"> some help text here. </p>
                                             </div>
+                                            <img id="img_modal" width="50%">
                                         <?php
                                         } else {
 
@@ -157,9 +158,10 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputFile1">Image</label>
-                                                <input type="file" name="img" id="img">
+                                                <input type="file" name="img" id="img" onchange="encodeImageFileAsURL(this)">
                                                 <p class="help-block"> some help text here. </p>
                                             </div>
+                                            <img id="img_modal" width="50%">
                                         <?php                                    }
                                     } else {
                                         ?>
@@ -216,4 +218,16 @@
             }
         });
     });
+</script>
+<script type="text/javascript">
+function encodeImageFileAsURL(element) {
+  var file = element.files[0];
+  var reader = new FileReader();
+  reader.onloadend = function() {
+    console.log('RESULT', reader.result)
+  	$('#input_image').val(reader.result);
+  	$('#img_modal').attr('src', reader.result);
+  }
+  reader.readAsDataURL(file);
+}
 </script>

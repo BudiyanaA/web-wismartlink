@@ -87,6 +87,15 @@
                                     <?php echo form_error('username') ?>
                                 </div>
                                 <div class="form-group">
+                                    <label> Password</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-envelope"></i>
+                                        </span>
+                                        <input type="password" name="password" id="password" class="form-control" placeholder="password" value="<?php echo $password ?>" <?php echo $disabled ?>> </div>
+                                    <?php echo form_error('password') ?>
+                                </div>
+                                <div class="form-group">
                                     <label> Email</label>
                                     <div class="input-group">
                                         <span class="input-group-addon">
