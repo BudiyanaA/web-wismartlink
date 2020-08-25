@@ -29,7 +29,7 @@ class Chat extends REST_Controller
     // get list Security
     public function security_get() {
         $me = $_GET['user_id'];
-        $friend = $this->db->query('select user_id, nama from user where level = 2 and user_id !="'.$me.'"')->result_array();
+        $friend = $this->db->query('select user_id, nama from user where level in (12, 13, 14) and user_id !="'.$me.'"')->result_array();
 
         if (!$friend) {
             $wrapper = array(
@@ -54,7 +54,7 @@ class Chat extends REST_Controller
 
         $with= $this->db->get_where('user', array('user_id' => $friend), 1)->row();
         $chat = $this->db
-            ->from('chat')
+            ->from('chat') 
             ->join('user', 'chat.sender = user.user_id')
             ->where('(sender = ' . $me . ' AND receiver = ' . $friend . ')')
             ->or_where('(receiver = ' . $me . ' AND sender = ' . $friend . ')')

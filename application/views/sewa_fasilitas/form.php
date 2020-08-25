@@ -175,7 +175,7 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-envelope"></i>
                                         </span>
-                                        <input type="text" name="biaya" id="biaya" class="form-control" placeholder="Biaya" value="<?php echo number_format($biaya, 2) ?>" <?php echo $disabled ?>> </div>
+                                        <input type="text" name="biaya" id="biaya" class="form-control" placeholder="Biaya" value="<?php echo $biaya ?>" <?php echo $disabled ?>> </div>
                                     <?php echo form_error('biaya') ?>
                                 </div>
                                 <div class="form-group">

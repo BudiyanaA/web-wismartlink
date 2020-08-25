@@ -132,7 +132,7 @@ class Api extends REST_Controller
                 $d[] = array(
                     'id' => $row->id,
                     'fasilitas' => $row->fasilitas,
-                    'img' => $row->img,
+                    'img' => base_url() . $row->img,
                 );
             }
 
@@ -1088,7 +1088,7 @@ class Api extends REST_Controller
         $keyword = $param['keyword'];
 
         // $user = $this->db->query("select * from user where nama like '%$keyword%'")->result();
-        $user = $this->db->query("select * from user where level IN (8, 9, 10, 11)")->result();
+        $user = $this->db->query("select * from user where nama like '%$keyword%' AND level IN (8, 9, 10, 11)")->result();
         if ($user != NULL) {
             foreach ($user as $row) {
                 $d[] = array(
@@ -1133,7 +1133,7 @@ class Api extends REST_Controller
                     'id_toko' => $row->id_toko,
                     'harga' => $row->harga,
                     'keterangan' => $row->keterangan,
-                    'img' => $row->img,
+                    'img' => base_url() . $row->img,
                 );
             }
 
@@ -1170,7 +1170,7 @@ class Api extends REST_Controller
                     'keterangan' => $row->keterangan,
                     'id_resto' => $row->id_resto,
                     'harga' => $row->harga,
-                    'img' => $row->img,
+                    'img' => base_url() . $row->img,
                 );
             }
 
@@ -1536,7 +1536,7 @@ class Api extends REST_Controller
                     'qty' => $p->jumlah_barang,
                     'total_harga' => $p->total_harga,
                     'subtotal' => $p->subtotal,
-                    'img' => $get_barang->img,
+                    'img' => base_url() . $get_barang->img,
                 );
             }
         } else {
@@ -1890,7 +1890,7 @@ class Api extends REST_Controller
                 'qty' => $p->jumlah,
                 'total_harga' => $p->total_harga,
                 'subtotal' => $p->subtotal,
-                'img' => $get_barang->img,
+                'img' => base_url() . $get_barang->img,
             );
         }
 
@@ -2760,7 +2760,7 @@ class Api extends REST_Controller
                     'id_toko' => $row->id_toko,
                     'harga' => $row->harga,
                     'keterangan' => $row->keterangan,
-                    'img' => $row->img,
+                    'img' => base_url() . $row->img,
                 );
             }
 
@@ -2796,7 +2796,7 @@ class Api extends REST_Controller
                     'nama_makanan' => $row->nama_makanan,
                     'id_resto' => $row->id_resto,
                     'harga' => $row->harga,
-                    'img' => $row->img,
+                    'img' => base_url() . $row->img,
                     'keterangan' => $row->keterangan
                 );
             }

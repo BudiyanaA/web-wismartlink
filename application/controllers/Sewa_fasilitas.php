@@ -142,11 +142,12 @@ class Sewa_fasilitas extends CI_Controller
         }
         $tanggal_sewa = $row->request_start . ' - ' . $row->request_end;
         $row->tanggal_bayar?$tanggal_bayar=$row->tanggal_bayar:$tanggal_bayar='0000-00-00 00:00:00';
-        $get_nama_penghuni = $this->db->query("select * from user where user_id = '" . $row->id_user . "'")->row();
-        $get_nama_apt = $this->db->query("select * from apartemen where id_apt = '" . $get_nama_penghuni->user_id . "'")->row();
-        $get_unit = $this->db->query("select * from unit where id_unit = '" . $get_nama_penghuni->idunit . "'")->row();
+        $get_nama_penghuni = $this->db->query("select * from user where user_id = '" . $row->id_user . "'")->row();    
+        $get_unit = $this->db->query("select * from unit join gedung on gedung.id_gedung = unit.id_gedung where id_unit = '" . $get_nama_penghuni->idunit . "'")->row();
+        $get_nama_apt = $this->db->query("select * from apartemen where id_apt = '" . $get_unit->id_apt . "'")->row();
         $get_nama_gedung = $this->db->query("select * from gedung where id_gedung = '" . $get_unit->id_gedung . "'")->row();
         $alamat = 'Apartemen ' . $get_nama_apt->nama_apt . ', Gedung ' . $get_nama_gedung->nama_gedung . ', ' . $get_unit->nama_unit . ', Lantai ' . $get_unit->lantai . ', Nomor ' . $get_unit->nomor;
+        
         $data = array(
             'get_users' => $get_users,
             'get_fasilitas' => $get_fasilitas,
