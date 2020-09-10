@@ -56,9 +56,12 @@
                             <thead>
                                 <tr>
                                     <th> # </th>
-                                    <th> Nama User </th>
                                     <th> Fasilitas </th>
-                                    <th> Waktu </th>
+                                    <th> Tanggal </th>
+                                    <th> Jam </th>
+                                    <th> Nama User </th>
+                                    <th> No HP</th>
+                                    <th> Role </th>
                                     <th> Actions </th>
                                 </tr>
                             </thead>
@@ -82,34 +85,40 @@
         //datatables
         $('#measurement').DataTable({
 
-            // "dom": 'Bfrtip',
-            // "pageLength": 10,
+            "dom": 'Bfrtip',
+            "pageLength": 10,
             // "scrollX": true,
-            // "lengthMenu": [
-            //     [5, 10, 25, 50, -1],
-            //     ['5 rows', '10 rows', '25 rows', '50 rows', 'Show all']
-            // ],
-            // "buttons": [
-            //     'pageLength',
-            //     'copy',
-            //     {
-            //         "extend": 'excel',
-            //         "messageTop": 'Restaurant',
-            //         "exportOptions": {
-            //             "columns": [0, 1, 2, 3, 4]
-            //         }
-            //     },
-            //     {
-            //         "extend": 'pdf',
-            //         "messageTop": 'Restaurant',
-            //         "messageBottom": null
-            //     },
-            //     {
-            //         "extend": 'print',
-            //         "messageTop": 'Restaurant',
-            //     }
-            // ],
-
+            "lengthMenu": [
+                [5, 10, 25, 50, -1],
+                ['5 rows', '10 rows', '25 rows', '50 rows', 'Show all']
+            ],
+            "buttons": [
+                'pageLength',
+                'copy',
+                {
+                    "extend": 'excel',
+                    "messageTop": 'Restaurant',
+                    "exportOptions": {
+                        "columns": [0, 1, 2, 3, 4, 5, 6]
+                    }
+                },
+                {
+                    "extend": 'csv',
+                    "messageTop": 'Restaurant',
+                    "exportOptions": {
+                        "columns": [0, 1, 2, 3, 4, 5, 6]
+                    }
+                },
+                {
+                    "extend": 'pdf',
+                    "messageTop": 'Restaurant',
+                    "messageBottom": null
+                },
+                {
+                    "extend": 'print',
+                    "messageTop": 'Restaurant',
+                }
+            ],
 
             "processing": true,
             "serverSide": true,

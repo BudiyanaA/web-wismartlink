@@ -174,7 +174,9 @@ class Api extends REST_Controller
         $end = new DateTime($dataDB['request_end']);
         $interval = $end->diff($start)->h;
 
-        $dataDB['biaya'] = $interval * 5000;
+        $get_fasilitas = $this->db->query("select * from fasilitas_gedung where id = " .  $dataDB['fasilitas_id'])->row();
+
+        $dataDB['biaya'] = $interval * $get_fasilitas->biaya_sewa;
 
         if ($this->apartemen_model->save_to_db('request_fasilitas', $dataDB)) {
             $data = array(

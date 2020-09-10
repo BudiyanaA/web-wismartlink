@@ -92,9 +92,12 @@ class Scan extends CI_Controller
             // $pic = '<img src=' . $field->img . ' width="45%">';
             $row = array();
             $row[] = $no;
-            $row[] = $field->nama;
             $row[] = $field->fasilitas;
-            $row[] = longdate_indo(substr($field->time, 0, 10))." pada ".substr($field->time, 11, 8);
+            $row[] = longdate_indo(substr($field->time, 0, 10));
+            $row[] = substr($field->time, 11, 8);
+            $row[] = $field->nama;
+            $row[] = $field->phone_number;
+            $row[] = $field->role_name;
 
             $row[] = '<td>
                 <div class="btn-group">

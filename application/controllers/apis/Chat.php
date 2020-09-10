@@ -8,7 +8,14 @@ class Chat extends REST_Controller
     // get list user
     public function user_get() {
         $me = $_GET['user_id'];
-        $friend = $this->db->query('select user_id, nama from user where level = 1 and user_id !="'.$me.'"')->result_array();
+
+        // $user = $this->db->get_where('user', array('user_id' => $me), 1)->row();
+        // if (in_array($user->level, [12, 13, 14])) {
+        //     $friend = $this->db->query('select user_id, nama from user where user_id !="'.$me.'"')->result_array();
+        // } else {
+        //     $friend = $this->db->query('select user_id, nama from user where level = 1 and user_id !="'.$me.'"')->result_array();
+        // }
+        $friend = $this->db->query('select user_id, nama from user where user_id !="'.$me.'"')->result_array();
 
         if (!$friend) {
             $wrapper = array(

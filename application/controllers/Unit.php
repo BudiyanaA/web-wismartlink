@@ -79,6 +79,7 @@ class Unit extends CI_Controller
                     'lantai' => $this->input->post('lantai', TRUE),
                     'biaya_sewa' => $this->input->post('biaya_sewa', TRUE),
                     'kode_unit' => $this->input->post('kode_unit', TRUE),
+                    'status' => 0
                 );
                 $simpan = $this->Unit_model->insert($data);
             } else {
@@ -91,6 +92,7 @@ class Unit extends CI_Controller
                     'lantai' => $this->input->post('lantai', TRUE),
                     'biaya_sewa' => $this->input->post('biaya_sewa', TRUE),
                     'kode_unit' => $this->input->post('kode_unit', TRUE),
+                    'status' => 0
                 );
                 $simpan = $this->Unit_model->insert($data);
             }

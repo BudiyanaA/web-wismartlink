@@ -29,9 +29,10 @@ class Scan_model extends CI_Model
 		// $this->db->join('apartemen a', 'g.id_apt = a.id_apt', 'left');
 
 		// $this->db->select('*');
-		$this->db->select('rm.id, rm.user_id, rm.fasilitas_id, rm.time, u.nama, f.fasilitas');
+		$this->db->select('rm.id, rm.user_id, rm.fasilitas_id, rm.time, u.nama, u.phone_number, r.role_name, f.fasilitas');
 		$this->db->from('absensi rm');
 		$this->db->join('user u', 'rm.user_id = u.user_id', 'left');
+		$this->db->join('role r', 'u.level = r.id', 'left');
 		$this->db->join('fasilitas_gedung f', 'rm.fasilitas_id = f.id', 'left');
 
 		// $this->db->from($this->table);
