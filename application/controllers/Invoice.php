@@ -207,7 +207,7 @@ class Invoice extends CI_Controller
                 $biaya_room_service = 0;
             }
 
-            $total = $biaya_apartemen + $biaya_sewa_fasilitas + $biaya_maintenance + $biaya_room_service;
+            $total = $biaya_apartemen + $biaya_sewa_fasilitas + $biaya_maintenance + $biaya_room_service + $field->pdam + $field->listrik;
             // var_dump($total);die();
 
             $alamat = 'Apartemen ' . $field->nama_apt . ', Gedung ' . $field->nama_gedung . ', ' . $field->nama_unit . ', Lantai ' . $field->lantai . ', Nomor ' . $field->nomor;
@@ -218,6 +218,8 @@ class Invoice extends CI_Controller
             $row[] = $field->nama;
             $row[] = $alamat;
             $row[] = $tagihan_bulan;
+            $row[] = 'Rp. ' . number_format($field->pdam, 2);
+            $row[] = 'Rp. ' . number_format($field->listrik, 2);
             $row[] = 'Rp. ' . number_format($total, 2);
             $row[] = $lunas;
 

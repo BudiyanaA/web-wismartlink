@@ -128,6 +128,8 @@
                                     <th> Nama Penghuni </th>
                                     <th> Alamat Apartemen </th>
                                     <th> Bulan </th>
+                                    <th> PDAM </th>
+                                    <th> Listrik </th>
                                     <th> Total </th>
                                     <th> Status </th>
                                     <th> Actions </th>

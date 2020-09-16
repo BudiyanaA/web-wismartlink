@@ -21,7 +21,7 @@ class Invoice_model extends CI_Model
 
 	private function _get_datatables_query()
 	{
-		$this->db->select('rm.id, rm.invoice_date, rm.total, un.nomor, u.user_id, rm.is_paid, rm.no_invoice, rm.created_date, u.nama, u.email, un.nama_unit, un.id_unit, un.nomor, un.lantai, g.nama_gedung, a.nama_apt');
+		$this->db->select('rm.id, rm.invoice_date, rm.total, rm.pdam, rm.listrik, un.nomor, u.user_id, rm.is_paid, rm.no_invoice, rm.created_date, u.nama, u.email, un.nama_unit, un.id_unit, un.nomor, un.lantai, g.nama_gedung, a.nama_apt');
 		$this->db->from('invoice rm');
 		$this->db->join('user u', 'rm.id_user = u.user_id', 'left');
 		$this->db->join('unit un', 'u.idunit = un.id_unit', 'left');
