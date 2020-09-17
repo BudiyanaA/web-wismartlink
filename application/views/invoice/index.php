@@ -90,7 +90,19 @@
                                         <i class="fa fa-check"></i> Submit</button>
                                 </form>
                             </div>
+                            
+                            <br>
+                            <div class="table-actions-wrapper">
 
+                                <form method="post" action="<?php echo base_url("index.php/invoice/import"); ?>" enctype="multipart/form-data">
+
+                                    <span> Import File (.xlsx) ;  <a href="<?php echo base_url("excel/format.xlsx"); ?>">Download Format</a> </span>
+                                    <input type="file" name="file" class="table-group-action-input form-control input-inline ">
+                                    <br>
+                                    <button type='submit' name='import' class="btn btn-sm green table-group-action-submit">Import</button>
+
+                                </form>
+                            </div>
                         </div>
                         <div class="table-toolbar">
                             <!-- <div class="row">
