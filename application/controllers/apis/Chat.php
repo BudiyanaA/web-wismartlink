@@ -17,6 +17,35 @@ class Chat extends REST_Controller
         // }
         $friend = $this->db->query('select user_id, nama from user where user_id !="'.$me.'"')->result_array();
 
+        // foreach ($friend as $f) {
+        //     $chat = $this->db
+        //     ->from('chat') 
+        //     ->join('user', 'chat.sender = user.user_id')
+        //     ->where('(sender = ' . $me . ' AND receiver = ' . $f["id"] . ')')
+        //     ->or_where('(receiver = ' . $me . ' AND sender = ' . $f->id . ')')
+        //     ->order_by('chat.time', 'desc');
+        //     // ->limit(100)
+        //     // ->select('nama, message, time, sender, receiver')
+        //     // ->get()
+        //     // ->result_array();
+
+        //     // $chat = Chat::select('message')
+        //     // ->where(function($query) use ($f){
+        //     //     $query->where('chats.send_by', '=', Auth::user()->id)
+        //     //           ->where('chats.send_to', '=', $f->id);
+        //     // })
+        //     // ->orWhere(function($query) use ($f){
+        //     //     $query->where('chats.send_to', '=', Auth::user()->id)
+        //     //           ->where('chats.send_by', '=', $f->id);
+        //     // })
+        //     // ->orderByDesc('chats.created_at');
+
+        //     // $f->recent = $chat->first();
+        //     $f->notif = $chat->where('(receiver = ' . $me . ')')
+        //     ->where('is_read = 0')->get()->count();
+        // }
+
+
         if (!$friend) {
             $wrapper = array(
                 'status' => 404,
@@ -26,7 +55,7 @@ class Chat extends REST_Controller
             $wrapper = array(
                 'status' => 200,
                 'message' => 'get_list_friend_success',
-                'data' => $friend
+                'data' => gettype($friend)
             );
         }
 

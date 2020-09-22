@@ -102,6 +102,8 @@ class Api extends REST_Controller
                     'id' => $row->id,
                     'title' => $row->title,
                     'description' => $row->description,
+                    'image' => base_url() . $row->image,
+                    'createa_at' => $row->created_at
                 );
             }
 

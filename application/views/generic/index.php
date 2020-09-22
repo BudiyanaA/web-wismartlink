@@ -65,6 +65,8 @@
                                     <th> # </th>
                                     <th> Title </th>
                                     <th> Description</th>
+                                    <th> Image </th>
+                                    <th> Created At</th>
                                     <th> Actions </th>
                                 </tr>
                             </thead>

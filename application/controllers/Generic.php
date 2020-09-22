@@ -30,6 +30,7 @@ class Generic extends CI_Controller
             'id' => set_value('id'),
             'title' => set_value('title'),
             'description' => set_value('description'),
+            'img' => set_value('img'),
             'button' => 'Save',
             'disabled' => '',
             'form_action' => 'index.php/Generic/create_action',
@@ -46,11 +47,34 @@ class Generic extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
-            $data = array(
-                'title' => $this->input->post('title', TRUE),
-                'description' => $this->input->post('description', TRUE),
-            );
-            $simpan = $this->Generic_model->insert($data);
+            $this->load->library('upload');
+            $rand = substr(hash('sha512', rand()), 0, 20);
+            $nmfile = $rand;
+            $files = $_FILES['img']['name'];
+            $ada = explode(".", $files);
+            $ext = end($ada);
+            $config['upload_path'] = './assets/img/informasi/';
+            $config['allowed_types'] = 'jpg|png|jpeg|bmp|PNG|JPG|JPEG';
+            $config['max_size'] = '2048';
+            $config['max_width']  = '2047';
+            $config['max_height']  = '1366';
+            $config['file_name'] = $nmfile;
+            $this->upload->initialize($config);
+            if (!empty($_FILES['img']['name'])) {
+                $this->upload->do_upload('img');
+                $data = array(
+                    'title' => $this->input->post('title', TRUE),
+                    'description' => $this->input->post('description', TRUE),
+                    'image' => '/assets/img/informasi/' . $rand . '.' . $ext,
+                );
+                $simpan = $this->Generic_model->insert($data);
+            } else {
+                $data = array(
+                    'title' => $this->input->post('title', TRUE),
+                    'description' => $this->input->post('description', TRUE),
+                );
+                $simpan = $this->Generic_model->insert($data);
+            }
             if ($simpan) {
                 $this->session->set_flashdata('success', 'Create Record Success');
                 redirect(base_url('index.php/Generic'));
@@ -68,6 +92,7 @@ class Generic extends CI_Controller
             'id' => set_value('id', $row->id),
             'title' => set_value('title', $row->title),
             'description' => set_value('description', $row->description),
+            'img' => set_value('img', base_url() . $row->image),
             'disabled' => '',
             'button' => 'Update',
             'form_action' => 'index.php/Generic/update_action/"' . $id . '"',
@@ -80,10 +105,32 @@ class Generic extends CI_Controller
 
     public function update_action()
     {
-        $data = array(
-            'title' => $this->input->post('title', TRUE),
-            'description' => $this->input->post('description', TRUE),
-        );
+        $this->load->library('upload');
+        $rand = substr(hash('sha512', rand()), 0, 20);
+        $nmfile = $rand;
+        $files = $_FILES['img']['name'];
+        $ada = explode(".", $files);
+        $ext = end($ada);
+        $config['upload_path'] = './assets/img/informasi/';
+        $config['allowed_types'] = 'jpg|png|jpeg|bmp|PNG|JPG|JPEG';
+        $config['max_size'] = '2048';
+        $config['max_width']  = '2047';
+        $config['max_height']  = '1366';
+        $config['file_name'] = $nmfile;
+        $this->upload->initialize($config);
+        if (!empty($_FILES['img']['name'])) {
+            $this->upload->do_upload('img');
+            $data = array(
+                'title' => $this->input->post('title', TRUE),
+                'description' => $this->input->post('description', TRUE),
+                'image' => '/assets/img/informasi/' . $rand . '.' . $ext,
+            );
+        } else {
+            $data = array(
+                'title' => $this->input->post('title', TRUE),
+                'description' => $this->input->post('description', TRUE),
+            );
+        }
 
         $this->Generic_model->update($this->input->post('id', TRUE), $data);
         $this->session->set_flashdata('success', 'Update Success');
@@ -98,6 +145,7 @@ class Generic extends CI_Controller
             'id' => set_value('id', $row->id),
             'title' => set_value('title', $row->title),
             'description' => set_value('description', $row->description),
+            'img' => set_value('img', base_url() . $row->image),
             'disabled' => 'disabled',
             'button' => 'Read',
             'form_action' => 'index.php/Generic/update_action/"' . $id . '"',
@@ -136,10 +184,13 @@ class Generic extends CI_Controller
         $no = $_POST['start'];
         foreach ($list as $field) {
             $no++;
+            $img = '<img src=' . base_url() . $field->image . ' width="100%">';
             $row = array();
             $row[] = $no;
             $row[] = $field->title;
             $row[] = $field->description;
+            $row[] = $img;
+            $row[] = date('d F, Y', strtotime($field->created_at));
             $row[] = '<td>
                         <div class="btn-group">
                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions

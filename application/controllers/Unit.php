@@ -156,7 +156,7 @@ class Unit extends CI_Controller
                 'nomor' => $this->input->post('nomor', TRUE),
                 'id_gedung' => $this->input->post('id_gedung', TRUE),
                 'spek' => $this->input->post('spek', TRUE),
-                'foto' => '/apartemen/assets/img/unit/' . $rand . '.' . $ext,
+                'foto' => '/assets/img/unit/' . $rand . '.' . $ext,
                 'ket' => $this->input->post('ket', TRUE),
                 'lantai' => $this->input->post('lantai', TRUE),
                 'biaya_sewa' => $this->input->post('biaya_sewa', TRUE),
