@@ -78,8 +78,8 @@ class Invoice extends REST_Controller
             'room_service' => $tag_room_service,
             'sewa_fasilitas' => $tag_sewa_fasilitas,
 
-            'tagihan_pdam' => 'Rp. ' . number_format(50000 , 2),
-            'tagihan_listrik' => 'Rp. ' . number_format(120000 , 2),
+            'tagihan_pdam' => 'Rp. ' . number_format($get_invoice->pdam , 2),
+            'tagihan_listrik' => 'Rp. ' . number_format($get_invoice->listrik , 2),
 
             'grand_total' => $total,
             'nomor_invoice' => $nomor_invoice,

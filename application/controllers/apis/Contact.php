@@ -18,6 +18,11 @@ class Contact extends REST_Controller
                 "type" => "Room Service",
                 "number" => "+6282113344556"
             );
+        } else if ($type == "security") {
+            $data = array(
+                "type" => "Room Service",
+                "number" => "+6281234567891"
+            );
         } else {
             $data = array(
                 "type" => "error",
