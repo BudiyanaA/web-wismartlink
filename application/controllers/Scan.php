@@ -98,7 +98,9 @@ class Scan extends CI_Controller
             $row[] = $field->nama;
             $row[] = $field->phone_number;
             $row[] = $field->role_name;
-
+            $row[] = $field->nama_unit;
+            $row[] = $field->nama_gedung;
+            
             $row[] = '<td>
                 <div class="btn-group">
                     <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions

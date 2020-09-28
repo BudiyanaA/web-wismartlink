@@ -90,6 +90,8 @@
                                     <th> Nama User </th>
                                     <th> No HP</th>
                                     <th> Role </th>
+                                    <th> Nama Unit </th>
+                                    <th> Nama Gedung </th>
                                     <th> Actions </th>
                                 </tr>
                             </thead>

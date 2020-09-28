@@ -21,13 +21,8 @@ class Scan_model extends CI_Model
 
 	private function _get_datatables_query()
 	{
-		// $query = $this->db->query(
-		// 	"select * from pengiriman AS p join wilayah_indonesia As w on p.ID_WILAYAH_PENERIMA = w.ID_WILAYAH
-		// 	join tracking as t on p.ID_PENGIRIMAN = t.ID_PENGIRIMAN where TGL_PENGIRIMAN >= '$date1' and TGL_PENGIRIMAN <= '$date2'
-		// 	group by p.ID_PENGIRIMAN" 
-		// );
 
-		$this->db->select('rm.id, rm.user_id, rm.barcode_id, rm.time, u.nama, u.phone_number, r.role_name, b.info, rm.time');
+		$this->db->select('rm.id, rm.user_id, rm.barcode_id, rm.time, u.nama, u.phone_number, r.role_name, b.info, rm.time, un.nama_unit, g.nama_gedung');
 		if($this->input->post('startDate'))
         {
             $this->db->where('date(time) >=', $this->input->post('startDate'));
@@ -40,6 +35,8 @@ class Scan_model extends CI_Model
 		$this->db->join('user u', 'rm.user_id = u.user_id', 'left');
 		$this->db->join('role r', 'u.level = r.id', 'left');
 		$this->db->join('barcode b', 'rm.barcode_id = b.id', 'left');
+		$this->db->join('unit un', 'u.idunit = un.id_unit', 'left');
+		$this->db->join('gedung g', 'un.id_gedung = g.id_gedung', 'left');
 
 		// $this->db->from($this->table);
 
