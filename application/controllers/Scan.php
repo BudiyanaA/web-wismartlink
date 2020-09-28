@@ -92,7 +92,7 @@ class Scan extends CI_Controller
             // $pic = '<img src=' . $field->img . ' width="45%">';
             $row = array();
             $row[] = $no;
-            $row[] = $field->fasilitas;
+            $row[] = $field->info;
             $row[] = longdate_indo(substr($field->time, 0, 10));
             $row[] = substr($field->time, 11, 8);
             $row[] = $field->nama;

@@ -3,8 +3,8 @@
 class Scan_model extends CI_Model
 {
 	var $infra = null;
-	var $table = 'ticket'; //nama tabel dari database
-	var $table2 = 'ticket'; //nama tabel dari database
+	var $table = 'absensi'; //nama tabel dari database
+	var $table2 = 'absensi'; //nama tabel dari database
 	var $column_order = array(null, 'rm.id',  'rm.id_user', 'rm.pic_id', 'rm.level', 'un.nomor', 'rm.is_paid', 'rm.kode_tiket', 'rm.keterangan', 'rm.status', 'rm.created_date', 'u.nama', 'u.email', 'un.nama_unit', 'un.nomor', 'un.lantai', 'g.nama_gedung', 'a.nama_apt'); //field yang ada di table user
 	var $column_search = array('rm.id',  'rm.id_user', 'rm.pic_id', 'rm.level', 'rm.kode_tiket', 'rm.keterangan', 'rm.status', 'un.nomor',  'rm.created_date', 'u.nama', 'u.email', 'un.nama_unit', 'un.nomor', 'un.lantai', 'g.nama_gedung', 'a.nama_apt'); //field yang diizin untuk pencarian 
 	var $order = array('rm.id' => 'desc'); // default order 
@@ -21,19 +21,25 @@ class Scan_model extends CI_Model
 
 	private function _get_datatables_query()
 	{
-		// $this->db->select('rm.id, rm.level, rm.id_user, rm.pic_id, rm.keterangan, rm.kode_tiket, rm.status, un.nomor, rm.created_date, u.nama, u.email, un.nama_unit, un.nomor, un.lantai, g.nama_gedung, a.nama_apt');
-		// $this->db->from('ticket rm');
-		// $this->db->join('user u', 'rm.id_user = u.user_id', 'left');
-		// $this->db->join('unit un', 'u.idunit = un.id_unit', 'left');
-		// $this->db->join('gedung g', 'un.id_gedung = g.id_gedung', 'left');
-		// $this->db->join('apartemen a', 'g.id_apt = a.id_apt', 'left');
+		// $query = $this->db->query(
+		// 	"select * from pengiriman AS p join wilayah_indonesia As w on p.ID_WILAYAH_PENERIMA = w.ID_WILAYAH
+		// 	join tracking as t on p.ID_PENGIRIMAN = t.ID_PENGIRIMAN where TGL_PENGIRIMAN >= '$date1' and TGL_PENGIRIMAN <= '$date2'
+		// 	group by p.ID_PENGIRIMAN" 
+		// );
 
-		// $this->db->select('*');
-		$this->db->select('rm.id, rm.user_id, rm.fasilitas_id, rm.time, u.nama, u.phone_number, r.role_name, f.fasilitas');
+		$this->db->select('rm.id, rm.user_id, rm.barcode_id, rm.time, u.nama, u.phone_number, r.role_name, b.info, rm.time');
+		if($this->input->post('startDate'))
+        {
+            $this->db->where('date(time) >=', $this->input->post('startDate'));
+        }
+        if($this->input->post('endDate'))
+        {
+            $this->db->where('date(time) <=', $this->input->post('endDate'));
+        }
 		$this->db->from('absensi rm');
 		$this->db->join('user u', 'rm.user_id = u.user_id', 'left');
 		$this->db->join('role r', 'u.level = r.id', 'left');
-		$this->db->join('fasilitas_gedung f', 'rm.fasilitas_id = f.id', 'left');
+		$this->db->join('barcode b', 'rm.barcode_id = b.id', 'left');
 
 		// $this->db->from($this->table);
 

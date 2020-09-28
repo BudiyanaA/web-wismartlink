@@ -29,13 +29,13 @@ class Scan extends REST_Controller
             'time' => date('Y-m-d H:i:s'),
         );
 
-        $fasilitas = $this->db->query('select * from fasilitas_gedung where qrcode ="'.$data['qrcode'].'"')->result_array();
-        $fasilitas[0]['time'] = $data['time'];
-        $id_gedung = $this->db->query('select id from fasilitas_gedung where qrcode ="'.$data['qrcode'].'"')->row('id');
+        $barcode = $this->db->query('select * from barcode where qrcode ="'.$data['qrcode'].'"')->result_array();
+        $barcode[0]['time'] = $data['time'];
+        $id_barcode = $this->db->query('select id from barcode where qrcode ="'.$data['qrcode'].'"')->row('id');
 
         $dataInput = array(
             'user_id' => $data['user'],
-            'fasilitas_id' => $id_gedung,
+            'barcode_id' => $id_barcode,
             'time' => $data['time'],
         );
 
@@ -50,7 +50,7 @@ class Scan extends REST_Controller
             $wrapper = array(
                 'status' => 201,
                 'message' => 'absen_success',
-                'data' => $fasilitas
+                'data' => $barcode
             );
         }
         $this->response($wrapper, $wrapper['status']);

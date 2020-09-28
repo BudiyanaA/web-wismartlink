@@ -52,11 +52,39 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" >Custom Filter : </h3>
+                            </div>
+                            <div class="panel-body">
+                                <form id="form-filter" class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="FirstName" class="col-sm-2 control-label">Tanggal Mulai</label>
+                                        <div class="col-sm-4">
+                                            <input type="date" class="form-control" name="startDate" id="startDate">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="LastName" class="col-sm-2 control-label">Tanggal Selesai</label>
+                                        <div class="col-sm-4">
+                                            <input type="date" class="form-control" name="endDate" id="endDate">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="LastName" class="col-sm-2 control-label"></label>
+                                        <div class="col-sm-4">
+                                            <button type="button" id="btn-filter" class="btn btn-primary">Filter</button>
+                                            <button type="button" id="btn-reset" class="btn btn-default">Reset</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="measurement">
                             <thead>
                                 <tr>
                                     <th> # </th>
-                                    <th> Fasilitas </th>
+                                    <th> Info </th>
                                     <th> Tanggal </th>
                                     <th> Jam </th>
                                     <th> Nama User </th>
@@ -80,10 +108,12 @@
 </div>
 
 <script>
+    var table;
+    
     $(document).ready(function() {
 
         //datatables
-        $('#measurement').DataTable({
+        table = $('#measurement').DataTable({
 
             "dom": 'Bfrtip',
             "pageLength": 10,
@@ -126,7 +156,11 @@
 
             "ajax": {
                 "url": "<?php echo site_url('Scan/get_data') ?>",
-                "type": "POST"
+                "type": "POST",
+                "data": function ( data ) {
+                    data.startDate = $('#startDate').val();
+                    data.endDate = $('#endDate').val();
+                }
             },
 
 
@@ -137,6 +171,14 @@
 
         });
 
+    });
+
+    $('#btn-filter').click(function(){ //button filter event click
+        table.ajax.reload();  //just reload table
+    });
+    $('#btn-reset').click(function(){ //button reset event click
+        $('#form-filter')[0].reset();
+        table.ajax.reload();  //just reload table
     });
 
     function approve(no) {
