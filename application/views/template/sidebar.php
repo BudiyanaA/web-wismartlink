@@ -149,7 +149,20 @@
                         </ul>
                     </li>
                     <?php endif; ?>
-
+                    
+                    <!-- BARCODE -->
+                    <!-- <?php $data = $this->db->query('select menu.view from menu where id = 5')->row('view'); 
+                        if (in_array($this->session->userdata('level'), explode(',', $data))):
+                    ?> -->
+                    <li class="nav-item start <?php if ($this->uri->segment(1) == "Barcode") {
+                                                    echo 'active';
+                                                } ?>">
+                        <a href="<?php echo base_url() ?>index.php/Barcode" class="nav-link ">
+                            <i class="icon-picture"></i>
+                            <span class="title">Barcode</span>
+                        </a>
+                    </li>
+                    <!-- <?php endif; ?> -->
                 </ul>
             </li>
             <li class="nav-item start ">
