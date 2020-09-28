@@ -30,7 +30,7 @@ class Scan extends CI_Controller
         $get_users = $this->db->query("select * from user")->result();
         $get_fasilitas = $this->db->query("select * from fasilitas_gedung")->result();
         $row = $this->db->query("select *
-        from absensi
+        from absensi join barcode on absensi.barcode_id = barcode.id
         ")->row();
 
         $data = array(
@@ -38,7 +38,7 @@ class Scan extends CI_Controller
             'get_fasilitas' => $get_fasilitas,
             'id' => set_value('id', $row->id),
             'user_id' => set_value('user_id', $row->user_id),
-            'fasilitas_id' => set_value('fasilitas_id', $row->fasilitas_id),
+            'info' => set_value('info', $row->info),
             'time' => set_value('time', $row->time),
             'disabled' => 'disabled',
             'button' => 'Read',

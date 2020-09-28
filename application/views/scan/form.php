@@ -68,21 +68,12 @@
                             </div>
 
                             <div class="form-group">
-                                <label> Fasilitas</label>
+                                <label> Info</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="fa fa-envelope"></i>
                                     </span>
-                                    <select name="fasilitas" id="fasilitas" class="form-control" <?php echo $disabled ?>>
-                                        <option value=""> - Pilih Fasilitas - </option>
-                                        <?php
-                                        foreach ($get_fasilitas as $row) {
-                                        ?>
-                                            <option value="<?php echo $row->id ?>" <?= ($fasilitas_id == $row->id)?'selected':''?>> <?php echo $row->fasilitas ?> </option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
+                                    <input type="text" name="info" id="info" class="form-control" placeholder="Info" value="<?php echo $info ?>" <?php echo $disabled ?>>
                                 </div>
                                 <?php echo form_error('fasilitas') ?>
                             </div>
