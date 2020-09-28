@@ -73,7 +73,7 @@
                                 <div class="form-group">
                                     <label for="exampleInputFile1">Image</label>
                                     <input type="file" name="image" id="image">
-                                    <p class="help-block"> some help text here. </p>
+                                    <p class="help-block">max size 2mb, file format jpg, png, jpeg, bmp.</p>
                                 </div>
                             <?php
                             } else {
