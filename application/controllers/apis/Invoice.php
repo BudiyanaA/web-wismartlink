@@ -78,15 +78,36 @@ class Invoice extends REST_Controller
             'room_service' => $tag_room_service,
             'sewa_fasilitas' => $tag_sewa_fasilitas,
 
-            'tagihan_pdam' => 'Rp. ' . number_format($get_invoice->pdam , 2),
-            'tagihan_listrik' => 'Rp. ' . number_format($get_invoice->listrik , 2),
+            'periode_tagihan' => "Maret 2019",
+            'jatuh_tempo' => "10/02/2019",
+            'tanggal_bast' => "12/08/2007",
 
+            'biaya_keamanan' => 'Rp. ' . number_format(50000 , 2),
+            'biaya_kebersihan' => 'Rp. ' . number_format(50000 , 2),
+            'biaya_admin' => 'Rp. ' . number_format(30000 , 2),
+            'sinking_fund' => 'Rp. ' . number_format(42000 , 2),
+            'biaya_operasional' => 'Rp. ' . number_format(50000 , 2),
+            'biaya_service' => 'Rp. ' . number_format(300000 , 2),
+
+            'pdam' => array(
+                'tagihan_pdam' => 'Rp. ' . number_format($get_invoice->pdam , 2),
+                'meteran_awal' => 0,
+                'meteran_akhir' => 10,
+            ),
+            'listrik' => array(
+                'tagihan_listrik' => 'Rp. ' . number_format($get_invoice->listrik , 2),
+                'meteran_awal' => 1618,
+                'meteran_akhir' => 3528,
+            ),
+            
             'grand_total' => $total,
+            'is_paid' => $get_invoice->is_paid?"Lunas":"Belum Lunas",
+            
             'nomor_invoice' => $nomor_invoice,
             'nama_user' => $get_user->nama,
             'nama_unit' => $get_unit->nama_unit,
             'nomor' => $get_unit->nomor,
-            'lantain' => $get_unit->lantai,
+            'lantai' => $get_unit->lantai,
             'nama_gedung' => $get_gedung->nama_gedung,
             'alamat' => $get_gedung->alamat,
             'kota' => $get_gedung->kota,
