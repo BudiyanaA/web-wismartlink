@@ -37,4 +37,31 @@ class Contact extends REST_Controller
         );
         $this->response($wrapper, $wrapper['status']);
     }
+
+    public function index_post() {
+
+        $data = array(
+            'message' => $this->post('message'),
+            'id_user' => $this->post('id_user'),
+            'created_at' => date('Y-m-d H:i:s'),
+        );
+
+        $save = $this->db->insert('contact', $data);
+
+        if (!$save) {
+            $wrapper = array(
+                'status' => 401,
+                'message' => 'failed',
+                'data' => null
+            );
+        } else {
+            $wrapper = array(
+                'status' => 201,
+                'message' => 'success',
+                'data' => $data
+            );
+        }
+
+        $this->response($wrapper, $wrapper['status']);
+    }
 }
