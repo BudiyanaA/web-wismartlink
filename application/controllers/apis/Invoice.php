@@ -121,4 +121,45 @@ class Invoice extends REST_Controller
         );
         $this->response($wrapper, $wrapper['status']);
     }
+
+    public function cetak_invoice_get()
+    {
+        $nomor = $this->get('nomor');
+
+        // $id_user = substr($nomor_invoice,0,1);
+        // $id_unit = substr($nomor_invoice,1,1);
+        // $month = substr($nomor_invoice,1,1);
+        // $year = substr($nomor_invoice,1,1);
+
+        $data['invoice'] = $this->db->get('invoice')->result()[0];
+        $get_invoice = $this->db->query("select * from invoice where no_invoice = '$nomor'")->row();
+        $get_user = $this->db->query("select * from user where user_id = '$get_invoice->id_user'")->row();
+        $get_unit = $this->db->query("select * from unit where id_unit = '$get_user->idunit'")->row();
+        $get_gedung = $this->db->query("select * from gedung where id_gedung = '$get_unit->id_gedung'")->row();
+        $get_apartemen = $this->db->query("select * from apartemen where id_apt = '$get_gedung->id_apt'")->row();
+
+        $data['nomor_invoice'] = $nomor;
+        $data['nama_user'] = $get_user->nama;
+        $data['nama_unit'] = $get_unit->nama_unit;
+        $data['lantai'] = $get_unit->lantai;
+        $data['nomor'] = $get_unit->nomor;
+        $data['nama_apartemen'] = $get_apartemen->nama_apt;
+        $data['nama_gedung'] = $get_gedung->nama_gedung;
+        $data['alamat'] = $get_gedung->alamat;
+        $data['kota'] = $get_gedung->kota;
+
+        $get_tagihan_apartemen = $this->db->query("select * from unit where id_unit = '$get_user->idunit'")->row();
+        $data['tagihan_apartemen'] = $get_tagihan_apartemen->biaya_sewa;
+
+        // $this->db->join('barang', 'barang.ID_BARANG = detil_pengiriman.ID_BARANG');
+		// $this->db->where('ID_PENGIRIMAN', $data['tracking'][0]->ID_PENGIRIMAN);
+		// $this->db->order_by('barang.ID_BARANG','DESC');
+		// $data['barang'] = $this->db->get('detil_pengiriman')->result();
+
+        // $this->db->where('ID_PENGIRIMAN', $data['tracking'][0]->ID_PENGIRIMAN);
+		// $data['pengiriman'] = $this->db->get('pengiriman')->result();
+
+        // print_r($data['tracking']);
+        $this->load->view('invoice/cetak', $data);
+    }
 }
