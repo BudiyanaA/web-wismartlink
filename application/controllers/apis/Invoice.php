@@ -162,4 +162,30 @@ class Invoice extends REST_Controller
         // print_r($data['tracking']);
         $this->load->view('invoice/cetak', $data);
     }
+
+    public function ketentuan_get() {
+        $data = "
+        <p>Ketentun-ketentuan:</p>
+        <ol>
+            <li>Service Charge : Luas (M2) * Rp. 8500</li>
+            <li>Sinking Fund : Luas (M2) * Rp. 1000</li>
+            <li>Biaya Beban Listrik / KVA : Rp. 40,360</li>
+            <li>Biaya Pemakaian Listrik / Kwh : Rp. 1350</li>
+            <li>Biaya Listrik termasuk 3 % PJU :</li>
+            <li>Biaya Air Bersih / M3 : Rp. 12,550</li>
+            <li>Biaya Pemeliharaan Air 3/4* : Rp. 9000</li>
+            <li>Biaya Pemeliharaan Air 1* : Rp. 11,000</li>
+            <li>Biaya Abonemen Air 3/4* : Rp. 23,755</li>
+            <li>Biaya Abonemen Air 1* : Rp. 47,510</li>
+            <li>Biaya Asuransi : Luas (M2) * Rp. 4900</li>
+        </ol>
+        ";
+
+        $wrapper = array(
+            'status' => 200,
+            'message' => 'success',
+            'data' => $data
+        );
+        $this->response($wrapper, $wrapper['status']);
+    }
 }

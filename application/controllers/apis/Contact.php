@@ -64,4 +64,15 @@ class Contact extends REST_Controller
 
         $this->response($wrapper, $wrapper['status']);
     }
+
+    public function about_get() {
+        $data = $this->db->query('select * from about')->result_array();
+
+        $wrapper = array(
+            'status' => 200,
+            'message' => 'success',
+            'data' => $data
+        );
+        $this->response($wrapper, $wrapper['status']);
+    }
 }

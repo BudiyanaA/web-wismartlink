@@ -73,6 +73,7 @@ class Apartemen extends CI_Controller
             'folder' => 'apartemen',
             'page_name' => 'form',
         );
+        $data['contact'] = $this->db->query('select * from about')->result_array();
         $this->load->view('template/index', $data);
     }
 
@@ -84,6 +85,16 @@ class Apartemen extends CI_Controller
         );
 
         $this->Apartemen_model->update('id_apt', $this->input->post('id_apt', TRUE), $data, 'apartemen');
+        $this->session->set_flashdata('success', 'Update Success');
+        redirect(base_url('index.php/Apartemen'));
+    }
+
+    public function update_contact()
+    {
+        $data = $this->input->post();
+        foreach ($data as $key => $value) {
+            $this->db->query('update about set text = "'.$value.'" where title = "'.$key.'"');
+        }
         $this->session->set_flashdata('success', 'Update Success');
         redirect(base_url('index.php/Apartemen'));
     }
